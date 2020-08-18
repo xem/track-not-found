@@ -1,0 +1,232 @@
+﻿<div id=viewport>
+  <div id=camera>
+    <div id=scene></div>
+  </div>
+</div>
+<style>
+/* Twemoji */
+@font-face {
+  font-family: emoji;
+  src: url(twemoji.ttf);
+}
+
+/* CSS3D framework */
+#viewport{width:500px;height:400px;overflow:hidden;border:1px solid;position:relative;perspective:400px}
+#viewport *{transform-style:preserve-3d;box-sizing:border-box}
+#camera{width:0;height:0;position:absolute;top:50%;left:50%}
+.triangle{clip-path:polygon(50% 0,100% 100%,0 100%);border:none}
+.triangle-bottom{clip-path:polygon(0 0,100% 0,50% 100%)}
+.triangle-left{clip-path:polygon(0 50%,100% 0,100% 100%)}
+.triangle-right{clip-path:polygon(0 0,100% 50%,0 100%)}
+.triangle-top-left{clip-path:polygon(0 0,100% 0,0 100%)}
+.triangle-top-right{clip-path:polygon(0 0,100% 0,100% 100%)}
+.triangle-bottom-left{clip-path:polygon(0 0,100% 100%,0 100%)}
+.triangle-bottom-right{clip-path:polygon(100% 0,100% 100%,0 100%)}
+.circle{border-radius:50%}
+/*#scene,.plane,.sprite,.group{transition:.5s linear}*/
+</style>
+<script>
+/* CSS3D framework */
+C = {
+unit: "px",
+camX: 0,
+camY: 0,
+camZ: 0,
+camRX: 0,
+camRY: 0,
+camRZ: 0,
+sprite_count: 0,
+sprites: [],
+plane_count: 0,
+cube_count: 0,
+pyramid_count: 0,
+options: {},
+$: t => self[t],
+set_unit: t => C.unit=t,
+set_perspective: t => viewport.style.perspective=`${t}${C.unit}`,
+
+init: t => {
+  t.css||(t.css=""),
+  t.html||(t.html=""),
+  t.g||(t.g="scene"),
+  t.o||(t.o="center"),
+  t.o=="top left"&&(t.x+=t.w/2,t.y+=t.h/2),
+  t.o=="top"&&(t.y+=t.h/2),
+  t.o=="top right"&&(t.x-=t.w/2,t.y+=t.h/2),
+  t.o=="right"&&(t.x-=t.w/2),
+  t.o=="bottom right"&&(t.x-=t.w/2,t.y-=t.h/2),
+  t.o=="bottom"&&(t.y-=t.h/2),
+  t.o=="bottom left"&&(t.x+=t.w/2,t.y-=t.h/2),
+  t.o=="left"&&(t.x+=t.w/2),
+  t.w||(t.w=0),
+  t.h||(t.h=0),
+  t.x||(t.x=0),
+  t.y||(t.y=0),
+  t.z||(t.z=0),
+  t.rx||(t.rx=0),
+  t.ry||(t.ry=0),
+  t.rz||(t.rz=0),
+  t.sx||(t.sx=1),
+  t.sy||(t.sy=1),
+  t.sz||(t.sz=1),
+  C.options[t.n]=t
+},
+
+group: t => { 
+  t.d||t.d===0||(t.d=t.h),
+  C.init(t),
+  C.$(t.g).innerHTML+=`<div id="${t.n}"class="group ${t.css}"style="position:absolute;width:${t.w}${C.unit};height:${t.d}${C.unit};transform:${C.tr(t)}">`
+},
+
+plane: t => {
+  t.n||(t.n=`plane${C.plane_count++}`),
+  C.init(t),
+  C.$(t.g).innerHTML+=`<div id="${t.n}"class="plane ${t.css}"style="position:absolute;width:${t.w}${C.unit};height:${t.h}${C.unit};background:${t.b};transform-origin:${t.o};transform:${C.tr(t)}">${t.html}`,
+  C.camera()
+},
+
+sprite: t => {
+  t.n||(t.n=`sprite${C.sprite_count++}`),
+  C.init(t),
+  C.$(t.g).innerHTML+=`<div id="${t.n}"class="sprite ${t.css}"style="position:absolute;width:${t.w}${C.unit};height:${t.h}${C.unit};background:${t.b};transform-origin:${t.o};transform:${C.tr(t)}">${t.html}`,
+  C.sprites.push(t.n),
+  C.camera()
+},
+
+cube: (t,u,d,l,r,f,b) => {
+  t.n||(t.n=`cube${C.cube_count++}`);
+  C.init(t);
+  C.group(t);
+  if(d)C.plane({g:t.n,x:t.w/2,y:t.d/2,w:t.w,h:t.d,b:t.b,css:"bottom"});
+  if(l)C.plane({g:t.n,y:t.d/2,w:t.d,h:t.h,b:t.b1||t.b,rx:-90,ry:-90,o:"bottom",css:"left"});
+  if(r)C.plane({g:t.n,x:t.w,y:t.d/2,w:t.d,h:t.h,b:t.b2||t.b,rx:-90,ry:-90,o:"bottom",css:"right"});
+  if(b)C.plane({g:t.n,x:t.w/2,y:0,w:t.w,h:t.h,b:t.b1||t.b,rx:-90,o:"bottom",css:"back"});
+  if(f)C.plane({g:t.n,x:t.w/2,y:t.d,w:t.w,h:t.h,b:t.b2||t.b,rx:-90,o:"bottom",css:"front"});
+  if(u)C.plane({g:t.n,x:t.w/2,y:t.d/2,z:t.h,w:t.w,h:t.d,b:t.b,css:"top"});
+},
+
+pyramid: t => {
+  t.n||(t.n=`pyramid${C.pyramid_count++}`);
+  C.init(t);
+  C.group({n:t.n,g:t.g,x:t.x,y:t.y,z:t.z,w:100,d:100,rx:t.rx,ry:t.ry,rz:t.rz,sx:t.w/100,sy:t.d/100,sz:t.h/86.6025,css:t.css});
+  C.plane({g:t.n,x:50,y:50,w:100,h:100,b:t.b,css:"bottom"});
+  C.plane({g:t.n,y:50,w:100,h:100,b:t.b,ry:-60,rz:90,css:"triangle left",o:"bottom"});
+  C.plane({g:t.n,x:100,y:50,w:100,h:100,b:t.b,ry:-120,rz:90,css:"triangle right",o:"bottom"});
+  C.plane({g:t.n,x:50,y:0,w:100,h:100,b:t.b,rx:-120,css:"triangle back",o:"bottom"});
+  C.plane({g:t.n,x:50,y:100,w:100,h:100,b:t.b,rx:-60,css:"triangle front",o:"bottom"});
+},
+
+camera: t => {
+  t&&(t.x||0===t.x)&&(C.camX=t.x),
+  t&&(t.y||0===t.y)&&(C.camY=t.y),
+  t&&(t.z||0===t.z)&&(C.camZ=t.z),
+  t&&(t.rx||0===t.rx)&&(C.camRX=t.rx),
+  t&&(t.ry||0===t.ry)&&(C.camRY=t.ry),
+  t&&(t.rz||0===t.rz)&&(C.camRZ=t.rz),
+  C.camX+=(Math.random()-.5)/1e3,
+  scene.style.transform=`translateX(${-C.camX}${C.unit})translateY(${-C.camY}${C.unit})translateZ(${-C.camZ}${C.unit})rotateX(${C.camRX}deg)rotateY(${C.camRY}deg)rotateZ(${C.camRZ}deg)`;
+  for(var r in C.sprites){
+    var n=C.$(C.sprites[r]),
+    o=n.style.transform.replace(/ *rotate.*\(.*?deg\)/g,"");
+    n.style.transform=o+`rotateZ(${-C.camRZ}deg)rotateX(${-C.camRX}deg)`
+  }
+},
+
+move: t => {
+  if(t.n){
+   var r=C.$(t.n),
+   n=C.options[t.n];
+   (t.x||0===t.x)&&(n.x=t.x),
+   (t.y||0===t.y)&&(n.y=t.y),
+   (t.z||0===t.z)&&(n.z=t.z),
+   (t.rx||0===t.rx)&&(n.rx=t.rx),
+   (t.ry||0===t.ry)&&(n.ry=t.ry),
+   (t.rz||0===t.rz)&&(n.rz=t.rz),
+   C.options[t.n]=n,
+   r.style.transform=C.tr(n)
+ }
+},
+
+tr: t => `translateX(-50%)translateY(-50%)translateX(${t.x}${C.unit})translateY(${t.y}${C.unit})translateZ(${t.z}${C.unit})rotateX(${t.rx}deg)rotateY(${t.ry}deg)rotateZ(${t.rz}deg)scaleX(${t.sx})scaleY(${t.sy})scaleZ(${t.sz})`
+
+}
+</script>
+<script>
+
+deg2rad = angle => Math.PI * angle / 180;
+
+onload = () => {
+
+  // Ground
+  //C.plane({w:1000,h:500,b:"#8D8",css:"ground"});
+  
+  C.camera({rx:50,rz:0,z:-200});
+  
+  // Train
+  C.plane({w:50,h:50,y:-7,z:2,html:"🚂",css:"train",rx:-90,ry:180,o:"bottom"});
+  C.plane({w:50,h:50,y:5.5,z:2,html:"🚂",css:"train",rx:-90,ry:180,o:"bottom"});
+  
+  C.cube({x:-15,y:-1,z:10,w:18,h:35,d:12,b:"#A11"},1,0,1,1,1,1); // big red
+  C.cube({x:6,y:-1,z:15,w:26,h:18,d:12,b:"#444"},1,0,1,1,1,1); // big grey
+  C.cube({x:12,y:-1,z:33,w:8,h:10,d:12,b:"#666"},0,0,1,1,1,1); // chemney light
+  C.cube({x:12,y:-1,z:42,w:10,h:6,d:12,b:"#444"},1,0,1,1,1,1); // chemney dark
+  C.plane({b:"#c80",y:-1,w:2.5,h:12,z:34}); // orange 1
+  C.plane({b:"#c80",y:-1,w:2.5,h:12,z:34,x:7.5}); // orange 2
+  C.plane({b:"#151515",w:12,h:13,z:24,x:20.5,ry:90,y:-1}); // front black
+  C.plane({b:"#c33",w:10,h:15,z:11.5,x:21.5,ry:45,y:-1}); // slanted red
+  
+  // Track
+  C.cube({w:1000,h:5,d:5,y:11,b:"#888",b2:"#666",b3:"#aaa",css:"iron"},1,0,0,0,1,1)
+  C.cube({w:1000,h:5,d:5,y:-11,b:"#888",b2:"#666",b3:"#aaa"},1,0,0,0,1,1)
+  for(i=-500;i<500;i+=30){
+    C.plane({w:10,h:20,z:5,x:i,b:"#a70",b2:"#960",b3:"#b80",css:"wood"},1,0,1,1,0,0)
+  }
+  C.sprite({w:60,h:60,x:0,y:-50,z:0,html:"🌳",css:"tree tree1",o:"bottom"});
+  C.plane({w:60,h:60,x:0,y:-50,z:0,html:"🌳",css:"tree shadow tree1 shadow1",o:"bottom",rz:-25});
+  C.sprite({w:60,h:60,x:0,y:100,z:0,html:"🌴",css:"tree tree2",o:"bottom"});
+  C.plane({w:60,h:60,x:0,y:100,z:0,html:"🌴",css:"tree shadow tree2 shadow2",o:"bottom",rz:-25});
+  C.sprite({w:60,h:60,x:0,y:120,z:0,html:"🌳",css:"tree tree3",o:"bottom"});
+  C.plane({w:60,h:60,x:0,y:120,z:0,html:"🌳",css:"tree shadow tree3 shadow3",o:"bottom",rz:-25});
+  C.sprite({w:60,h:60,x:0,y:-80,z:0,html:"🌲",css:"tree tree4",o:"bottom"});
+  C.plane({w:60,h:60,x:0,y:-80,z:0,html:"🌲",css:"tree shadow tree4 shadow4",o:"bottom",rz:-25});
+  
+  // Animation
+  rz = 90;
+  setInterval(()=>{
+    C.camera({rz:rz+=1,rx:50+Math.cos(rz/27.5)*10});
+  },33);  
+}
+
+
+</script>
+<style>
+#viewport { background: #8d8; font-family: emoji; }
+.plane { opacity: 1 }
+.train { font-size: 50px; line-height:50px; opacity: 1}
+.ground { border-radius: 50% }
+.tree { font-size: 60px; line-height: 60px }
+.shadow { color: rgba(0,0,0,.002); text-shadow: 0px 0px rgba(0,0,0,.35); }
+@keyframes wood {
+  0% {
+    left: 0;
+  }
+  100% {
+    left: -30px;
+  }
+}
+
+@keyframes tree {
+  0% {
+    left: 400px;
+  }
+  100% {
+    left: -400px;
+  }
+}
+.wood { position: fixed; animation: wood .25s infinite linear; transition: none; }
+.tree { position: fixed; animation: tree 6s infinite linear; transition: none; }
+.tree2 { animation-delay: -1.5s }
+.tree3 { animation-delay: -2.5s }
+.tree4 { animation-delay: -3.5s }
+#scene { transition: none }
+</style>
