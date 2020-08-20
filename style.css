@@ -1,0 +1,72 @@
+/* Twemoji */
+@font-face {
+  font-family: emoji;
+  src: url(twemoji.ttf);
+}
+
+/* CSS3D framework */
+#viewport{width:800px;height:480px;overflow:hidden;border:1px solid;position:relative;perspective:600px}
+#viewport *{transform-style:preserve-3d;box-sizing:border-box}
+#camera{width:0;height:0;position:absolute;top:50%;left:50%}
+.triangle{clip-path:polygon(50% 0,100% 100%,0 100%);border:none}
+.triangle-bottom{clip-path:polygon(0 0,100% 0,50% 100%)}
+.triangle-left{clip-path:polygon(0 50%,100% 0,100% 100%)}
+.triangle-right{clip-path:polygon(0 0,100% 50%,0 100%)}
+.triangle-top-left{clip-path:polygon(0 0,100% 0,0 100%)}
+.triangle-top-right{clip-path:polygon(0 0,100% 0,100% 100%)}
+.triangle-bottom-left{clip-path:polygon(0 0,100% 100%,0 100%)}
+.triangle-bottom-right{clip-path:polygon(100% 0,100% 100%,0 100%)}
+.circle{border-radius:50%}
+
+/* Game */
+@keyframes wood {
+  0% {left: 0;}
+  100% {left: -30px;}
+}
+
+@keyframes tree {
+  0% {left: 600px;}
+  100% {left: -600px;}
+}
+
+@keyframes wobble {
+  0% { transform: rotate(-5deg) }
+  50% { transform: rotate(5deg) }
+  100% { transform: rotate(-5deg) }
+}
+#viewport { background: #6b6; font-family: emoji, calibri; transition: perspective 1s; }
+#viewport.blue { background: linear-gradient(#abf,#def); }
+h1 { margin-left: -70px }
+body { font-family: calibri, arial; }
+#h1,#h2,#h3,#hud{ position: fixed; color: #fff; text-align: center; width: 800px; text-shadow: 3px 3px 5px #000;}
+#h1 { margin-top: -480px; font-size: 60px;  }
+#h2 { margin-top: -400px; font-size: 20px; }
+#h3 { margin-top: -100px; font-size: 40px; animation: wobble 2s infinite; }
+.plane { opacity: 1 }
+.train { font-size: 50px; line-height:50px; }
+.boat { font-size: 80px; line-height:80px; }
+#boat2 { animation: wobble 2s infinite; }
+.ground { border-radius: 50% }
+.tree { font-size: 60px; line-height: 60px }
+.shadow { color: rgba(0,0,0,.002); text-shadow: 0px 0px rgba(0,0,0,.35); line-height: 70px; }
+.wood { position: fixed; animation: wood .25s infinite linear; }
+.tree { position: fixed; animation: tree 9s infinite linear; }
+.tree.fixed { animation: none; }
+.tree2 { animation-delay: -1.5s }
+.tree3 { animation-delay: -2.5s }
+.tree4 { animation-delay: -3.5s }
+.tree5 { animation-delay: -5s }
+.tree6 { animation-delay: -6.5s }
+.tree6 { animation-delay: -7s }
+#hud { width: 800px; height: 480px; margin-top: -480px; text-align: left; font-size: 30px; padding: 20px; xpointer-events: none }
+.fixed { animation: none }
+.hill { background: linear-gradient(transparent, #6b6 10%, #6b6 90%, transparent); }
+.hill2 { background: linear-gradient(transparent, #5a5 10%, #494 90%, transparent); }
+.hill3 { background: linear-gradient(#5a5 10%, #494 90%); }
+.river { background: linear-gradient(transparent, #78d 10%, #45f 90%, transparent); }
+#buttons { margin: 370px 0; }
+button { font-size: 25px; background: #c8c8c8; }
+button span { font-family: emoji, calibri; }
+.reverse { transform: scaleX(-1); display: inline-block; }
+#b_2d { margin-left: 50px }
+button.on { background: #fff }
