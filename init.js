@@ -18,14 +18,20 @@ init = e => {
   Z = 0;
   vX = 0;
   black.style.opacity = 0;
+  viewport.style.perspective = "600px";
+  cam = "3d"; // or 2d
+  campos = "front"; // or left or back or right
+  camheight = "midup"; // or up or middle or middown or down
+  camrz = 0;
   
   // GUI
   if(state){
     level.innerHTML = state + ". " + 
     ([
       ,
-      "move the train with X and C, or use the buttons below", // 1
-      "change perspective with E and R, or use the buttons below" // 2
+      "Move the train with X and C, or use the buttons below", // 1
+      "Change perspective with E and R", // 2
+      "Rotate the camera with the Arrow keys (or WASD/ZQSD)", // 3
     ][state] || "");
   }
   buttons.innerHTML = "";
@@ -43,6 +49,12 @@ init = e => {
   if(state >= 2){
     
     buttons.innerHTML += "<button id=b_2d><span>👁️</span> 2D</button> <button id=b_3d class=on><span>👁️</span> 3D</button>";
+    
+  }
+  
+  if(state >= 3){
+    
+    buttons.innerHTML += "<div class=campos><button id=b_up class=on>&uarr;</button><br><button id=b_left class=on>&larr;</button> <span>📷</span> <button id=b_right class=on>&rarr;</button><br><button id=b_down class=on>&darr;</button></div>";
     
   }
   
@@ -73,6 +85,26 @@ init = e => {
     b_3d.onclick = e => {
       k[82] = 1;
     }
+  }
+  
+  if(state >= 3){
+    b_up.onclick = e => {
+      u = 1;
+      console.log(1);
+    }
+  
+    b_left.onclick = e => {
+      l = 1;
+    }
+    
+    b_right.onclick = e => {
+      r = 1;
+    }
+  
+    b_down.onclick = e => {
+      d = 1;
+    }
+    
   }
   
   // Title screen
@@ -138,7 +170,7 @@ init = e => {
     
     C.move({n:"train",x:-600});
     setTimeout(()=>{
-      scene.style.transition = "5s";
+      scene.style.transition = "4s";
       train.style.transition = "2s";
     },16);
     setTimeout(()=>{
@@ -151,11 +183,10 @@ init = e => {
     },2000);
     setTimeout(()=>{
       hud.style.opacity = 1;
-    },4000);
-    setTimeout(()=>{
+      train.style.transition = "none";
+      scene.style.transition = "1s";
       go = 1;
-      scene.style.transition = train.style.transition = "none";
-    },5000);
+    },4000);
     
     viewport.className="blue";
 
@@ -182,30 +213,32 @@ init = e => {
     
     // links between track pieces in each view (2D, 3D)
     links = {
-      "2d": [
-        [null, 1],  // block 0: nothing on the left, 1 on the right
-        [0, 2],     // block 1: 0 on the left, 2 on the right
-        [1, 3],     // block 2: 1 on the left, 3 on the right
-        [2, 4],     // block 3: 2 on the left, 4 on the right
-        [3, 5],     // block 4: 3 on the left, 5 on the right
-        [4, 6],     // block 5: 4 on the left, 6 on the right
-        [5, 7],     // block 6: 5 on the left, 7 on the right
-        [6, null],  // block 7: 6 on the left, nothing on the right
-      ],
+      /*"2d": {
+        "front": [
+          [null, 1],  // block 0: nothing on the left, 1 on the right
+          [0, 2],     // block 1: 0 on the left, 2 on the right
+          [1, 3],     // block 2: 1 on the left, 3 on the right
+          [2, 4],     // block 3: 2 on the left, 4 on the right
+          [3, 5],     // block 4: 3 on the left, 5 on the right
+          [4, 6],     // block 5: 4 on the left, 6 on the right
+          [5, 7],     // block 6: 5 on the left, 7 on the right
+          [6, null],  // block 7: 6 on the left, nothing on the right
+        ]
+      },*/
       
-      "3d": [
-        [null, 1],  // block 0: nothing on the left, 1 on the right
-        [0, 2],     // block 1: 0 on the left, 2 on the right
-        [1, 3],     // block 2: 1 on the left, 3 on the right
-        [2, 4],     // block 3: 2 on the left, 4 on the right
-        [3, 5],     // block 4: 3 on the left, 5 on the right
-        [4, 6],     // block 5: 4 on the left, 6 on the right
-        [5, 7],     // block 6: 5 on the left, 7 on the right
-        [6, null],  // block 7: 6 on the left, nothing on the right
-      ],
-      
+      "3d": {
+        "front": [
+          [null, 1],  // block 0: nothing on the left, 1 on the right
+          [0, 2],     // block 1: 0 on the left, 2 on the right
+          [1, 3],     // block 2: 1 on the left, 3 on the right
+          [2, 4],     // block 3: 2 on the left, 4 on the right
+          [3, 5],     // block 4: 3 on the left, 5 on the right
+          [4, 6],     // block 5: 4 on the left, 6 on the right
+          [5, 7],     // block 6: 5 on the left, 7 on the right
+          [6, null],  // block 7: 6 on the left, nothing on the right
+        ] 
+      }
     }
-    
   }
   
   // Level 2
@@ -234,18 +267,63 @@ init = e => {
     
     // links between track pieces in each view (2D, 3D)
     links = {
-      "2d": [
-        [null, 1],  // block 0: nothing on the left, 1 on the right
-        [0, 2],     // block 1: 0 on the left, 2 on the right
-        [1, 3],     // block 2: 1 on the left, 3 on the right
-        [2, 4],     // block 3: 2 on the left, 4 on the right
-        [3, 5],     // block 4: 3 on the left, 5 on the right
-        [4, 6],     // block 5: 4 on the left, 6 on the right
-        [5, 7],     // block 6: 5 on the left, 7 on the right
-        [6, null],  // block 7: 6 on the left, nothing on the right
-      ],
+      "2d": {
+        "front": [
+          [null, 1],  // block 0: nothing on the left, 1 on the right
+          [0, 2],     // block 1: 0 on the left, 2 on the right
+          [1, 3],     // block 2: 1 on the left, 3 on the right
+          [2, 4],     // block 3: 2 on the left, 4 on the right
+          [3, 5],     // block 4: 3 on the left, 5 on the right
+          [4, 6],     // block 5: 4 on the left, 6 on the right
+          [5, 7],     // block 6: 5 on the left, 7 on the right
+          [6, null],  // block 7: 6 on the left, nothing on the right
+        ],
+      },
       
-      "3d": [
+      "3d": {
+        "front": [
+          [null, 1],    // block 0: nothing on the left, 1 on the right
+          [0, null],    // block 1: 0 on the left, nothing on the right
+          [null, null], // block 2: nothing on the left, nothing on the right
+          [null, 4],    // block 3: nothing on the left, 4 on the right
+          [3, null],    // block 4: 3 on the left, nothing on the right
+          [null, null], // block 5: nothing on the left, nothing on the right
+          [null, 7],    // block 6: nothing on the left, 7 on the right
+          [6, null],    // block 7: 6 on the left, nothing on the right
+        ],
+      }
+    }
+    
+  }
+  
+  // Level 3
+  if(state == 3){
+    draw_boat(-200,-400,-220);
+    
+    for(i=-600;i<700;i+=100){
+      if(i != -100 && i != 200){
+        draw_track(i,0,0,i>-400&&i<400);
+      }
+    }
+    draw_track(-100,0,-150,1);
+    draw_track(200,-200,0,1);
+    
+    // Define each track piece (x, y, z)
+    track = [
+      [0,0,0],  // block 0
+      [1,0,0],  // block 1
+      [2,1,0],  // block 2
+      [3,0,0],  // block 3
+      [4,0,0],  // block 4
+      [5,-1,0], // block 5
+      [6,0,0],  // block 6
+      [7,0,0],  // block 7
+    ];
+    
+    // links between track pieces in each view (2D, 3D, angles)
+    links = {
+      
+      "default": [
         [null, 1],    // block 0: nothing on the left, 1 on the right
         [0, null],    // block 1: 0 on the left, nothing on the right
         [null, null], // block 2: nothing on the left, nothing on the right
@@ -255,8 +333,34 @@ init = e => {
         [null, 7],    // block 6: nothing on the left, 7 on the right
         [6, null],    // block 7: 6 on the left, nothing on the right
       ],
+
+      "2d": {
+        "top": [
+          [null, 1],  // block 0: nothing on the left, 1 on the right
+          [0, 2],     // block 1: 0 on the left, 2 on the right
+          [1, 3],     // block 2: 1 on the left, 3 on the right
+          [2, 4],     // block 3: 2 on the left, 4 on the right
+          [3, 5],     // block 4: 3 on the left, 5 on the right
+          [4, 6],     // block 5: 4 on the left, 6 on the right
+          [5, 7],     // block 6: 5 on the left, 7 on the right
+          [6, null],  // block 7: 6 on the left, nothing on the right
+        ],
+        
+        "bottom": [
+          [null, 1],  // block 0: nothing on the left, 1 on the right
+          [0, 2],     // block 1: 0 on the left, 2 on the right
+          [1, 3],     // block 2: 1 on the left, 3 on the right
+          [2, 4],     // block 3: 2 on the left, 4 on the right
+          [3, 5],     // block 4: 3 on the left, 5 on the right
+          [4, 6],     // block 5: 4 on the left, 6 on the right
+          [5, 7],     // block 6: 5 on the left, 7 on the right
+          [6, null],  // block 7: 6 on the left, nothing on the right
+        ]
+      }
       
     }
     
   }
+  
+  
 }

@@ -53,19 +53,22 @@ animate = () => {
         }, 1100);
       }
       
+      // Compute chunk on the X axis
       prev_chunk = chunk;
-      
       chunk = ~~((X+350) / 100);
       
       // Between two chunks
       if(prev_chunk != chunk){
+        
+        var link = links[cam] && links[cam][campos] || links["default"];
 
-        console.log("going from " + prev_chunk + " (" + track[prev_chunk] + ") to " + ["left","right"][dir] + " (" + track[chunk] + "), go to: " + links[cam][prev_chunk][dir] + " (" + track[links[cam][prev_chunk][dir]] + ")");
+        console.log("going from chunk " + prev_chunk + " (" + track[prev_chunk] + ") to the " + ["left","right"][dir] + " side with the camera in " + cam + " on " + campos + ", target: chunk " + link[prev_chunk][dir] + " (" + track[link[prev_chunk][dir]] + ")"
+        );
         
         // Move to new chunk
-        if(links[cam][prev_chunk][dir]){
-          Y = track[links[cam][prev_chunk][dir]][1];
-          Z = track[links[cam][prev_chunk][dir]][2];
+        if(link[prev_chunk][dir] !== null){
+          Y = track[link[prev_chunk][dir]][1];
+          Z = track[link[prev_chunk][dir]][2];
         }
         
         // Fall
@@ -111,9 +114,7 @@ animate = () => {
         b_2d.className = "on";
         b_3d.className = "";
         cam = "2d";
-        scene.style.transition = "1s";
-        viewport.style.perspective = "5000px";
-        C.camera({rx:90});
+        camera();
         k[69] = 0;
       }
       
@@ -122,10 +123,57 @@ animate = () => {
         b_3d.className = "on";
         b_2d.className = "";
         cam = "3d";
-        viewport.style.perspective = "600px";
-        scene.style.transition = "1s";
-        C.camera({rx:55});
+        camera()
         k[82] = 0;
+      }
+    }
+    
+    // Camera positions
+    if(state >= 3){
+      if(go && u){
+        if(camheight == "midup"){ camheight = "up"; }
+        else if(camheight == "middle"){ camheight = "midup"; }
+        else if(camheight == "middown"){ camheight = "middle"; }
+        else if(camheight == "down"){ camheight = "middown"; }
+        camera();
+        u = 0;
+      }
+      
+      if(go && d){
+        if(camheight == "up"){ camheight = "midup"; }
+        else if(camheight == "midup"){ camheight = "middle"; }
+        else if(camheight == "middle"){ camheight = "middown"; }
+        else if(camheight == "middown"){ camheight = "down"; }
+        camera()
+        d = 0;
+      }
+      
+      if(go && l){
+        if(campos == "right"){ campos = "rightfront"; }
+        else if(campos == "rightfront"){ campos = "front"; }
+        else if(campos == "front"){ campos = "leftfront"; }
+        else if(campos == "leftfront"){ campos = "left"; }
+        else if(campos == "left"){ campos = "leftback"; }
+        else if(campos == "leftback"){ campos = "back"; }
+        else if(campos == "back"){ campos = "rightback"; }
+        else if(campos == "rightback"){ campos = "right"; }
+        C.camera({rz: camrz -= 45});
+        camera();
+        l = 0;
+      }
+      
+      if(go && r){
+        if(campos == "right"){ campos = "rightback"; }
+        else if(campos == "rightback"){ campos = "back"; }
+        else if(campos == "back"){ campos = "leftback"; }
+        else if(campos == "leftback"){ campos = "left"; }
+        else if(campos == "left"){ campos = "leftfront"; }
+        else if(campos == "leftfront"){ campos = "front"; }
+        else if(campos == "front"){ campos = "rightfront"; }
+        else if(campos == "rightfront"){ campos = "right"; }
+        C.camera({rz: camrz += 45});
+        camera();
+        r = 0;
       }
     }
       
