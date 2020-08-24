@@ -60,10 +60,10 @@ animate = () => {
       // Between two chunks
       if(prev_chunk != chunk){
         
-        var link = links[cam] && links[cam][campos] || links["default"];
+        console.log(links[cam], campos);
+        var link = links[cam][campos] || links[cam][camheight] || links[cam][campos+camheight] || links["default"];
 
-        console.log("going from chunk " + prev_chunk + " (" + track[prev_chunk] + ") to the " + ["left","right"][dir] + " side with the camera in " + cam + " on " + campos + ", target: chunk " + link[prev_chunk][dir] + " (" + track[link[prev_chunk][dir]] + ")"
-        );
+        console.log("going from chunk " + prev_chunk + " (" + track[prev_chunk] + ") to the " + ["left","right"][dir] + " side with the camera in " + cam + " on " + campos + " - " + camheight + ", target: chunk " + link[prev_chunk][dir] + " (" + track[link[prev_chunk][dir]] + ")", link);
         
         // Move to new chunk
         if(link[prev_chunk][dir] !== null){

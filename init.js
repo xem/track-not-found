@@ -312,10 +312,10 @@ init = e => {
     track = [
       [0,0,0],  // block 0
       [1,0,0],  // block 1
-      [2,1,0],  // block 2
+      [2,0,-1.5],  // block 2
       [3,0,0],  // block 3
       [4,0,0],  // block 4
-      [5,-1,0], // block 5
+      [5,-2,0], // block 5
       [6,0,0],  // block 6
       [7,0,0],  // block 7
     ];
@@ -335,28 +335,52 @@ init = e => {
       ],
 
       "2d": {
-        "top": [
-          [null, 1],  // block 0: nothing on the left, 1 on the right
-          [0, 2],     // block 1: 0 on the left, 2 on the right
-          [1, 3],     // block 2: 1 on the left, 3 on the right
-          [2, 4],     // block 3: 2 on the left, 4 on the right
-          [3, 5],     // block 4: 3 on the left, 5 on the right
-          [4, 6],     // block 5: 4 on the left, 6 on the right
-          [5, 7],     // block 6: 5 on the left, 7 on the right
-          [6, null],  // block 7: 6 on the left, nothing on the right
+        "up": [
+          [null, 1],    // block 0: nothing on the left, 1 on the right
+          [0, 2],       // block 1: 0 on the left, 2 on the right
+          [1, 3],       // block 2: 1 on the left, 3 on the right
+          [2, 4],       // block 3: 2 on the left, 4 on the right
+          [3, null],    // block 4: 3 on the left, nothing on the right
+          [null, null], // block 5: nothing on the left, nothing on the right
+          [null, 7],    // block 6: nothing on the left, 7 on the right
+          [6, null],    // block 7: 6 on the left, nothing on the right
         ],
         
-        "bottom": [
-          [null, 1],  // block 0: nothing on the left, 1 on the right
-          [0, 2],     // block 1: 0 on the left, 2 on the right
-          [1, 3],     // block 2: 1 on the left, 3 on the right
-          [2, 4],     // block 3: 2 on the left, 4 on the right
-          [3, 5],     // block 4: 3 on the left, 5 on the right
-          [4, 6],     // block 5: 4 on the left, 6 on the right
-          [5, 7],     // block 6: 5 on the left, 7 on the right
-          [6, null],  // block 7: 6 on the left, nothing on the right
+        "down": [
+          [null, 1],    // block 0: nothing on the left, 1 on the right
+          [0, 2],       // block 1: 0 on the left, 2 on the right
+          [1, 3],       // block 2: 1 on the left, 3 on the right
+          [2, 4],       // block 3: 2 on the left, 4 on the right
+          [3, null],    // block 4: 3 on the left, nothing on the right
+          [null, null], // block 5: nothing on the left, nothing on the right
+          [null, 7],    // block 6: nothing on the left, 7 on the right
+          [6, null],    // block 7: 6 on the left, nothing on the right
+        ],
+        
+        "frontmiddle" : [
+          [null, 1],    // block 0: nothing on the left, 1 on the right
+          [0, null],    // block 1: 0 on the left, nothing on the right
+          [null, null], // block 2: nothing on the left, nothing on the right
+          [null, 4],    // block 3: nothing on the left, 4 on the right
+          [3, 5],       // block 4: 3 on the left, 5 on the right
+          [4, 6],       // block 5: 4 on the left, 6 on the right
+          [5, 7],       // block 6: 5 on the left, 7 on the right
+          [6, null],    // block 7: 6 on the left, nothing on the right
+        ],
+        
+        "backmiddle" : [
+          [null, 1],    // block 0: nothing on the left, 1 on the right
+          [0, null],    // block 1: 0 on the left, nothing on the right
+          [null, null], // block 2: nothing on the left, nothing on the right
+          [null, 4],    // block 3: nothing on the left, 4 on the right
+          [3, 5],       // block 4: 3 on the left, 5 on the right
+          [4, 6],       // block 5: 4 on the left, 6 on the right
+          [5, 7],       // block 6: 5 on the left, 7 on the right
+          [6, null],    // block 7: 6 on the left, nothing on the right
         ]
-      }
+      },
+      
+      "3d": {}
       
     }
     
