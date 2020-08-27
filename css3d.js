@@ -58,11 +58,11 @@ plane: t => {
 },
 
 sprite: t => {
-  t.n||(t.n=`sprite${C.sprite_count++}`),
-  C.init(t),
-  C.$(t.g).innerHTML+=`<div id="${t.n}"class="sprite ${t.css}"style="position:absolute;width:${t.w}${C.unit};height:${t.h}${C.unit};background:${t.b};transform-origin:${t.o};transform:${C.tr(t)}">${t.html}`,
-  C.sprites.push(t.n),
-  C.camera()
+  t.n||(t.n=`sprite${C.sprite_count++}`);
+  C.init(t);
+  C.$(t.g).innerHTML+=`<div id="${t.n}"class="sprite ${t.css}"style="position:absolute;width:${t.w}${C.unit};height:${t.h}${C.unit};background:${t.b};transform-origin:${t.o};transform:${C.tr(t)}">${t.html}`;
+  C.sprites.push(t.n);
+  //C.camera()
 },
 
 cube: (t,u,d,l,r,f,b) => {
@@ -100,7 +100,7 @@ camera: t => {
   for(var r in C.sprites){
     var n=C.$(C.sprites[r]),
     o=n.style.transform.replace(/ *rotate.*\(.*?deg\)/g,"");
-    n.style.transform=o+`rotateZ(${-C.camRZ}deg)rotateX(${-C.camRX}deg)`
+    n.style.transform=o+`rotateZ(${-C.camRZ}deg)rotateX(${-C.camRX}deg)`;
   }
 },
 

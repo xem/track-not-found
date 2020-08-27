@@ -3,6 +3,7 @@ init = e => {
 
   // Reset
   scene.innerHTML = "";
+  default_perspective = "500px";
   C.sprite_count = 0;
   C.sprites= [];
   C.plane_count = 0;
@@ -18,11 +19,14 @@ init = e => {
   Z = 0;
   vX = 0;
   black.style.opacity = 0;
-  viewport.style.perspective = "600px";
+  viewport.style.perspective = default_perspective;
   cam = "3d"; // or 2d
   campos = "front"; // or left or back or right
   camheight = "midup"; // or up or middle or middown or down
+  hud.style.transition = "1s";
   camrz = 0;
+  group_count = 0;
+  //boat = null;
   
   // GUI
   if(state){
@@ -30,8 +34,9 @@ init = e => {
     ([
       ,
       "Move the train with X and C, or use the buttons below", // 1
-      "Change perspective with E and R", // 2
-      "Rotate the camera with the Arrow keys (or WASD/ZQSD)", // 3
+      "Change perspective with E and R, or use the buttons below", // 2
+      "There's always a way to complete the track",
+      "Rotate the camera with the Arrow keys (or WASD/ZQSD)", // 4
     ][state] || "");
   }
   buttons.innerHTML = "";
@@ -52,7 +57,7 @@ init = e => {
     
   }
   
-  if(state >= 3){
+  if(state >= 4){
     
     buttons.innerHTML += "<div class=campos><button id=b_up class=on>&uarr;</button><br><button id=b_left class=on>&larr;</button> <span>📷</span> <button id=b_right class=on>&rarr;</button><br><button id=b_down class=on>&darr;</button></div>";
     
@@ -87,10 +92,10 @@ init = e => {
     }
   }
   
-  if(state >= 3){
+  if(state >= 4){
     b_up.onclick = e => {
       u = 1;
-      console.log(1);
+      //console.log(1);
     }
   
     b_left.onclick = e => {
@@ -132,7 +137,7 @@ init = e => {
     C.cube({w:500,h:6,d:8,x:500,y:-11,b:"#888",b2:"#666",b3:"#aaa"},1,0,0,0,1,1);
     C.cube({w:500,h:6,d:8,x:1000,y:-11,b:"#888",b2:"#666",b3:"#aaa"},1,0,0,0,1,1);
     
-    for(i=-700;i<700;i+=20){
+    for(var i=-700;i<700;i+=20){
       C.plane({w:10,h:20,z:5,x:i,b:"#ca0",css:"wood"})
     }
     
@@ -161,28 +166,26 @@ init = e => {
   
   // All levels
   if(state >= 1){
-    X = -350;
+    X = -400;
     vX = 0;
-    C.camera({x:-450,y:0,z:-500,rx:30,rz:0});
+    C.camera({x:-400,y:0,z:-350,rx:30,rz:0});
     draw_hills();
     draw_train(X,0,0);
     
     
-    C.move({n:"train",x:-600});
+    C.move({n:"train",x:-800});
     setTimeout(()=>{
       scene.style.transition = "4s";
       train.style.transition = "2s";
     },16);
     setTimeout(()=>{
-      C.camera({x:0,y:0,z:0,rx:50,ry:0,rz:0});
-      C.move({n:"train",x:-350});
+      C.camera({x:0,y:0,z:50,rx:45,ry:0,rz:0});
+      C.move({n:"train",x:-400});
     },33);
     setTimeout(()=>{
-      //document.querySelectorAll('.wood.quick').forEach(e=>e.className="wood fixed");
-      //gg.style.opacity = 0;
+      hud.style.opacity = 1;
     },2000);
     setTimeout(()=>{
-      hud.style.opacity = 1;
       train.style.transition = "none";
       scene.style.transition = "1s";
       go = 1;
@@ -192,199 +195,5 @@ init = e => {
 
   }
   
-  // Level 1
-  if(state == 1){
-    draw_boat(-100,-450,-220);
-    for(i=-600;i<700;i+=100){
-      draw_track(i,0,0,i>-400&&i<400);
-    }
-    
-    // Define each track piece (x, y, z)
-    track = [
-      [0,0,0],  // block 0
-      [1,0,0],  // block 1
-      [2,0,0],  // block 2
-      [3,0,0],  // block 3
-      [4,0,0],  // block 4
-      [5,0,0],  // block 5
-      [6,0,0],  // block 6
-      [7,0,0],  // block 7
-    ];
-    
-    // links between track pieces in each view (2D, 3D)
-    links = {
-      /*"2d": {
-        "front": [
-          [null, 1],  // block 0: nothing on the left, 1 on the right
-          [0, 2],     // block 1: 0 on the left, 2 on the right
-          [1, 3],     // block 2: 1 on the left, 3 on the right
-          [2, 4],     // block 3: 2 on the left, 4 on the right
-          [3, 5],     // block 4: 3 on the left, 5 on the right
-          [4, 6],     // block 5: 4 on the left, 6 on the right
-          [5, 7],     // block 6: 5 on the left, 7 on the right
-          [6, null],  // block 7: 6 on the left, nothing on the right
-        ]
-      },*/
-      
-      "3d": {
-        "front": [
-          [null, 1],  // block 0: nothing on the left, 1 on the right
-          [0, 2],     // block 1: 0 on the left, 2 on the right
-          [1, 3],     // block 2: 1 on the left, 3 on the right
-          [2, 4],     // block 3: 2 on the left, 4 on the right
-          [3, 5],     // block 4: 3 on the left, 5 on the right
-          [4, 6],     // block 5: 4 on the left, 6 on the right
-          [5, 7],     // block 6: 5 on the left, 7 on the right
-          [6, null],  // block 7: 6 on the left, nothing on the right
-        ] 
-      }
-    }
-  }
-  
-  // Level 2
-  if(state == 2){
-    draw_boat(200,60,-220);
-    
-    for(i=-600;i<700;i+=100){
-      if(i != -100 && i != 200){
-        draw_track(i,0,0,i>-400&&i<400);
-      }
-    }
-    draw_track(-100,100,0,1);
-    draw_track(200,-100,0,1);
-    
-    // Define each track piece (x, y, z)
-    track = [
-      [0,0,0],  // block 0
-      [1,0,0],  // block 1
-      [2,1,0],  // block 2
-      [3,0,0],  // block 3
-      [4,0,0],  // block 4
-      [5,-1,0], // block 5
-      [6,0,0],  // block 6
-      [7,0,0],  // block 7
-    ];
-    
-    // links between track pieces in each view (2D, 3D)
-    links = {
-      "2d": {
-        "front": [
-          [null, 1],  // block 0: nothing on the left, 1 on the right
-          [0, 2],     // block 1: 0 on the left, 2 on the right
-          [1, 3],     // block 2: 1 on the left, 3 on the right
-          [2, 4],     // block 3: 2 on the left, 4 on the right
-          [3, 5],     // block 4: 3 on the left, 5 on the right
-          [4, 6],     // block 5: 4 on the left, 6 on the right
-          [5, 7],     // block 6: 5 on the left, 7 on the right
-          [6, null],  // block 7: 6 on the left, nothing on the right
-        ],
-      },
-      
-      "3d": {
-        "front": [
-          [null, 1],    // block 0: nothing on the left, 1 on the right
-          [0, null],    // block 1: 0 on the left, nothing on the right
-          [null, null], // block 2: nothing on the left, nothing on the right
-          [null, 4],    // block 3: nothing on the left, 4 on the right
-          [3, null],    // block 4: 3 on the left, nothing on the right
-          [null, null], // block 5: nothing on the left, nothing on the right
-          [null, 7],    // block 6: nothing on the left, 7 on the right
-          [6, null],    // block 7: 6 on the left, nothing on the right
-        ],
-      }
-    }
-    
-  }
-  
-  // Level 3
-  if(state == 3){
-    draw_boat(-200,-400,-220);
-    
-    for(i=-600;i<700;i+=100){
-      if(i != -100 && i != 200){
-        draw_track(i,0,0,i>-400&&i<400);
-      }
-    }
-    draw_track(-100,0,-150,1);
-    draw_track(200,-200,0,1);
-    
-    // Define each track piece (x, y, z)
-    track = [
-      [0,0,0],  // block 0
-      [1,0,0],  // block 1
-      [2,0,-1.5],  // block 2
-      [3,0,0],  // block 3
-      [4,0,0],  // block 4
-      [5,-2,0], // block 5
-      [6,0,0],  // block 6
-      [7,0,0],  // block 7
-    ];
-    
-    // links between track pieces in each view (2D, 3D, angles)
-    links = {
-      
-      "default": [
-        [null, 1],    // block 0: nothing on the left, 1 on the right
-        [0, null],    // block 1: 0 on the left, nothing on the right
-        [null, null], // block 2: nothing on the left, nothing on the right
-        [null, 4],    // block 3: nothing on the left, 4 on the right
-        [3, null],    // block 4: 3 on the left, nothing on the right
-        [null, null], // block 5: nothing on the left, nothing on the right
-        [null, 7],    // block 6: nothing on the left, 7 on the right
-        [6, null],    // block 7: 6 on the left, nothing on the right
-      ],
-
-      "2d": {
-        "up": [
-          [null, 1],    // block 0: nothing on the left, 1 on the right
-          [0, 2],       // block 1: 0 on the left, 2 on the right
-          [1, 3],       // block 2: 1 on the left, 3 on the right
-          [2, 4],       // block 3: 2 on the left, 4 on the right
-          [3, null],    // block 4: 3 on the left, nothing on the right
-          [null, null], // block 5: nothing on the left, nothing on the right
-          [null, 7],    // block 6: nothing on the left, 7 on the right
-          [6, null],    // block 7: 6 on the left, nothing on the right
-        ],
-        
-        "down": [
-          [null, 1],    // block 0: nothing on the left, 1 on the right
-          [0, 2],       // block 1: 0 on the left, 2 on the right
-          [1, 3],       // block 2: 1 on the left, 3 on the right
-          [2, 4],       // block 3: 2 on the left, 4 on the right
-          [3, null],    // block 4: 3 on the left, nothing on the right
-          [null, null], // block 5: nothing on the left, nothing on the right
-          [null, 7],    // block 6: nothing on the left, 7 on the right
-          [6, null],    // block 7: 6 on the left, nothing on the right
-        ],
-        
-        "frontmiddle" : [
-          [null, 1],    // block 0: nothing on the left, 1 on the right
-          [0, null],    // block 1: 0 on the left, nothing on the right
-          [null, null], // block 2: nothing on the left, nothing on the right
-          [null, 4],    // block 3: nothing on the left, 4 on the right
-          [3, 5],       // block 4: 3 on the left, 5 on the right
-          [4, 6],       // block 5: 4 on the left, 6 on the right
-          [5, 7],       // block 6: 5 on the left, 7 on the right
-          [6, null],    // block 7: 6 on the left, nothing on the right
-        ],
-        
-        "backmiddle" : [
-          [null, 1],    // block 0: nothing on the left, 1 on the right
-          [0, null],    // block 1: 0 on the left, nothing on the right
-          [null, null], // block 2: nothing on the left, nothing on the right
-          [null, 4],    // block 3: nothing on the left, 4 on the right
-          [3, 5],       // block 4: 3 on the left, 5 on the right
-          [4, 6],       // block 5: 4 on the left, 6 on the right
-          [5, 7],       // block 6: 5 on the left, 7 on the right
-          [6, null],    // block 7: 6 on the left, nothing on the right
-        ]
-      },
-      
-      "3d": {}
-      
-    }
-    
-  }
-  
-  
+  levels();
 }
