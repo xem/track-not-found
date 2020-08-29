@@ -24,6 +24,8 @@ init = e => {
   cam = "3d"; // or 2d
   campos = "front"; // or left or back or right
   camheight = "midup"; // or up or middle or middown or down
+  //camera();
+  C.camera({rx: 45});
   hud.style.transition = "1s";
   camrz = 0;
   group_count = 0;
@@ -33,6 +35,9 @@ init = e => {
   posonchunk = 0;
   chunkscale = 1;
   dir = 1;
+  setTimeout(()=>{
+    viewport.style.transition = "perspective 1.5s";
+  },1000);
   //boat = null;
   
   // GUI
@@ -40,10 +45,10 @@ init = e => {
     level.innerHTML = state + ". " + 
     ([
       ,
-      "Move the train with X and C, or use the buttons below", // 1
-      "Change perspective with E and R, or use the buttons below", // 2
-      "There's always a way to complete the track",
-      "Rotate the camera with the Arrow keys (or WASD/ZQSD)", // 4
+      "Move the train with X and C", // 1
+      "Change perspective with E and R", // 2
+      "Optical illusions can help completing the track",
+      "Move the camera up & down with the arrow keys", // 4
     ][state] || "");
   }
   buttons.innerHTML = "";
@@ -55,18 +60,24 @@ init = e => {
       h3.remove();
     }
     
-    buttons.innerHTML += "<button id=b_back class=on>&larr; <span class=reverse>🚂</span></button> <button id=b_front class=on><span class=reverse>🚂</span> &rarr;</button>";
+    buttons.innerHTML += "<button title=X id=b_back class=on>&larr; <span class=reverse>🚂</span></button> <button title=C id=b_front class=on><span class=reverse>🚂</span> &rarr;</button>";
   }
   
   if(state >= 2){
     
-    buttons.innerHTML += "<button id=b_2d><span>👁️</span> 2D</button> <button id=b_3d class=on><span>👁️</span> 3D</button>";
+    buttons.innerHTML += "<button title=E id=b_2d><span>👁️</span> 2D</button> <button title=R id=b_3d class=on><span>👁️</span> 3D</button>";
     
   }
   
   if(state >= 4){
     
-    buttons.innerHTML += "<div class=campos><button id=b_up class=on>&uarr;</button><br><button id=b_left class=on>&larr;</button> <span>📷</span> <button id=b_right class=on>&rarr;</button><br><button id=b_down class=on>&darr;</button></div>";
+    buttons.innerHTML += "<div title=up class=campos1><button id=b_up class=on>&uarr;</button><br> <span>📷</span><br><button title=down id=b_down class=on>&darr;</button></div>";
+    
+  }
+  
+  if(state >= 6){
+    
+    buttons.innerHTML += "<div class=campos2><button id=b_up class=on>&uarr;</button><br><button id=b_left class=on>&larr;</button> <span>📷</span> <button id=b_right class=on>&rarr;</button><br><button id=b_down class=on>&darr;</button></div>";
     
   }
   
@@ -105,16 +116,19 @@ init = e => {
       //console.log(1);
     }
   
+    b_down.onclick = e => {
+      d = 1;
+    }
+  }
+  
+  if(state >= 6){
+  
     b_left.onclick = e => {
       l = 1;
     }
     
     b_right.onclick = e => {
       r = 1;
-    }
-  
-    b_down.onclick = e => {
-      d = 1;
     }
     
   }

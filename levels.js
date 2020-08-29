@@ -192,23 +192,14 @@ levels = () => {
   if(state == 4){
     draw_boat(-200,-400,-235);
     
-    /*for(i=-600;i<700;i+=100){
-      if(i != -100 && i != 200){
-        draw_track(i,0,0,i>-400&&i<400);
-      }
-    }
-    draw_track(-100,0,-150,1);
-    draw_track(200,-200,0,1);
-    */
-    
     // Define each track piece (x, y, z, pillar, scale)
     track = [
       [-300,0,0,1],     // block 0
       [-200,0,0,1],     // block 1
-      [-100,0,-1.5,1],  // block 2
+      [-100,0,150,1],   // block 2
       [0,0,0,1],        // block 3
       [100,0,0,1],      // block 4
-      [200,-2,0,1],     // block 5
+      [200,-200,0,1],   // block 5
       [300,0,0,1],      // block 6
       [400,0,0,0],      // block 7
     ];
@@ -217,65 +208,52 @@ levels = () => {
     links = {
       
       "default": [
-        [null, 1],    // block 0: nothing on the left, 1 on the right
-        [0, null],    // block 1: 0 on the left, nothing on the right
-        [null, null], // block 2: nothing on the left, nothing on the right
-        [null, 4],    // block 3: nothing on the left, 4 on the right
-        [3, null],    // block 4: 3 on the left, nothing on the right
-        [null, null], // block 5: nothing on the left, nothing on the right
-        [null, 7],    // block 6: nothing on the left, 7 on the right
-        [6, null],    // block 7: 6 on the left, nothing on the right
+        [null, 1],    // block 0
+        [0, null],    // block 1
+        [null, null], // block 2
+        [null, 4],    // block 3
+        [3, null],    // block 4
+        [null, null], // block 5
+        [null, 7],    // block 6
+        [6, null],    // block 7
       ],
 
       "2d": {
         "up": [
-          [null, 1],        // block 0: nothing on the left, 1 on the right
-          [0, 2],           // block 1: 0 on the left, 2 on the right
-          [1, 3, 2, 0, 0],  // block 2: 1 on the left, 3 on the right
-                            // but when the train is on this piece, make it appear as if it was on a chunk at [2, 0, 0]
-          [2, 4],           // block 3: 2 on the left, 4 on the right
-          [3, null],        // block 4: 3 on the left, nothing on the right
-          [null, null],     // block 5: nothing on the left, nothing on the right
-          [null, 7],        // block 6: nothing on the left, 7 on the right
-          [6, null],        // block 7: 6 on the left, nothing on the right
+          [null, 1, -292, 0, 150,.95],  // block 0
+          [0, 2, -196, 0, 150,.95],     // block 1
+          [1, 3, -99, 0, 150,.95],      // block 2
+          [2, 4, 0, 0, 150,.95],        // block 3
+          [3, null],       // block 4
+          [null, null],    // block 5
+          [null, 7, 300, 0, 150,.95],      // block 6
+          [6, null, 392, 0, 150,.95],   // block 7
         ],
         
         "down": [
-          [null, 1],        // block 0: nothing on the left, 1 on the right
-          [0, 2],           // block 1: 0 on the left, 2 on the right
-          [1, 3, 2, 0, 0],  // block 2: 1 on the left, 3 on the right
-                            // but when the train is on this piece, make it appear as if it was on a chunk at [2, 0, 0]
-          [2, 4],           // block 3: 2 on the left, 4 on the right
-          [3, null],        // block 4: 3 on the left, nothing on the right
-          [null, null],     // block 5: nothing on the left, nothing on the right
-          [null, 7],        // block 6: nothing on the left, 7 on the right
-          [6, null],        // block 7: 6 on the left, nothing on the right
+          [null, 1, -292, 0, 150,.95],  // block 0
+          [0, 2, -196, 0, 150,.95],     // block 1
+          [1, 3, -99, 0, 150,.95],      // block 2
+          [2, 4, 0, 0, 150,.95],        // block 3
+          [3, null],       // block 4
+          [null, null],    // block 5
+          [null, 7, 300, 0, 150,.95],      // block 6
+          [6, null, 392, 0, 150,.95],   // block 7
         ],
         
-        "frontmiddle" : [
-          [null, 1],    // block 0: nothing on the left, 1 on the right
-          [0, null],    // block 1: 0 on the left, nothing on the right
-          [null, null], // block 2: nothing on the left, nothing on the right
-          [null, 4],    // block 3: nothing on the left, 4 on the right
-          [3, 5],       // block 4: 3 on the left, 5 on the right
-          [4, 6],       // block 5: 4 on the left, 6 on the right
-          [5, 7],       // block 6: 5 on the left, 7 on the right
-          [6, null],    // block 7: 6 on the left, nothing on the rightx
-        ],
-        
-        "backmiddle" : [
-          [null, 1],    // block 0: nothing on the left, 1 on the right
-          [0, null],    // block 1: 0 on the left, nothing on the right
-          [null, null], // block 2: nothing on the left, nothing on the right
-          [null, 4],    // block 3: nothing on the left, 4 on the right
-          [3, 5],       // block 4: 3 on the left, 5 on the right
-          [4, 6],       // block 5: 4 on the left, 6 on the right
-          [5, 7],       // block 6: 5 on the left, 7 on the right
-          [6, null],    // block 7: 6 on the left, nothing on the right
+        "middle": [
+          [null, 1],      // block 0
+          [0, null],      // block 1
+          [null, 3],      // block 2
+          [2, 4],         // block 3
+          [3, 5],         // block 4
+          [4, 6,200,0,0], // block 5
+          [5, 7],         // block 6
+          [6, null],      // block 7
         ]
       },
       
-      "3d": {}
+      //"3d": {}
       
     }
     

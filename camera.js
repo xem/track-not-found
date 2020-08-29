@@ -1,5 +1,5 @@
 camera = () => {
-  if(cam == "2d"){ viewport.style.perspective = "5000px"; }
+  if(cam == "2d"){ viewport.style.perspective = "6000px"; }
   else if(cam == "3d"){ viewport.style.perspective = default_perspective; };
   
   if(campos == "front"){
@@ -39,7 +39,7 @@ camera = () => {
 
   if(camheight == "up"){
     C.camera({rx: cam == "3d" ? 5 : 0.1});
-    if(boat)boat.style.opacity = 1;
+    if(self.boat)boat.style.opacity = 1;
   }
   else if(camheight == "midup"){
     C.camera({rx: 45});

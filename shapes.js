@@ -27,15 +27,13 @@ draw_track = (x,y,z,pillar,scale=1, debug="") => {
   C.cube({g:"group"+(group_count),w:107,h:6,d:8,x:50,y:-11,b:"#888",b2:"#666",b3:"#aaa",css:"iron"},1,0,0,0,1,1);
   C.plane({g:"group"+(group_count),w:107,h:20,x:50,css:"woods",html:debug});
   if(pillar){
-    C.cube({g:"group"+(group_count),w:5,h:900,d:5,x:50,z:-900.2,b:"#555"},0,1,1,1,1,1);
+    C.cube({g:"group"+(group_count),w:5,h:900,d:5,x:50,z:-900.2,b:"#333",b2:"#555",b3:"#333"},0,0,1,1,1,1);
   }
   group_count++;
 }
 
 // All tracks
 draw_tracks = () => {
-  draw_track(-800, 0, 0);
-  draw_track(-700, 0, 0);
   draw_track(-600, 0, 0);
   draw_track(-500, 0, 0);
   draw_track(-400, 0, 0);
@@ -45,7 +43,6 @@ draw_tracks = () => {
   draw_track(500, 0, 0);
   draw_track(600, 0, 0);
   draw_track(700, 0, 0);
-  draw_track(800, 0, 0);
 }
 
 
@@ -103,31 +100,16 @@ draw_hills = () => {
     
   }
   
-  for(var i = 0; i < 3; i++){
-    
-    while(Math.abs(X2-X) < 50 && Math.abs(Y2-Y) < 50){
-      X=450+Math.random()*300;
-      Y=120+Math.random()*300;
-    }
-    
-    C.sprite({w:60,h:60,x:X,y:Y,z:0,html:tree=["🌳","🌴","🌲"][Math.random()*3|0],css:"tree fixed",o:"bottom"});
-    C.plane({w:60,h:60,x:X,y:Y,z:0,html:tree,css:"tree fixed shadow",o:"bottom",rz:-25});
-    
-    X2 = X;
-    Y2 = Y;
-  }
+
+  X=450+Math.random()*300;
+  Y=120+Math.random()*300;
   
-  for(var i = 0; i < 3; i++){
-    
-    while(Math.abs(X2-X) < 50 && Math.abs(Y2-Y) < 50){
-      X=-420-Math.random()*300;
-      Y=120+Math.random()*300;
-    }
-    
-    C.sprite({w:60,h:60,x:X,y:Y,z:0,html:tree=["🌳","🌴","🌲"][Math.random()*3|0],css:"tree fixed",o:"bottom"});
-    C.plane({w:60,h:60,x:X,y:Y,z:0,html:tree,css:"tree fixed shadow",o:"bottom",rz:-25});
-    
-    X2 = X;
-    Y2 = Y;
-  }
+  C.sprite({w:60,h:60,x:X,y:Y,z:0,html:tree=["🌳","🌴","🌲"][Math.random()*3|0],css:"tree fixed",o:"bottom"});
+  C.plane({w:60,h:60,x:X,y:Y,z:0,html:tree,css:"tree fixed shadow",o:"bottom",rz:-25});
+
+  X=-420-Math.random()*300;
+  Y=120+Math.random()*300;
+  
+  C.sprite({w:60,h:60,x:X,y:Y,z:0,html:tree=["🌳","🌴","🌲"][Math.random()*3|0],css:"tree fixed",o:"bottom"});
+  C.plane({w:60,h:60,x:X,y:Y,z:0,html:tree,css:"tree fixed shadow",o:"bottom",rz:-25});
 }

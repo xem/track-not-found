@@ -37,7 +37,7 @@
 @keyframes waves {
   100% { background-position: center 100% }
 }
-#viewport { background: #6b6; font-family: emoji, calibri; transition: perspective 1.5s; }
+#viewport { background: #6b6; font-family: emoji, calibri; }
 #viewport.blue { background: linear-gradient(#abf,#def); }
 h1 { margin-left: -70px }
 body { font-family: calibri, arial; overflow: hidden; margin: 0; }
@@ -63,7 +63,8 @@ body { font-family: calibri, arial; overflow: hidden; margin: 0; }
 .tree5 { animation-delay: -5s }
 .tree6 { animation-delay: -6.5s }
 .tree6 { animation-delay: -7s }
-#hud { width: 800px; height: 480px; margin-top: -480px; text-align: left; font-size: 30px; padding: 20px; xpointer-events: none }
+#hud { width: 800px; height: 480px; margin-top: -480px; text-align: left; font-size: 30px; padding: 5px 0 0 15px; opacity: 0; transition: opacity 2s; pointer-events: none; }
+#hud * { pointer-events: all; margin-top: 5px; }
 .fixed { animation: none }
 .hill { background: linear-gradient(transparent, #6b6 10%, #6b6 90%, transparent); }
 .hill2 { transition: opacity .5s; background: linear-gradient(transparent, #5a5 10%, #494 90%, transparent); }
@@ -76,12 +77,11 @@ button span { font-family: emoji, calibri; }
 .reverse { transform: scaleX(-1); display: inline-block; }
 #b_2d { margin-left: 50px }
 button.on { background: #fff }
-#hud { opacity: 0; transition: opacity 2s; pointer-events: none; }
-#hud * { pointer-events: all; }
 /*#gg { font-size: 250px; letter-spacing: -15px; height: 480px; animation: wobble 2s infinite; top: 160px; position: absolute; opacity: 0; transition: opacity: 1s; }*/
 #black { width: 800px; height: 480px; background: #000; position: absolute; top: 0; opacity: 1; transition: opacity .5s; pointer-events: none; }
-.campos { position: absolute; top: 340px; left: 630px; text-align: center }
+.campos1 { position: absolute; top: 330px; left: 730px; text-align: center }
+.campos2 { position: absolute; top: 330px; left: 630px; text-align: center }
 .woods { background: linear-gradient(90deg, #ca0, #ca0 50%, transparent 50%); background-size: 16.5px; background-position: 25px 0; font-size: 40px; font-family: arial; text-indent: 50px; padding-top: 20px; }
 .hill2 { backface-visibility: hidden }
 .track * { pointer-events: none }
-.river2 { background: linear-gradient(#fff1, #fff0 10%, #fff0 50%, #fff2); background-size: 100% 200px; xanimation: waves 15s linear infinite; }
+.river2 { background: linear-gradient(#fff1, #fff0 10%, #fff0 50%, #fff2); background-size: 100% 200px; animation: waves 15s linear infinite; backface-visibility: hidden; }
