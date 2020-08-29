@@ -51,10 +51,10 @@ group: t => {
 },
 
 plane: t => {
-  t.n||(t.n=`plane${C.plane_count++}`),
-  C.init(t),
-  C.$(t.g).innerHTML+=`<div id="${t.n}"class="plane ${t.css}"style="position:absolute;width:${t.w}${C.unit};height:${t.h}${C.unit};background:${t.b};transform-origin:${t.o};transform:${C.tr(t)}">${t.html}`,
-  C.camera()
+  t.n||(t.n=`plane${C.plane_count++}`);
+  C.init(t);
+  C.$(t.g).innerHTML+=`<div id="${t.n}"class="plane ${t.css}"style="position:absolute;width:${t.w}${C.unit};height:${t.h}${C.unit};background:${t.b};transform-origin:${t.o};transform:${C.tr(t)}">${t.html}`;
+  //C.camera();
 },
 
 sprite: t => {
@@ -114,6 +114,9 @@ move: t => {
    (t.rx||0===t.rx)&&(n.rx=t.rx),
    (t.ry||0===t.ry)&&(n.ry=t.ry),
    (t.rz||0===t.rz)&&(n.rz=t.rz),
+   (t.sx||0===t.sx)&&(n.sx=t.sx),
+   (t.sy||0===t.sy)&&(n.sy=t.sy),
+   (t.sz||0===t.sz)&&(n.sz=t.sz),
    C.options[t.n]=n,
    r.style.transform=C.tr(n)
  }

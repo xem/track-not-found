@@ -16,35 +16,39 @@ animate = () => {
       }
       
       // Go right
-      if(go && k[67] && vX < 7){
-        vX += .2;
+      if(go && k[67] && vX < 7 * scale){
+        vX += .2;// * scale;
         dir = 1;
       }
       
       // Go left
-      else if(go && k[88] && vX > -5){
-        vX -= .2;
+      else if(go && k[88] && vX > -5 * scale){
+        vX -= .2;// * scale;
         dir = 0;
       }
       
       // Move
       if(go && !win && !lose){
+        //console.log((~~X))
         X += vX;
-        if(X < -400){
+        //console.log((~~X))
+        if(X < -400 && Y == 0){
           X = -400;
           vX = 0;
         }
-        C.move({n:"train",x:X,y:Y*100,z:Z*100});
+        C.move({n:"train",x:X,y:Y-11,z:Z});
+        //C.move({n:"trainscale",sx:scale,sy:scale,sz:scale});
       }
       
       // Win
-      if(X > 350){
+      //console.log((~~X) + ' ' + Y);
+      if(chunk == 7 && posonchunk > .5){
         X = 0;
         win = 1;
         train.style.transition = scene.style.transition = hud.style.transition = "1s";
         viewport.style.perspective = default_perspective;
         C.camera({x:450,z:-350,rx:30,rz:0});
-        C.move({n:"train",x:750});
+        C.move({n:"train",x:800});
         hud.style.opacity = 0;
         go = 0;
         setTimeout(()=>{
@@ -54,65 +58,104 @@ animate = () => {
           scene.style.transition = "none";
           if(state < 4) state++;
           init();
-        }, 850);
+        }, 1500);
       }
       
+      // Compute position and scale of train on current chunk
+      
+      link = links[cam] ? (links[cam][campos] || links[cam][camheight] || links[cam][campos+camheight]) : links["default"];
+      chunkmiddle = link[chunk].length > 2 ? link[chunk][2] : track[chunk][0];
+      chunkscale = (link[chunk].length > 2 ? link[chunk][5] : track[chunk][4]) || 1;
+      chunkleft = chunkmiddle - 50 * chunkscale;
+      chunkright = chunkmiddle + 50 * chunkscale;
+      //console.log(posonchunk);
+      if(Math.abs(vX)>.1){
+        posonchunk = (X - chunkleft) / (chunkright - chunkleft);
+      }
+      //console.log(posonchunk);
+      
+      //console.log(link[chunk]);
+      //console.log("chunk " + chunk + " scale " + chunkscale + " going from " + chunkleft + " to " +  chunkright + ", progress: " + (~~(posonchunk * 100)) + "%", link[chunk]);
+      
+      // Move to new chunk on the right (or virtual position)
+      if(dir == 1 && posonchunk > 1){
+        if(link[chunk][dir] !== null){
+          //Y = link[chunk].length == 5 ? link[chunk][3] : track[link[prev_chunk][dir]][1];
+          //Z = link[chunk].length == 5 ? link[chunk][4] : track[link[prev_chunk][dir]][2];
+          //console.log("change chunk");
+          posonchunk -= 1;
+          chunk = link[chunk][dir];
+        }
+        else {
+          lose = 1;
+        }
+      }
+      
+      // Move to new chunk on the left (or virtual position)
+      else if(dir == 0 && posonchunk < 0 && chunk != 0){
+        if(link[chunk][dir] !== null){
+          //Y = link[chunk].length == 5 ? link[chunk][3] : track[link[prev_chunk][dir]][1];
+          //Z = link[chunk].length == 5 ? link[chunk][4] : track[link[prev_chunk][dir]][2];
+          posonchunk += 1;
+          chunk = link[chunk][dir];
+        }
+        else {
+          lose = 1;
+        }
+      }
+        
+      // Fall
+      if(lose && go) {
+        
+        train.style.transition = ".5s";
+        scene.style.transition = "1s";
+        hud.style.transition = "none";
+        hud.style.opacity = "0";
+        go = 0;
+        
+        // Left
+        if(dir == 0){
+          C.move({n:"train",x:X-=30,z:Z-=30,ry:-90});
+        }
+        
+        // Right
+        else {
+          C.move({n:"train",x:X+=30,z:Z-=30,ry:90});
+        }
+        
+        black.style.opacity = 1;
+        
+        setTimeout(()=>{
+          C.move({n:"train",z:Z-=70});
+        }, 200);
+        
+        setTimeout(()=>{
+          scene.style.transition = "none";
+          
+          init();
+        }, 1000);
+      }
+        
+        
+      //}
+      
       // Compute chunk on the X axis
-      prev_chunk = chunk;
-      chunk = ~~((X+350) / 100);
+      // TODO detect extremity of current chunk instead
+      //prev_chunk = chunk;
+      //chunk = ~~((X+350) / 100);
       
       // Between two chunks
-      if(prev_chunk != chunk){
+      /*if(prev_chunk != chunk){
         
-        console.log(links[cam], campos);
+        //console.log(links[cam], campos);
         link = links[cam] ? (links[cam][campos] || links[cam][camheight] || links[cam][campos+camheight]) : links["default"];
 
         console.log("going from chunk " + prev_chunk + " (" + track[prev_chunk] + ") to the " + ["left","right"][dir] + " side with the camera in " + cam + " on " + campos + " - " + camheight + ", target: chunk " + link[prev_chunk][dir] + " (" + track[link[prev_chunk][dir]] + ")", link);
         
-        // Move to new chunk
-        if(link[prev_chunk][dir] !== null){
-          
-          //console.log("links",link[chunk][4]);
-          
-          Y = link[chunk].length == 5 ? link[chunk][3] : track[link[prev_chunk][dir]][1];
-          Z = link[chunk].length == 5 ? link[chunk][4] : track[link[prev_chunk][dir]][2];
-          console.log("Z",Z);
-        }
         
-        // Fall
-        else {
-          
-          lose = 1;
-          train.style.transition = ".5s";
-          scene.style.transition = "1s";
-          hud.style.transition = "none";
-          hud.style.opacity = "0";
-          
-          // Left
-          if(dir == 0){
-            C.move({n:"train",x:X-=30,z:Z-=30,ry:-90});
-          }
-          
-          // Right
-          else {
-            C.move({n:"train",x:X+=30,z:Z-=30,ry:90});
-          }
-          
-          black.style.opacity = 1;
-          
-          setTimeout(()=>{
-            C.move({n:"train",z:Z-=70});
-          }, 200);
-          
-          setTimeout(()=>{
-            scene.style.transition = "none";
-            
-            init();
-          }, 1000);
-        }
-      }
+      }*/
       
-      document.title = prev_chunk + " " + chunk + " ";
+      //document.title = prev_chunk + " " + chunk + " ";
     }
     
     // 2D/3D
@@ -126,8 +169,19 @@ animate = () => {
         if(state < 4){ camheight = "middle" }
         updatetrain();
         camera();
-        setTimeout(reupdatetrain,850);
+        
+        //setTimeout(()=>{
+        trainscale.style.transition = "1s";
+        C.move({n:"trainscale",sx:scale,sy:scale,sz:scale});
+        //},100);
+        
+        setTimeout(()=>{
+          reupdatetrain();
+        },850);
+        
         k[69] = 0;
+        console.log(scale);
+        
       }
       
       // 3D
@@ -137,9 +191,16 @@ animate = () => {
         cam = "3d";
         if(state < 4){ camheight = "midup" }
         updatetrain();
-        camera()
-        setTimeout(reupdatetrain,850);
+        camera();
+        
+        setTimeout(()=>{
+          trainscale.style.transition = "none";
+          C.move({n:"trainscale",sx:scale,sy:scale,sz:scale});
+          reupdatetrain();
+        },1000);
+        
         k[82] = 0;
+        console.log(scale);
       }
     }
     
@@ -152,7 +213,15 @@ animate = () => {
         else if(camheight == "down"){ camheight = "middown"; }
         updatetrain();
         camera();
-        setTimeout(reupdatetrain,850);
+        
+        setTimeout(()=>{
+          C.move({n:"trainscale",sx:scale,sy:scale,sz:scale});
+        },300);
+        
+        setTimeout(()=>{
+          reupdatetrain();
+        },850);
+        
         u = 0;
       }
       
@@ -198,21 +267,43 @@ animate = () => {
         r = 0;
       }
     }
-      
+    
+    //console.log(~~X, chunk, track[chunk], link[chunk], ~~(posonchunk*100));
+    console.log(chunkleft, chunkright, chunkscale, ~~(100*posonchunk));//, track[chunk], link[chunk]);
+    document.title = ~~X;
   }, 16);
 }
 
+// Before moving the camera: place the train at its "real" place and scale
 updatetrain = () => {
   link = links[cam] ? (links[cam][campos] || links[cam][camheight] || links[cam][campos+camheight]) : links["default"];
+  //console.log("u", ~~X, Y, Z, chunk, track[chunk], link[chunk], ~~(posonchunk*100));
+  chunkmiddle = track[chunk][0];
+  chunkscale = track[chunk][4] || 1;
+  chunkleft = chunkmiddle - 50 * chunkscale;
+  chunkright = chunkmiddle + 50 * chunkscale;
+  X = chunkleft + (chunkright - chunkleft) * posonchunk;    
   Y = track[chunk][1];
   Z = track[chunk][2];
+  scale = (link[chunk].length > 2 ? link[chunk][5] : track[chunk][4]) || 1;
+  //console.log(scale);
+  //console.log("u", ~~X, Y, Z, chunk, track[chunk], link[chunk], ~~(posonchunk*100));
 }
 
 reupdatetrain = () => {
+  //console.log("r1", ~~X, Y, Z, chunk, track[chunk], link[chunk], ~~(posonchunk*100));
   link = links[cam] ? (links[cam][campos] || links[cam][camheight] || links[cam][campos+camheight]) : links["default"];
-  train.style.transition = ".15s";
-  Y = link[chunk].length == 5 ? link[chunk][3] : track[chunk][1];
-  Z = link[chunk].length == 5 ? link[chunk][4] : track[chunk][2];
+  //train.style.transition = ".15s";
+  chunkmiddle = link[chunk].length > 2 ? link[chunk][2] : track[chunk][0];
+  chunkscale = (link[chunk].length > 2 ? link[chunk][5] : track[chunk][4]) || 1;
+  chunkleft = chunkmiddle - 50 * chunkscale;
+  chunkright = chunkmiddle + 50 * chunkscale;
+  
+  X = chunkleft + (chunkright - chunkleft) * posonchunk;    
+  Y = link[chunk].length == 6 ? link[chunk][3] : track[chunk][1];
+  Z = link[chunk].length == 6 ? link[chunk][4] : track[chunk][2];
+  scale = chunkscale;
+  //console.log("r2", ~~X, Y, Z, chunk, track[chunk], link[chunk], ~~(posonchunk*100));
   setTimeout(()=>{
     train.style.transition = "none";
   },150);

@@ -1,5 +1,5 @@
 camera = () => {
-  if(cam == "2d"){ viewport.style.perspective = "7000px"; }
+  if(cam == "2d"){ viewport.style.perspective = "5000px"; }
   else if(cam == "3d"){ viewport.style.perspective = default_perspective; };
   
   if(campos == "front"){

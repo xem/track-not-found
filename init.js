@@ -18,6 +18,7 @@ init = e => {
   Y = 0;
   Z = 0;
   vX = 0;
+  scale = 1;
   black.style.opacity = 0;
   viewport.style.perspective = default_perspective;
   cam = "3d"; // or 2d
@@ -26,6 +27,12 @@ init = e => {
   hud.style.transition = "1s";
   camrz = 0;
   group_count = 0;
+  chunkmiddle = 300
+  chunkleft = -350;
+  chunkright = -250;
+  posonchunk = 0;
+  chunkscale = 1;
+  dir = 1;
   //boat = null;
   
   // GUI
@@ -166,21 +173,21 @@ init = e => {
   
   // All levels
   if(state >= 1){
-    X = -400;
+    X = -350;
     vX = 0;
     C.camera({x:-400,y:0,z:-350,rx:30,rz:0});
     draw_hills();
     draw_train(X,0,0);
     
     
-    C.move({n:"train",x:-800});
+    C.move({n:"train",x:-700,y:-11});
     setTimeout(()=>{
       scene.style.transition = "4s";
       train.style.transition = "2s";
     },16);
     setTimeout(()=>{
       C.camera({x:0,y:0,z:50,rx:45,ry:0,rz:0});
-      C.move({n:"train",x:-400});
+      C.move({n:"train",x:-350});
     },33);
     setTimeout(()=>{
       hud.style.opacity = 1;
@@ -189,7 +196,7 @@ init = e => {
       train.style.transition = "none";
       scene.style.transition = "1s";
       go = 1;
-    },4000);
+    },3000);
     
     viewport.className="blue";
 

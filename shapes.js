@@ -1,29 +1,31 @@
 // Train
 draw_train = (x,y,z) => {
   C.group({n:"train",x,y,z});
-  C.plane({g:"train",w:50,h:50,y:-10,z:2,html:"🚂",css:"train",rx:-90,ry:180,o:"bottom"}); // emoji
-  C.plane({g:"train",w:50,h:50,y:10,z:2,html:"🚂",css:"train",rx:-90,ry:180,o:"bottom"}); // emoji
-  C.cube({g:"train",x:-15,z:10,w:18,h:35,d:19,b:"#A11"},1,0,1,1,1,1); // big red
-  C.cube({g:"train",x:6,z:15,w:26,h:18,d:19,b:"#444"},1,0,1,1,1,1); // big grey
-  C.cube({g:"train",x:12,z:33,w:8,h:10,d:19,b:"#666"},0,0,1,1,1,1); // chemney light
-  C.cube({g:"train",x:12,z:42,w:10,h:6,d:19,b:"#444"},1,0,1,1,1,1); // chemney dark
-  C.plane({g:"train",b:"#c80",w:2.5,h:19,z:34}); // orange 1
-  C.plane({g:"train",b:"#c80",w:2.5,h:19,z:34,x:7.5}); // orange 2
-  C.plane({g:"train",b:"#151515",w:15,h:19,z:24,x:20.5,ry:90}); // front black
-  C.plane({g:"train",b:"#c33",w:15,h:19,z:10,x:21,ry:45}); // slanted red
+  C.group({g:"train",n:"trainscale",x:0,y:0,z:0,w:0,h:0});
+  C.plane({g:"trainscale",w:50,h:50,y:-10,z:2,html:"🚂",css:"train",rx:-90,ry:180,o:"bottom"}); // emoji
+  C.plane({g:"trainscale",w:50,h:50,y:10,z:2,html:"🚂",css:"train",rx:-90,ry:180,o:"bottom"}); // emoji
+  C.cube({g:"trainscale",x:-15,z:10,w:18,h:35,d:19,b:"#A11"},1,0,1,1,1,1); // big red
+  C.cube({g:"trainscale",x:6,z:15,w:26,h:18,d:19,b:"#444"},1,0,1,1,1,1); // big grey
+  C.cube({g:"trainscale",x:12,z:33,w:8,h:10,d:19,b:"#666"},0,0,1,1,1,1); // chemney light
+  C.cube({g:"trainscale",x:12,z:42,w:10,h:6,d:19,b:"#444"},1,0,1,1,1,1); // chemney dark
+  C.plane({g:"trainscale",b:"#c80",w:2.5,h:19,z:34}); // orange 1
+  C.plane({g:"trainscale",b:"#c80",w:2.5,h:19,z:34,x:7.5}); // orange 2
+  C.plane({g:"trainscale",b:"#151515",w:15,h:19,z:24,x:20.5,ry:90}); // front black
+  C.plane({g:"trainscale",b:"#c33",w:15,h:19,z:10,x:21,ry:45}); // slanted red
 }
 
 // boat
 draw_boat = (x, y, z) => {
-  C.sprite({n:"boat",w:50,h:50,x:x,y:y-5,z:z,html:["⛵","⛴","🚢"][Math.random()*3|0],css:"boat",rx:-90,ry:180,o:"bottom"}); // emoji
+  var i;
+  C.sprite({n:"boat",w:50,h:50,x:x,y:y-5,html:["⛵","⛴","🚢","🐳"][i = Math.random()*4|0],z:[-235,-245,-240,-227][i],css:"boat",rx:-90,ry:180,o:"bottom"}); // emoji
 }
 
 // Track (100px)
-draw_track = (x,y,z,pillar,scale=1) => {
+draw_track = (x,y,z,pillar,scale=1, debug="") => {
   C.group({n:"group"+(group_count),w:100,h:22,sx:scale,sy:scale,sz:scale,x,y,z,css:"track"});
   C.cube({g:"group"+(group_count),w:107,h:6,d:8,x:50,y:11,b:"#888",b2:"#666",b3:"#aaa",css:"iron"},1,0,0,0,1,1);
   C.cube({g:"group"+(group_count),w:107,h:6,d:8,x:50,y:-11,b:"#888",b2:"#666",b3:"#aaa",css:"iron"},1,0,0,0,1,1);
-  C.plane({g:"group"+(group_count),w:107,h:20,x:50,css:"woods"});
+  C.plane({g:"group"+(group_count),w:107,h:20,x:50,css:"woods",html:debug});
   if(pillar){
     C.cube({g:"group"+(group_count),w:5,h:900,d:5,x:50,z:-900.2,b:"#555"},0,1,1,1,1,1);
   }
@@ -38,7 +40,7 @@ draw_tracks = () => {
   draw_track(-500, 0, 0);
   draw_track(-400, 0, 0);
   for(var i = 0; i < track.length; i++){
-    draw_track(track[i][0], track[i][1], track[i][2], track[i][3], track[i][4]);
+    draw_track(track[i][0], track[i][1], track[i][2], track[i][3], track[i][4], i+"");
   }
   draw_track(500, 0, 0);
   draw_track(600, 0, 0);
@@ -52,7 +54,8 @@ draw_hills = () => {
   
   var tree, X, Y, Z;
   
-  C.plane({w:660,h:1200,x:0,z:-245,css:"river"});
+  C.plane({w:670,h:1200,x:0,z:-245,css:"river"});
+  C.plane({w:670,h:1200,x:0,z:-244,css:"river2"});
   C.plane({w:600,h:1200,x:-700,z:-.5,css:"hill"});
   C.plane({w:600,h:1200,x:700,z:-.5,css:"hill"});
   

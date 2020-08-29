@@ -26,5 +26,5 @@ onkeydown = onkeyup = e => {
   if(e.which == 40 || e.which == 83){ d = e.type[5] } // d
   if(e.which == 39 || e.which == 68){ r = e.type[5] } // r
   
-  console.log(e.which);
+  //console.log(e.which);
 }
