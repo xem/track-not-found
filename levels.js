@@ -14,7 +14,7 @@ levels = () => {
       [100,0,0,1],  // block 4
       [200,0,0,1],  // block 5
       [300,0,0,1],  // block 6
-      [400,0,0,0],  // block 7
+      [400,0,0,0],  // block 7 (end)
     ];
     
     // links between track pieces in each view (2D, 3D)
@@ -34,7 +34,7 @@ levels = () => {
   }
   
   // Level 2
-  if(state == 2){
+  else if(state == 2){
     draw_boat(200,60,-235);
     
     /*for(i=-600;i<700;i+=100){
@@ -54,7 +54,7 @@ levels = () => {
       [100,0,0,1],    // block 4
       [202,-200,0,1], // block 5
       [300,0,0,1],    // block 6
-      [400,0,0,0],    // block 7
+      [400,0,0,0],    // block 7 (end)
     ];
     
     // links between track pieces in each view (2D, 3D)
@@ -131,7 +131,7 @@ levels = () => {
   }*/
   
   // Level 3
-  if(state == 3){
+  else if(state == 3){
     draw_boat(200,100);
     
     // Define each track piece (x, y, z, pillar, scale)
@@ -143,7 +143,7 @@ levels = () => {
       [100,0,0,1],            // block 4
       [120,155,155,1,.6],     // block 5
       [300,0,0,1],            // block 6
-      [400,0,0],              // block 7
+      [400,0,0],              // block 7 (end)
     ];
     
     // links between track pieces in each view (2D, 3D)
@@ -189,7 +189,7 @@ levels = () => {
   }
   
   // Level 4
-  if(state == 4){
+  else if(state == 4){
     draw_boat(-200,-400,-235);
     
     // Define each track piece (x, y, z, pillar, scale)
@@ -199,12 +199,13 @@ levels = () => {
       [-100,0,150,1],   // block 2
       [0,0,0,1],        // block 3
       [100,0,0,1],      // block 4
-      [200,-200,0,1],   // block 5
+      [200,-200,0,1],   // block 5 // 4bis: [200,0,-150, 1]
       [300,0,0,1],      // block 6
       [400,0,0,0],      // block 7
     ];
     
     // links between track pieces in each view (2D, 3D, angles)
+    // [left, right, (virtualx, virtualy, virtualz, virtualscale)]
     links = {
       
       "default": [
@@ -215,22 +216,11 @@ levels = () => {
         [3, null],    // block 4
         [null, null], // block 5
         [null, 7],    // block 6
-        [6, null],    // block 7
+        [6, null],    // block 7 (end)
       ],
 
       "2d": {
         "up": [
-          [null, 1, -292, 0, 150,.95],  // block 0
-          [0, 2, -196, 0, 150,.95],     // block 1
-          [1, 3, -99, 0, 150,.95],      // block 2
-          [2, 4, 0, 0, 150,.95],        // block 3
-          [3, null],       // block 4
-          [null, null],    // block 5
-          [null, 7, 300, 0, 150,.95],      // block 6
-          [6, null, 392, 0, 150,.95],   // block 7
-        ],
-        
-        "down": [
           [null, 1, -292, 0, 150,.95],  // block 0
           [0, 2, -196, 0, 150,.95],     // block 1
           [1, 3, -99, 0, 150,.95],      // block 2
@@ -253,13 +243,107 @@ levels = () => {
         ]
       },
       
-      //"3d": {}
-      
     }
     
   }
   
+  // Level 5
+  else if(state == 5){
+    draw_boat(250,-400,-235);
+    
+    // Define each track piece (x, y, z, pillar, scale)
+    track = [
+      [-298,0,0,1.05],      // block 0
+      [-202,-300,0,1.05],   // block 1
+      [-100,-300,0,0],      // block 2
+      [0,-300,0,0],         // block 3
+      [100,-300,0,1],       // block 4
+      [133,-70,-130,1,.65], // block 5
+      [117,-151,157,0,1.1], // block 6
+      [411,-34,0,0,.92],    // block 7 (end)
+      [217,118,151,1,.9],   // block 8
+      [307,118,151,0,.9],   // block 9
+    ];
+    
+    // links between track pieces in each view (2D, 3D, angles)
+    // [left, right, (virtualx, virtualy, virtualz, virtualscale)]
+    links = {
+      
+      "default": [
+        [null, null],   // block 0
+        [null, 2],      // block 1
+        [1, 3],         // block 2
+        [2, 4],         // block 3
+        [3, null],      // block 4
+        [null, null],   // block 5
+        [null, null],      // block 6
+        [null, null],   // block 7
+        [null, 9],         // block 8
+        [8, null],      // block 9
+      ],
+
+      "2d": {
+        "middle": [
+          [null, 1],      // block 0
+          [0, 2],         // block 1
+          [1, 3],         // block 2
+          [2, 4],         // block 3
+          [3, null],      // block 4
+          [null, null],   // block 5
+          [null, 8],   // block 6
+          [null, null],   // block 7
+          [6, 9],      // block 8
+          [8, null],      // block 9
+        ],
+        
+        "midup": [
+          [null, null],   // block 0
+          [null, 2],      // block 1
+          [1, 3],         // block 2
+          [2, 4],         // block 3
+          [3, null],      // block 4
+          [null, null],   // block 5
+          [null, null],      // block 6
+          [9, null],      // block 7
+          [null, 9],         // block 8
+          [8, 7],         // block 9
+        ]
+      },
+      
+      "3d": {
+        "middown": [
+          [null, null],   // block 0
+          [null, 2],      // block 1
+          [1, 3],         // block 2
+          [2, 4],         // block 3
+          [3, 5],         // block 4
+          [4, null,200,-300,0,1],      // block 5
+          [null, 8],      // block 6
+          [null, null],   // block 7
+          [null, 9],         // block 8
+          [8, null],      // block 9
+        ],
+        
+        "down": [
+          [null, null],   // block 0
+          [null, 2],      // block 1
+          [1, 3],         // block 2
+          [2, 4],         // block 3
+          [3, null],      // block 4
+          [6,null,227,-151,157,1.1],      // block 5
+          [null, 5],         // block 6
+          [null, null],   // block 7
+          [null, 9],         // block 8
+          [8, null],      // block 9
+        ]
+      },
+    }
+  }
+  
   if(state >= 1){
+    if(links["2d"] && links["2d"]["up"] && !links["2d"]["down"]){
+      links["2d"]["down"] = links["2d"]["up"]
+    }
     draw_tracks();
   }
 }

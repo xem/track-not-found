@@ -74,9 +74,11 @@ animate = () => {
         
         // Move to new chunk on the right (or virtual position)
         if(dir == 1 && posonchunk > 1){
+          console.log("right", chunk, posonchunk);
           if(link[chunk][dir] !== null){
             posonchunk -= 1;
             chunk = link[chunk][dir];
+            console.log(chunk, posonchunk);
           }
           else {
             lose = 1;
@@ -244,14 +246,15 @@ animate = () => {
     
     //console.log(~~X, chunk, track[chunk], link[chunk], ~~(posonchunk*100));
     //console.log(chunkleft, chunkright, chunkscale, ~~(100*posonchunk));//, track[chunk], link[chunk]);
-    document.title = ~~X;
+    //document.title = ~~X;
+    console.log(link[chunk],~~X,~~(posonchunk*100),chunkleft,chunkright);
   }, 16);
 }
 
 // Before moving the camera: place the train at its "real" place and scale
 updatetrain = () => {
   link = links[cam] ? (links[cam][campos] || links[cam][camheight] || links[cam][campos+camheight] || links["default"]) : links["default"];
-  console.log(link[chunk]);
+  //console.log(link[chunk]);
   //console.log("u", ~~X, Y, Z, chunk, track[chunk], link[chunk], ~~(posonchunk*100));
   chunkmiddle = track[chunk][0];
   chunkscale = track[chunk][4] || 1;
@@ -269,7 +272,7 @@ updatetrain = () => {
 reupdatetrain = () => {
   //console.log("r1", ~~X, Y, Z, chunk, track[chunk], link[chunk], ~~(posonchunk*100));
   link = links[cam] ? (links[cam][campos] || links[cam][camheight] || links[cam][campos+camheight] || links["default"]) : links["default"];
-  console.log(link[chunk]);
+  //console.log(link[chunk]);
   //train.style.transition = ".15s";
   chunkmiddle = link[chunk].length > 2 ? link[chunk][2] : track[chunk][0];
   chunkscale = (link[chunk].length > 2 ? link[chunk][5] : track[chunk][4]) || 1;

@@ -34,15 +34,17 @@ draw_track = (x,y,z,pillar,scale=1, debug="") => {
 
 // All tracks
 draw_tracks = () => {
+  console.log(track);
+  draw_track(-700, 0, 0);
   draw_track(-600, 0, 0);
   draw_track(-500, 0, 0);
   draw_track(-400, 0, 0);
   for(var i = 0; i < track.length; i++){
     draw_track(track[i][0], track[i][1], track[i][2], track[i][3], track[i][4], i+"");
   }
-  draw_track(500, 0, 0);
-  draw_track(600, 0, 0);
-  draw_track(700, 0, 0);
+  for(i = 0; i < 3; i++){
+    draw_track(track[7][0]+100, track[7][1], track[7][2]);
+  }
 }
 
 

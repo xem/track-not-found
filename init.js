@@ -47,8 +47,9 @@ init = e => {
       ,
       "Move the train with X and C", // 1
       "Change perspective with E and R", // 2
-      "Optical illusions can help completing the track",
+      "Optical illusions can help completing the track", // 5
       "Move the camera up & down with the arrow keys", // 4
+      "Success is not always a straight line", // 5
     ][state] || "");
   }
   buttons.innerHTML = "";
@@ -69,7 +70,7 @@ init = e => {
     
   }
   
-  if(state >= 4){
+  if(state >= 4 && state < 6){
     
     buttons.innerHTML += "<div title=up class=campos1><button id=b_up class=on>&uarr;</button><br> <span>📷</span><br><button title=down id=b_down class=on>&darr;</button></div>";
     
