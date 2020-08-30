@@ -47,8 +47,7 @@ body { font-family: calibri, arial; overflow: hidden; margin: 0; }
 #h3 { margin-top: -100px; font-size: 40px; animation: wobble 2s infinite; }
 .plane { opacity: 1 }
 .train { font-size: 50px; line-height:50px; }
-#trainscale { transition: transform .1s; }
-#trainscale * { pointer-events: none }
+#train * { pointer-events: none }
 .boat { font-size: 80px; line-height:80px; transition: .3s; }
 /*#boat2 { animation: wobble 2s infinite; }*/
 .ground { border-radius: 50% }

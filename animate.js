@@ -16,13 +16,13 @@ animate = () => {
       }
       
       // Go right
-      if(go && k[67] && vX < 7 * scale){
+      if(go && k[67] && vX < 7){
         vX += .2;
         dir = 1;
       }
       
       // Go left
-      else if(go && k[88] && vX > -5 * scale){
+      else if(go && k[88] && vX > -5){
         vX -= .2;
         dir = 0;
       }
@@ -34,7 +34,7 @@ animate = () => {
           X = -400;
           vX = 0;
         }
-        C.move({n:"train",x:X,y:Y-11,z:Z});
+        C.move({n:"train",x:X,y:Y-10*scale,z:Z});
       }
       
       // Win
@@ -61,7 +61,7 @@ animate = () => {
       
       // Compute position and scale of train on current chunk
       
-      link = links[cam] ? (links[cam][campos] || links[cam][camheight] || links[cam][campos+camheight] || links["default"]) : links["default"];
+      link = getlink();
       
       if(link){
         chunkmiddle = link[chunk].length > 2 ? link[chunk][2] : track[chunk][0];
@@ -73,7 +73,7 @@ animate = () => {
         }
         
         // Move to new chunk on the right (or virtual position)
-        if(dir == 1 && posonchunk > 1){
+        if(posonchunk > 1){
           console.log("right", chunk, posonchunk);
           if(link[chunk][dir] !== null){
             posonchunk -= 1;
@@ -86,7 +86,7 @@ animate = () => {
         }
         
         // Move to new chunk on the left (or virtual position)
-        else if(dir == 0 && posonchunk < 0 && chunk != 0){
+        else if(posonchunk < 0 && chunk != 0){
           if(link[chunk][dir] !== null){
             posonchunk += 1;
             chunk = link[chunk][dir];
@@ -138,21 +138,18 @@ animate = () => {
         b_2d.className = "on";
         b_3d.className = "";
         cam = "2d";
-        if(state < 4){ camheight = "middle" }
-        updatetrain();
+        if(camheight == "midup" || camheight == "middown"){ camheight = "middle" }
+        
+        // Move train to real position/scale immediately
+        traintoreal();
+        
+        // Move camera
         camera();
         
-        //setTimeout(()=>{
-        trainscale.style.transition = "1s";
-        C.move({n:"trainscale",sx:scale,sy:scale,sz:scale});
-        //},100);
-        
-        setTimeout(()=>{
-          reupdatetrain();
-        },850);
+        // Move train to new position/scale immediately (real or virtual)
+        setTimeout(traintonew, 1500);
         
         k[69] = 0;
-        console.log(scale);
         
       }
       
@@ -162,50 +159,55 @@ animate = () => {
         b_2d.className = "";
         cam = "3d";
         if(state < 4){ camheight = "midup" }
-        updatetrain();
+        
+        // Move train to real position/scale immediately
+        traintoreal();
+        
+        // Move camera
         camera();
         
-        setTimeout(()=>{
-          trainscale.style.transition = "none";
-          C.move({n:"trainscale",sx:scale,sy:scale,sz:scale});
-          reupdatetrain();
-        },1000);
+        // Move train to new position/scale immediately (real or virtual)
+        setTimeout(traintonew, 1500);
         
         k[82] = 0;
-        //console.log(scale);
       }
     }
     
     // Camera positions
     if(state >= 4){
-      if(go && u && !win && !lose){
+      if(go && u && !win && !lose && camheight != "up"){
         if(camheight == "midup"){ camheight = "up"; }
         else if(camheight == "middle"){ camheight = "midup"; }
         else if(camheight == "middown"){ camheight = "middle"; }
         else if(camheight == "down"){ camheight = "middown"; }
-        updatetrain();
+        
+        // Move train to real position/scale immediately
+        traintoreal();
+        
+        // Move camera
         camera();
-        setTimeout(()=>{
-          trainscale.style.transition = "none";
-          C.move({n:"trainscale",sx:scale,sy:scale,sz:scale});
-          reupdatetrain();
-        },1000);
+        
+        // Move train to new position/scale immediately (real or virtual)
+        setTimeout(traintonew, 1000);
         
         u = 0;
       }
       
-      if(go && d && !win && !lose){
+      if(go && d && !win && !lose && camheight != "down"){
         if(camheight == "up"){ camheight = "midup"; }
         else if(camheight == "midup"){ camheight = "middle"; }
         else if(camheight == "middle"){ camheight = "middown"; }
         else if(camheight == "middown"){ camheight = "down"; }
-        updatetrain();
+        
+        // Move train to real position/scale immediately
+        traintoreal();
+        
+        // Move camera
         camera();
-        setTimeout(()=>{
-          trainscale.style.transition = "none";
-          C.move({n:"trainscale",sx:scale,sy:scale,sz:scale});
-          reupdatetrain();
-        },1000);
+        
+        // Move train to new position/scale immediately (real or virtual)
+        setTimeout(traintonew, 1000);
+        
         d = 0;
       }
     }
@@ -236,7 +238,7 @@ animate = () => {
         else if(campos == "leftfront"){ campos = "front"; }
         else if(campos == "front"){ campos = "rightfront"; }
         else if(campos == "rightfront"){ campos = "right"; }
-        updatetrain();
+        //updatetrain();
         C.camera({rz: camrz += 45});
         camera();
         //setTimeout(reupdatetrain,850);
@@ -247,15 +249,20 @@ animate = () => {
     //console.log(~~X, chunk, track[chunk], link[chunk], ~~(posonchunk*100));
     //console.log(chunkleft, chunkright, chunkscale, ~~(100*posonchunk));//, track[chunk], link[chunk]);
     //document.title = ~~X;
-    console.log(link[chunk],~~X,~~(posonchunk*100),chunkleft,chunkright);
+    //console.log(link[chunk],~~X,~~(posonchunk*100),chunkleft,chunkright);
+    console.log(chunk, ~~(posonchunk*100));
   }, 16);
 }
 
-// Before moving the camera: place the train at its "real" place and scale
-updatetrain = () => {
-  link = links[cam] ? (links[cam][campos] || links[cam][camheight] || links[cam][campos+camheight] || links["default"]) : links["default"];
-  //console.log(link[chunk]);
-  //console.log("u", ~~X, Y, Z, chunk, track[chunk], link[chunk], ~~(posonchunk*100));
+
+getlink = () => {
+  return link = links[cam] ? (links[cam][campos] || links[cam][camheight] || links[cam][campos+camheight] || links["default"]) : links["default"];
+}
+
+// Move train to real position/scale immediately
+traintoreal = () => {
+  go = 0;
+  link = getlink();
   chunkmiddle = track[chunk][0];
   chunkscale = track[chunk][4] || 1;
   chunkleft = chunkmiddle - 50 * chunkscale;
@@ -263,17 +270,13 @@ updatetrain = () => {
   X = chunkleft + (chunkright - chunkleft) * posonchunk;    
   Y = track[chunk][1];
   Z = track[chunk][2];
-  //console.log(link);
-  scale = (link[chunk].length > 2 ? link[chunk][5] : track[chunk][4]) || 1;
-  //console.log(scale);
-  //console.log("u", ~~X, Y, Z, chunk, track[chunk], link[chunk], ~~(posonchunk*100));
+  scale = chunkscale;
+  C.move({n:"train",x:X,y:Y-10*scale,z:Z,sx:scale,sy:scale,sz:scale});
 }
 
-reupdatetrain = () => {
-  //console.log("r1", ~~X, Y, Z, chunk, track[chunk], link[chunk], ~~(posonchunk*100));
-  link = links[cam] ? (links[cam][campos] || links[cam][camheight] || links[cam][campos+camheight] || links["default"]) : links["default"];
-  //console.log(link[chunk]);
-  //train.style.transition = ".15s";
+traintonew = () => {
+  link = getlink();
+  
   chunkmiddle = link[chunk].length > 2 ? link[chunk][2] : track[chunk][0];
   chunkscale = (link[chunk].length > 2 ? link[chunk][5] : track[chunk][4]) || 1;
   chunkleft = chunkmiddle - 50 * chunkscale;
@@ -283,8 +286,6 @@ reupdatetrain = () => {
   Y = link[chunk].length >= 5 ? link[chunk][3] : track[chunk][1];
   Z = link[chunk].length >= 5 ? link[chunk][4] : track[chunk][2];
   scale = chunkscale;
-  //console.log("r2", ~~X, Y, Z, chunk, track[chunk], link[chunk], ~~(posonchunk*100));
-  setTimeout(()=>{
-    train.style.transition = "none";
-  },150);
+  C.move({n:"train",x:X,y:Y-10*scale,z:Z,sx:scale,sy:scale,sz:scale});
+  go = 1;
 }
