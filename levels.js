@@ -3,6 +3,8 @@ levels = () => {
   // Level 1
   if(state == 1){
     
+    //viewport.style.background = "radial-gradient(#abc,#8af)"
+    
     draw_boat(-100,-450,-235);
     
     // Define each track piece (x, y, z, pillar, scale)
@@ -35,15 +37,8 @@ levels = () => {
   
   // Level 2
   else if(state == 2){
-    draw_boat(200,60,-235);
     
-    /*for(i=-600;i<700;i+=100){
-      if(i != -100 && i != 200){
-        draw_track(i,0,0,i>-400&&i<400);
-      }
-    }
-    draw_track(-100,100,0,1);
-    draw_track(200,-100,0,1);*/
+    draw_boat(200,60,-235);
     
     // Define each track piece (x, y, z, pillar, scale)
     track = [
@@ -276,9 +271,9 @@ levels = () => {
         [2, 4],         // block 3
         [3, null],      // block 4
         [null, null],   // block 5
-        [null, null],      // block 6
+        [null, null],   // block 6
         [null, null],   // block 7
-        [null, 9],         // block 8
+        [null, 9],      // block 8
         [8, null],      // block 9
       ],
 
@@ -290,9 +285,9 @@ levels = () => {
           [2, 4],         // block 3
           [3, null],      // block 4
           [null, null],   // block 5
-          [null, 8],   // block 6
+          [null, 8],      // block 6
           [null, null],   // block 7
-          [6, 9],      // block 8
+          [6, 9],         // block 8
           [8, null],      // block 9
         ],
         
@@ -303,9 +298,9 @@ levels = () => {
           [2, 4],         // block 3
           [3, null],      // block 4
           [null, null],   // block 5
-          [null, null],      // block 6
-          [9, null],      // block 7
-          [null, 9],         // block 8
+          [null, null],   // block 6
+          [9, null, 397,118,151,.9],      // block 7
+          [null, 9],      // block 8
           [8, 7],         // block 9
         ]
       },
@@ -320,7 +315,7 @@ levels = () => {
           [4, null,200,-300,0,1],      // block 5
           [null, 8],      // block 6
           [null, null],   // block 7
-          [null, 9],         // block 8
+          [null, 9],      // block 8
           [8, null],      // block 9
         ],
         
@@ -331,13 +326,63 @@ levels = () => {
           [2, 4],         // block 3
           [3, null],      // block 4
           [6,null,227,-151,157,1.1],      // block 5
-          [null, 5],         // block 6
+          [null, 5],      // block 6
           [null, null],   // block 7
-          [null, 9],         // block 8
+          [null, 9],      // block 8
           [8, null],      // block 9
         ]
       },
     }
+  }
+  
+  // Level 6
+  else if(state == 6){
+    
+    draw_boat(200,60,-235);
+    camheight = "middown";
+    setTimeout(camera,500);
+    
+    // Define each track piece (x, y, z, pillar, scale)
+    /*track = [
+      [-300,0,0,1],   // block 0
+      [-200,0,0,1],   // block 1
+      [0,0,-10000,0,1], // block 2
+      [0,0,0,1],      // block 3
+      [100,0,0,1],    // block 4
+      [52,-148,209,1,1], // block 5
+      [300,0,0,1],    // block 6
+      [400,0,0,0],    // block 7 (end)
+    ];*/
+    
+    track = [
+      [-300,0,0,1],   // block 0
+      [0,-375,532,1,1.9],   // block 1
+      [-100,0,0,1], // block 2
+      [252,-252,356,1,0.4],      // block 3
+      [100,0,0,1],    // block 4
+      //[200,0,0,1], // block 5
+      [300,0,0,1],    // block 6
+      [400,0,0,0],    // block 7 (end)
+    ];
+    
+    // links between track pieces in each view (2D, 3D)
+    links = {
+      "3d": {
+        
+      },
+      
+      "default": [
+        [null, 1],    // block 0: nothing on the left, 1 on the right
+        [0, null],    // block 1: 0 on the left, nothing on the right
+        [null, null], // block 2: nothing on the left, nothing on the right
+        [null, 4],    // block 3: nothing on the left, 4 on the right
+        [3, null],    // block 4: 3 on the left, nothing on the right
+        [null, null], // block 5: nothing on the left, nothing on the right
+        [null, 7],    // block 6: nothing on the left, 7 on the right
+        [6, null],    // block 7: 6 on the left, nothing on the right
+      ],
+    }
+    
   }
   
   if(state >= 1){

@@ -22,11 +22,11 @@ draw_boat = (x, y, z) => {
 // Track (100px)
 draw_track = (x,y,z,pillar,scale=1, debug="") => {
   C.group({n:"group"+(group_count),w:100,h:22,sx:scale,sy:scale,sz:scale,x,y,z,css:"track"});
-  C.cube({g:"group"+(group_count),w:107,h:6,d:8,x:50,y:11,b:"#888",b2:"#666",b3:"#aaa",css:"iron"},1,0,0,0,1,1);
-  C.cube({g:"group"+(group_count),w:107,h:6,d:8,x:50,y:-11,b:"#888",b2:"#666",b3:"#aaa",css:"iron"},1,0,0,0,1,1);
-  C.plane({g:"group"+(group_count),w:107,h:20,x:50,css:"woods",html:debug});
+  C.cube({g:"group"+(group_count),w:110,h:6,d:8,x:50,y:11,b:"#888",b2:"#666",b3:"#aaa",css:"iron"},1,0,0,0,1,1);
+  C.cube({g:"group"+(group_count),w:110,h:6,d:8,x:50,y:-11,b:"#888",b2:"#666",b3:"#aaa",css:"iron"},1,0,0,0,1,1);
+  C.plane({g:"group"+(group_count),w:107,h:20,x:50,z:-.5,css:"woods",html:debug});
   if(pillar){
-    C.cube({g:"group"+(group_count),w:5,h:900,d:5,x:50,z:-900.2,b:"#333",b2:"#555",b3:"#333"},0,0,1,1,1,1);
+    C.cube({g:"group"+(group_count),w:5,h:(z - -244)/scale+200,d:5,x:50,z:-.2-(z - -244)/scale-200,b:"#333",b2:"#555",b3:"#333"},0,0,1,1,1,1);
   }
   group_count++;
 }
@@ -41,8 +41,15 @@ draw_tracks = () => {
   for(var i = 0; i < track.length; i++){
     draw_track(track[i][0], track[i][1], track[i][2], track[i][3], track[i][4], i+"");
   }
-  for(i = 0; i < 3; i++){
-    draw_track(track[7][0]+100, track[7][1], track[7][2]);
+  if(track[7]){
+    for(i = 0; i < 3; i++){
+      draw_track(track[7][0]+100, track[7][1], track[7][2]);
+    }
+  }
+  else {
+    for(i = 0; i < 3; i++){
+      draw_track(track[track.length-1][0]+100, track[track.length-1][1], track[track.length-1][2]);
+    }
   }
 }
 
@@ -54,8 +61,8 @@ draw_hills = () => {
   
   C.plane({w:670,h:1200,x:0,z:-245,css:"river"});
   C.plane({w:670,h:1200,x:0,z:-244,css:"river2"});
-  C.plane({w:600,h:1200,x:-700,z:-.5,css:"hill"});
-  C.plane({w:600,h:1200,x:700,z:-.5,css:"hill"});
+  C.plane({w:600,h:1200,x:-700,z:-.7,css:"hill"});
+  C.plane({w:600,h:1200,x:700,z:-.7,css:"hill"});
   
   C.plane({w:600,h:1200,x:-880,z:-300.5,ry:75,css:"hill back"});
   C.plane({w:600,h:1200,x:880,z:-300.5,ry:-75,css:"hill back"});

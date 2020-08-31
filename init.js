@@ -24,7 +24,6 @@ init = e => {
   cam = "3d"; // or 2d
   campos = "front"; // or left or back or right
   camheight = "midup"; // or up or middle or middown or down
-  //camera();
   C.camera({rx: 45});
   hud.style.transition = "1s";
   camrz = 0;
@@ -33,12 +32,11 @@ init = e => {
   chunkleft = -350;
   chunkright = -250;
   posonchunk = 0;
-  chunkscale = 1;
+  scale = 1;
   dir = 1;
   setTimeout(()=>{
     viewport.style.transition = "perspective 1.5s";
   },1000);
-  //boat = null;
   
   // GUI
   if(state){
@@ -50,6 +48,7 @@ init = e => {
       "Optical illusions can help completing the track", // 5
       "Move the camera up & down with the arrow keys", // 4
       "Success is not always a straight line", // 5
+      "Rotate the camera to the left or the right with the arrow keys" // 6
     ][state] || "");
   }
   buttons.innerHTML = "";
@@ -114,7 +113,6 @@ init = e => {
   if(state >= 4){
     b_up.onclick = e => {
       u = 1;
-      //console.log(1);
     }
   
     b_down.onclick = e => {

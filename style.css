@@ -48,7 +48,7 @@ body { font-family: calibri, arial; overflow: hidden; margin: 0; }
 .plane { opacity: 1 }
 .train { font-size: 50px; line-height:50px; }
 #train * { pointer-events: none }
-.boat { font-size: 80px; line-height:80px; transition: .3s; }
+.boat { font-size: 80px; line-height:80px; transition: 1s; }
 /*#boat2 { animation: wobble 2s infinite; }*/
 .ground { border-radius: 50% }
 .tree { font-size: 60px; line-height: 60px }
@@ -66,8 +66,8 @@ body { font-family: calibri, arial; overflow: hidden; margin: 0; }
 #hud * { pointer-events: all; margin-top: 5px; }
 .fixed { animation: none }
 .hill { background: linear-gradient(transparent, #6b6 10%, #6b6 90%, transparent); }
-.hill2 { transition: opacity .5s; background: linear-gradient(transparent, #5a5 10%, #494 90%, transparent); }
-.hill3 { transition: opacity .5s; background: linear-gradient(#5a5 10%, #494 90%); }
+.hill2 { transition: opacity .2s; background: linear-gradient(transparent, #5a5 10%, #494 90%, transparent); }
+.hill3 { transition: opacity .2s; background: linear-gradient(#5a5 10%, #494 90%); }
 /*.river { background: linear-gradient(transparent, #7788ddfa 10%, #4455fffa 90%, transparent); backface-visibility: hidden; }*/
 .river { background: linear-gradient(transparent, #78d 10%, #45f 90%, transparent); backface-visibility: hidden; }
 #buttons { margin: 370px 0; }

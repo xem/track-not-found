@@ -38,13 +38,11 @@ animate = () => {
       }
       
       // Win
-      if(chunk == 7 && posonchunk > .5){
+      if((chunk == 7 || (track.length < 8 && chunk == track.length - 1)) && posonchunk > .75){
         X = 0;
         win = 1;
         train.style.transition = hud.style.transition = "1s";
         viewport.style.transition = "none";
-        //viewport.style.perspective = default_perspective;
-        //C.camera({x:450,z:-350,rx:30,rz:0});
         C.move({n:"train",x:800});
         hud.style.opacity = 0;
         go = 0;
@@ -65,20 +63,18 @@ animate = () => {
       
       if(link){
         chunkmiddle = link[chunk].length > 2 ? link[chunk][2] : track[chunk][0];
-        chunkscale = (link[chunk].length > 2 ? link[chunk][5] : track[chunk][4]) || 1;
-        chunkleft = chunkmiddle - 50 * chunkscale;
-        chunkright = chunkmiddle + 50 * chunkscale;
+        scale = (link[chunk].length > 2 ? link[chunk][5] : track[chunk][4]) || 1;
+        chunkleft = chunkmiddle - 50 * scale;
+        chunkright = chunkmiddle + 50 * scale;
         if(Math.abs(vX)>.1){
           posonchunk = (X - chunkleft) / (chunkright - chunkleft);
         }
         
         // Move to new chunk on the right (or virtual position)
         if(posonchunk > 1){
-          console.log("right", chunk, posonchunk);
           if(link[chunk][dir] !== null){
             posonchunk -= 1;
             chunk = link[chunk][dir];
-            console.log(chunk, posonchunk);
           }
           else {
             lose = 1;
@@ -138,7 +134,7 @@ animate = () => {
         b_2d.className = "on";
         b_3d.className = "";
         cam = "2d";
-        if(camheight == "midup" || camheight == "middown"){ camheight = "middle" }
+        if(state < 6 && (camheight == "midup" || camheight == "middown")){ camheight = "middle" }
         
         // Move train to real position/scale immediately
         traintoreal();
@@ -246,10 +242,6 @@ animate = () => {
       }
     }
     
-    //console.log(~~X, chunk, track[chunk], link[chunk], ~~(posonchunk*100));
-    //console.log(chunkleft, chunkright, chunkscale, ~~(100*posonchunk));//, track[chunk], link[chunk]);
-    //document.title = ~~X;
-    //console.log(link[chunk],~~X,~~(posonchunk*100),chunkleft,chunkright);
     console.log(chunk, ~~(posonchunk*100));
   }, 16);
 }
@@ -264,13 +256,12 @@ traintoreal = () => {
   go = 0;
   link = getlink();
   chunkmiddle = track[chunk][0];
-  chunkscale = track[chunk][4] || 1;
-  chunkleft = chunkmiddle - 50 * chunkscale;
-  chunkright = chunkmiddle + 50 * chunkscale;
+  scale = track[chunk][4] || 1;
+  chunkleft = chunkmiddle - 50 * scale;
+  chunkright = chunkmiddle + 50 * scale;
   X = chunkleft + (chunkright - chunkleft) * posonchunk;    
   Y = track[chunk][1];
   Z = track[chunk][2];
-  scale = chunkscale;
   C.move({n:"train",x:X,y:Y-10*scale,z:Z,sx:scale,sy:scale,sz:scale});
 }
 
@@ -278,14 +269,13 @@ traintonew = () => {
   link = getlink();
   
   chunkmiddle = link[chunk].length > 2 ? link[chunk][2] : track[chunk][0];
-  chunkscale = (link[chunk].length > 2 ? link[chunk][5] : track[chunk][4]) || 1;
-  chunkleft = chunkmiddle - 50 * chunkscale;
-  chunkright = chunkmiddle + 50 * chunkscale;
+  scale = (link[chunk].length > 2 ? link[chunk][5] : track[chunk][4]) || 1;
+  chunkleft = chunkmiddle - 50 * scale;
+  chunkright = chunkmiddle + 50 * scale;
   
   X = chunkleft + (chunkright - chunkleft) * posonchunk;    
   Y = link[chunk].length >= 5 ? link[chunk][3] : track[chunk][1];
   Z = link[chunk].length >= 5 ? link[chunk][4] : track[chunk][2];
-  scale = chunkscale;
   C.move({n:"train",x:X,y:Y-10*scale,z:Z,sx:scale,sy:scale,sz:scale});
   go = 1;
 }
