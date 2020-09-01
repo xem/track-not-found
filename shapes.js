@@ -24,7 +24,7 @@ draw_track = (x,y,z,pillar,scale=1, debug="") => {
   C.group({n:"group"+(group_count),w:100,h:22,sx:scale,sy:scale,sz:scale,x,y,z,css:"track"});
   C.cube({g:"group"+(group_count),w:110,h:6,d:8,x:50,y:11,b:"#888",b2:"#666",b3:"#aaa",css:"iron"},1,0,0,0,1,1);
   C.cube({g:"group"+(group_count),w:110,h:6,d:8,x:50,y:-11,b:"#888",b2:"#666",b3:"#aaa",css:"iron"},1,0,0,0,1,1);
-  C.plane({g:"group"+(group_count),w:107,h:20,x:50,z:-.5,css:"woods",html:debug});
+  C.plane({g:"group"+(group_count),w:107,h:20,x:50,z:-.5,css:"woods",html:dodebug?debug:""});
   if(pillar){
     C.cube({g:"group"+(group_count),w:5,h:(z - -244)/scale+200,d:5,x:50,z:-.2-(z - -244)/scale-200,b:"#333",b2:"#555",b3:"#333"},0,0,1,1,1,1);
   }
@@ -48,7 +48,7 @@ draw_tracks = () => {
   }
   else {
     for(i = 0; i < 3; i++){
-      draw_track(track[track.length-1][0]+100, track[track.length-1][1], track[track.length-1][2]);
+      draw_track(track[track.length-1][0]+100*i, track[track.length-1][1], track[track.length-1][2]);
     }
   }
 }
@@ -59,6 +59,7 @@ draw_hills = () => {
   
   var tree, X, Y, Z;
   
+  C.sprite({w:500,h:500,x:-1000,y:-2000,z:1000,css:"sun"});
   C.plane({w:670,h:1200,x:0,z:-245,css:"river"});
   C.plane({w:670,h:1200,x:0,z:-244,css:"river2"});
   C.plane({w:600,h:1200,x:-700,z:-.7,css:"hill"});

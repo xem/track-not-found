@@ -216,14 +216,14 @@ levels = () => {
 
       "2d": {
         "up": [
-          [null, 1, -292, 0, 150,.95],  // block 0
-          [0, 2, -196, 0, 150,.95],     // block 1
-          [1, 3, -99, 0, 150,.95],      // block 2
-          [2, 4, 0, 0, 150,.95],        // block 3
-          [3, null],       // block 4
+          [null, 1, -300,0,150,1],  // block 0
+          [0, 2, -200,0,150,1],     // block 1
+          [1, 3],      // block 2
+          [2, 4, 0,0,150,1],        // block 3
+          [3, null, 100,0,150,1],       // block 4
           [null, null],    // block 5
-          [null, 7, 300, 0, 150,.95],      // block 6
-          [6, null, 392, 0, 150,.95],   // block 7
+          [null, 7],      // block 6
+          [6, null],   // block 7
         ],
         
         "middle": [
@@ -325,7 +325,7 @@ levels = () => {
           [1, 3],         // block 2
           [2, 4],         // block 3
           [3, null],      // block 4
-          [6,null,227,-151,157,1.1],      // block 5
+          [6,null,117+110,-151,157,1.1],      // block 5
           [null, 5],      // block 6
           [null, null],   // block 7
           [null, 9],      // block 8
@@ -339,10 +339,17 @@ levels = () => {
   else if(state == 6){
     
     draw_boat(200,60,-235);
-    camheight = "middown";
-    setTimeout(camera,500);
+    //camheight = "middown";
+    campos = "leftfront";
+    draw_track(0,0,0,1);
+    setTimeout(()=>{
+      C.camera({rz: camrz = -45});
+      camera();
+    },200);
     
     // Define each track piece (x, y, z, pillar, scale)
+    
+    // 6 bis:
     /*track = [
       [-300,0,0,1],   // block 0
       [-200,0,0,1],   // block 1
@@ -354,32 +361,78 @@ levels = () => {
       [400,0,0,0],    // block 7 (end)
     ];*/
     
-    track = [
-      [-300,0,0,1],   // block 0
+    // 6 ter
+    /*track = [
+      [-300,0,0,1],         // block 0
       [0,-375,532,1,1.9],   // block 1
-      [-100,0,0,1], // block 2
-      [252,-252,356,1,0.4],      // block 3
-      [100,0,0,1],    // block 4
-      //[200,0,0,1], // block 5
-      [300,0,0,1],    // block 6
-      [400,0,0,0],    // block 7 (end)
+      [-100,0,0,1],         // block 2
+      [252,-252,356,1,0.4], // block 3
+      [100,0,0,1],          // block 4
+      [300,0,0,1],          // block 5
+      [400,0,0,0],          // block 6 (end)
+    ];*/
+    
+    // 6 quarto
+    /*track = [
+      [-300,0,0,1],         // block 0
+      [0,-375,532,1,1.9],   // block 1
+      [-100,0,0,1],         // block 2
+      [100,0,0,1],          // block 3
+      [300,0,0,1],          // block 4
+      [400,0,0,0],          // block 5 (end)
+    ];
+    */
+    
+    track = [
+      [-300,0,0,1],         // block 0
+      [0,375,532,1,1.9],   // block 1
+      [-100,0,0,1],         // block 2
+      [100,0,0,1],          // block 3
+      [300,0,0,1],          // block 4
+      [400,0,0,0],          // block 5 (end)
     ];
     
     // links between track pieces in each view (2D, 3D)
     links = {
       "3d": {
+        /*"rightbackmidup": [
+            [null, null,252-120,-252,356,0.4],   // block 0
+            [null, null,252-80,-252,356,0.4],   // block 1
+            [null, 3,252-40,-252,356,0.4],   // block 2
+            [2, 4],                           // block 3
+            [3, null,252+40,-252,356,0.4],   // block 4
+            [null, 6],                          // block 5
+            [5, null,252+120,-252,356,0.4],      // block 6
+        ],*/
         
+        //"leftfrontmiddown": [ // 6 quarto (change all the 375 to -375)
+        "leftbackmiddown": [
+          [null, 1,0-190,375,532,1.9],     // block 0
+          [0, 2],                       // block 1
+          [1, null,0+190,375,532,1.9],     // block 2
+          [null, null],                 // block 3
+          [null, 5],   // block 4
+          [4, null],      // block 5
+        ],
+        
+        //"rightfrontmiddown": [ // 6 quarto (change all the 375 to -375)
+        "rightbackmiddown": [
+          [null, null],   // block 0
+          [3, 4],   // block 1
+          [null, null],   // block 2
+          [null, 1,0-190,375,532,1.9],   // block 3
+          [1, 5,0+190,375,532,1.9],   // block 4
+          [4, null,0+190*2,375,532,1.9],   // block 5
+        ],
       },
       
       "default": [
-        [null, 1],    // block 0: nothing on the left, 1 on the right
-        [0, null],    // block 1: 0 on the left, nothing on the right
-        [null, null], // block 2: nothing on the left, nothing on the right
-        [null, 4],    // block 3: nothing on the left, 4 on the right
-        [3, null],    // block 4: 3 on the left, nothing on the right
-        [null, null], // block 5: nothing on the left, nothing on the right
-        [null, 7],    // block 6: nothing on the left, 7 on the right
-        [6, null],    // block 7: 6 on the left, nothing on the right
+        [null, null],   // block 0
+        [null, null],   // block 1
+        [null, null],   // block 2
+        [null, null],   // block 3
+        [null, 5],   // block 4
+        [4, null],      // block 5
       ],
     }
     

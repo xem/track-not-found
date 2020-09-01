@@ -37,6 +37,18 @@
 @keyframes waves {
   100% { background-position: center 100% }
 }
+@keyframes rumble {
+  10% { margin-top: -5px; }
+  20% { margin-top: 5px; }
+  30% { margin-top: -5px; }
+  40% { margin-top: 5px; }
+  50% { margin-top: -5px; }
+  60% { margin-top: 5px; }
+  70% { margin-top: -5px; }
+  80% { margin-top: 5px; }
+  90% { margin-top: -5px; }
+  100% { margin-top: 5px; }
+}
 #viewport { background: #6b6; font-family: emoji, calibri; }
 #viewport.blue { background: linear-gradient(#abf,#def); }
 h1 { margin-left: -70px }
@@ -48,7 +60,7 @@ body { font-family: calibri, arial; overflow: hidden; margin: 0; }
 .plane { opacity: 1 }
 .train { font-size: 50px; line-height:50px; }
 #train * { pointer-events: none }
-.boat { font-size: 80px; line-height:80px; transition: 1s; }
+.boat { font-size: 80px; line-height:80px; }
 /*#boat2 { animation: wobble 2s infinite; }*/
 .ground { border-radius: 50% }
 .tree { font-size: 60px; line-height: 60px }
@@ -84,3 +96,5 @@ button.on { background: #fff }
 .hill2 { backface-visibility: hidden }
 .track * { pointer-events: none }
 .river2 { background: linear-gradient(#fff1, #fff0 10%, #fff0 50%, #fff2); background-size: 100% 200px; animation: waves 15s linear infinite; backface-visibility: hidden; }
+.sun { background: radial-gradient(#fea, transparent 50%) }
+.rumble { animation: rumble .7s; }

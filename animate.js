@@ -70,6 +70,20 @@ animate = () => {
           posonchunk = (X - chunkleft) / (chunkright - chunkleft);
         }
         
+        // Level 6: break the middle chunk when passing 25% of chunk 1
+        if(state == 6 && chunk == 2 && posonchunk > .5 && !easteregg6){
+          group0.style.transition = "3s";
+          //group0.style.transformOrigin='0 -600px -600px';
+          viewport.classList.add("rumble");
+          C.move({n:"group0",rx:90,y:-600,z:-600});
+          easteregg6 = 1;
+          setTimeout(()=>{
+            group0.remove();
+          },3500);
+          
+        }
+        
+        
         // Move to new chunk on the right (or virtual position)
         if(posonchunk > 1){
           if(link[chunk][dir] !== null){
@@ -220,8 +234,15 @@ animate = () => {
         else if(campos == "back"){ campos = "rightback"; }
         else if(campos == "rightback"){ campos = "right"; }
         C.camera({rz: camrz -= 45});
+
+        // Move train to real position/scale immediately
+        traintoreal();
+        
+        // Move camera
         camera();
-        //setTimeout(reupdatetrain,850);
+        
+        // Move train to new position/scale immediately (real or virtual)
+        setTimeout(traintonew, 1000);
         l = 0;
       }
       
@@ -234,10 +255,16 @@ animate = () => {
         else if(campos == "leftfront"){ campos = "front"; }
         else if(campos == "front"){ campos = "rightfront"; }
         else if(campos == "rightfront"){ campos = "right"; }
-        //updatetrain();
         C.camera({rz: camrz += 45});
+        
+        // Move train to real position/scale immediately
+        traintoreal();
+        
+        // Move camera
         camera();
-        //setTimeout(reupdatetrain,850);
+        
+        // Move train to new position/scale immediately (real or virtual)
+        setTimeout(traintonew, 1000);
         r = 0;
       }
     }
@@ -277,5 +304,7 @@ traintonew = () => {
   Y = link[chunk].length >= 5 ? link[chunk][3] : track[chunk][1];
   Z = link[chunk].length >= 5 ? link[chunk][4] : track[chunk][2];
   C.move({n:"train",x:X,y:Y-10*scale,z:Z,sx:scale,sy:scale,sz:scale});
+  
   go = 1;
+
 }

@@ -34,6 +34,10 @@ init = e => {
   posonchunk = 0;
   scale = 1;
   dir = 1;
+  viewport.classList.remove("rumble");
+  
+  easteregg6 = 0;
+          
   setTimeout(()=>{
     viewport.style.transition = "perspective 1.5s";
   },1000);
@@ -181,7 +185,6 @@ init = e => {
     
     C.sprite({w:60,h:60,x:0,y:80,z:0,html:"🌲",css:"tree tree7",o:"bottom"});
     C.plane({w:60,h:60,x:0,y:80,z:0,html:"🌲",css:"tree shadow tree7 shadow7",o:"bottom",rz:-25});
-      
   }
   
   // All levels
@@ -216,4 +219,8 @@ init = e => {
   }
   
   levels();
+  
+  setTimeout(()=>{
+    boat.style.transition = "1s";
+  },1000);
 }

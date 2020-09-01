@@ -46,13 +46,13 @@ camera = () => {
   else if(camheight == "middle"){
     C.camera({rx: cam == "3d" ? 85 : 90 });
     if(boat)boat.style.opacity = 1;
-    //setTimeout(()=>{
+    setTimeout(()=>{
       //console.log(1);
       h3left.style.opacity =
       h3left2.style.opacity =
       h3right.style.opacity =
       h3right2.style.opacity = 1;
-    //},500);
+    },900);
   }
   else if(camheight == "middown"){
     C.camera({rx: 135});
