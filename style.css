@@ -50,7 +50,7 @@
   100% { margin-top: 5px; }
 }
 #viewport { background: #6b6; font-family: emoji, calibri; }
-body { transform-origin: 0 0;}
+#all { transform-origin: 0 0;}
 #viewport.blue { background: linear-gradient(#abf,#def); }
 h1 { margin-left: -70px }
 body { font-family: calibri, arial; overflow: hidden; margin: 0; }

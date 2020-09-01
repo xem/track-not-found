@@ -35,9 +35,9 @@ onkeydown = onkeyup = e => {
 
 onresize = () => {
   if(window.innerWidth / window.innerHeight > 853 / 480){
-    document.body.style.transform = "scale(" + (window.innerHeight / 480) + ")"
+    all.style.transform = "scale(" + (window.innerHeight / 480) + ")"
   }
   else {
-    document.body.style.transform = "scale(" + (window.innerWidth / 853) + ")"
+    all.style.transform = "scale(" + (window.innerWidth / 853) + ")"
   }
 }
