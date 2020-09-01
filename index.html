@@ -26,9 +26,13 @@
 <script src=camera.js></script>
 <script>
 onload = () => {
-  state = 0;
+  state = 4;
   dodebug = 0;
+  onresize();
   init();
   animate();
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen();
+  }
 }
 </script>

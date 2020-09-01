@@ -5,6 +5,9 @@ onclick = ontouchstart = e => {
   
     // Title
     case 0:
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen();
+      }
       black.style.opacity = 1;
       setTimeout(()=>{
         state = 1;
@@ -27,4 +30,14 @@ onkeydown = onkeyup = e => {
   if(e.which == 39 || e.which == 68){ r = e.type[5] } // r
   
   //console.log(e.which);
+}
+
+
+onresize = () => {
+  if(window.innerWidth / window.innerHeight > 853 / 480){
+    document.body.style.transform = "scale(" + (window.innerHeight / 480) + ")"
+  }
+  else {
+    document.body.style.transform = "scale(" + (window.innerWidth / 853) + ")"
+  }
 }

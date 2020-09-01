@@ -5,7 +5,7 @@
 }
 
 /* CSS3D framework */
-#viewport{width:800px;height:480px;overflow:hidden;border:1px solid;position:relative;perspective:600px}
+#viewport{width:850px;height:480px;overflow:hidden;border:1px solid;position:relative;perspective:600px}
 #viewport *{transform-style:preserve-3d;box-sizing:border-box}
 #camera{width:0;height:0;position:absolute;top:50%;left:50%}
 .triangle{clip-path:polygon(50% 0,100% 100%,0 100%);border:none}
@@ -50,10 +50,11 @@
   100% { margin-top: 5px; }
 }
 #viewport { background: #6b6; font-family: emoji, calibri; }
+body { transform-origin: 0 0;}
 #viewport.blue { background: linear-gradient(#abf,#def); }
 h1 { margin-left: -70px }
 body { font-family: calibri, arial; overflow: hidden; margin: 0; }
-#h1,#h2,#h3,#hud,#gg{ position: fixed; color: #fff; text-align: center; width: 800px; text-shadow: 3px 3px 5px #000;}
+#h1,#h2,#h3,#hud,#gg{ position: fixed; color: #fff; text-align: center; width: 853px; text-shadow: 3px 3px 5px #000;}
 #h1 { margin-top: -480px; font-size: 60px;  }
 #h2 { margin-top: -400px; font-size: 20px; }
 #h3 { margin-top: -100px; font-size: 40px; animation: wobble 2s infinite; }
@@ -74,7 +75,7 @@ body { font-family: calibri, arial; overflow: hidden; margin: 0; }
 .tree5 { animation-delay: -5s }
 .tree6 { animation-delay: -6.5s }
 .tree6 { animation-delay: -7s }
-#hud { width: 800px; height: 480px; margin-top: -480px; text-align: left; font-size: 27px; padding: 5px 0 0 15px; opacity: 0; transition: opacity 2s; pointer-events: none; }
+#hud { width: 853px; height: 480px; margin-top: -480px; text-align: left; font-size: 27px; padding: 5px 0 0 15px; opacity: 0; transition: opacity 2s; pointer-events: none; }
 #hud * { pointer-events: all; margin-top: 5px; }
 .fixed { animation: none }
 .hill { background: linear-gradient(#fff0, #6b6 10%, #6b6 90%, #fff0); }
@@ -89,9 +90,9 @@ button span { font-family: emoji, calibri; }
 #b_2d { margin-left: 50px }
 button.on { background: #fff }
 /*#gg { font-size: 250px; letter-spacing: -15px; height: 480px; animation: wobble 2s infinite; top: 160px; position: absolute; opacity: 0; transition: opacity: 1s; }*/
-#black { width: 800px; height: 480px; background: #000; position: absolute; top: 0; opacity: 1; transition: opacity .5s; pointer-events: none; }
-.campos1 { position: absolute; top: 330px; left: 730px; text-align: center }
-.campos2 { position: absolute; top: 330px; left: 630px; text-align: center }
+#black { width: 853px; height: 480px; background: #000; position: absolute; top: 0; opacity: 1; transition: opacity .5s; pointer-events: none; }
+.campos1 { position: absolute; top: 330px; left: 783px; text-align: center }
+.campos2 { position: absolute; top: 330px; left: 683px; text-align: center }
 .woods { background: linear-gradient(90deg, #ca0, #ca0 50%, #fff0 50%); background-size: 16.5px; background-position: 25px 0; font-size: 40px; font-family: arial; text-indent: 50px; padding-top: 20px; }
 .hill2 { backface-visibility: hidden }
 .track * { pointer-events: none }
