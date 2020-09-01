@@ -35,6 +35,8 @@ init = e => {
   scale = 1;
   dir = 1;
   viewport.classList.remove("rumble");
+  k[67]=0;
+  k[88]=0;
   
   easteregg6 = 0;
           
