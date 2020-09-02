@@ -89,6 +89,7 @@ body { font-family: calibri, arial; overflow: hidden; margin: 0; }
 #buttons { margin: 370px 0; }
 button { font-size: 25px; background: #c8c8c8; min-width: 50px; min-height: 50px; }
 button img { vertical-align: bottom }
+#hud button * { pointer-events: none }
 button span { font-family: emoji, calibri; }
 .reverse { transform: scaleX(-1); display: inline-block; }
 #b_2d { margin-left: 50px }
