@@ -38,6 +38,7 @@ init = e => {
   k[67]=0;
   k[88]=0;
   oktolose = 1;
+  mobile = navigator.userAgent.includes("Android") || navigator.userAgent.includes("iOS");
   
   easteregg6 = 0;
           
