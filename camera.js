@@ -53,14 +53,16 @@ camera = () => {
       h3right.style.opacity = 
       1;
     }, 900);
+    river.style.opacity = 1;
+    if(window.river2) river2.style.opacity = 1;
   }
   else if(camheight == "middown"){
     C.camera({rx: 135});
     
     if(boat) boat.style.opacity = 0;
     
-    //h3left.style.opacity =
-    //h3right.style.opacity = 0;
+    river.style.opacity = 0;
+    if(window.river2) river2.style.opacity = 0;
     
     if(cam == "3d"){
       if(campos == "left" || campos == "leftfront" || campos == "leftback"){

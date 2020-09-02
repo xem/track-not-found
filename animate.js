@@ -52,7 +52,8 @@ animate = () => {
         setTimeout(()=>{
           scene.style.transition = "none";
           viewport.style.perspective = default_perspective;
-          if(state < 10) state++;
+          state++;
+          if(state == 7) state = 0;
           init();
         }, 1500);
       }
@@ -71,7 +72,7 @@ animate = () => {
         }
         
         // Level 6: break the middle chunk when passing 25% of chunk 1
-        if(state == 6 && chunk == 2 && posonchunk > .2 && !easteregg6){
+        if(state == 6 && chunk == 1 && posonchunk > .5 && !easteregg6){
           group0.style.transition = "3s";
           viewport.classList.add("rumble");
           if(navigator.vibrate) navigator.vibrate(500);
