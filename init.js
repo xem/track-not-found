@@ -193,7 +193,7 @@ init = e => {
   if(state >= 1){
     X = -350;
     vX = 0;
-    C.camera({x:-400,y:0,z:-350,rx:30,rz:0});
+    C.camera({x:-400,y:0,z:-300,rx:30,rz:0});
     draw_hills();
     draw_train(X,0,0);
     
