@@ -52,7 +52,7 @@
 .circle{border-radius:50%}
 
 /* the rest */
-* { user-select: none }
+* { user-select: none; touch-action: manipulation; }
 #viewport { background: #6b6; font-family: emoji, calibri, sans-serif; }
 #all { transform-origin: 0 0;}
 #viewport.blue { background: linear-gradient(#abf,#def); }
@@ -66,7 +66,6 @@ body { font-family: calibri, arial; overflow: hidden; margin: 0; }
 .train { font-size: 50px; line-height:50px; }
 #train * { pointer-events: none }
 .boat { font-size: 80px; line-height:80px; }
-/*#boat2 { animation: wobble 2s infinite; }*/
 .ground { border-radius: 50% }
 .tree { font-size: 60px; line-height: 60px }
 .shadow { color: rgba(0,0,0,.002); text-shadow: 0px 0px rgba(0,0,0,.35); line-height: 70px; }
@@ -85,7 +84,6 @@ body { font-family: calibri, arial; overflow: hidden; margin: 0; }
 .hill { background: linear-gradient(#fff0, #6b6 10%, #6b6 90%, #fff0); }
 .hill2 { transition: opacity .2s; background: linear-gradient(#fff0, #494 10%, #494 90%, #fff0); }
 .hill3 { transition: opacity .2s; background: #494; }
-/*.river { background: linear-gradient(#fff0, #7788ddfa 10%, #4455fffa 90%, #fff0); backface-visibility: hidden; }*/
 .river { background: linear-gradient(#fff0, #78d 10%, #45f 90%, #fff0); backface-visibility: hidden; }
 #buttons { margin: 370px 0; }
 button { font-size: 25px; background: #c8c8c8; min-width: 50px; min-height: 50px; }

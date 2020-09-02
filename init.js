@@ -223,6 +223,7 @@ init = e => {
   }
   
   levels();
+  onresize();
   
   setTimeout(()=>{
     if(state > 0){
