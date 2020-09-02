@@ -41,16 +41,21 @@ levels = () => {
     draw_boat(200,60,-235);
     
     // Define each track piece (x, y, z, pillar, scale)
-    track = [
-      [-300,0,0,1],   // block 0
-      [-200,0,0,1],   // block 1
-      [-100,100,0,1], // block 2
-      [0,0,0,1],      // block 3
-      [100,0,0,1],    // block 4
-      [202,-200,0,1], // block 5
-      [300,0,0,1],    // block 6
-      [400,0,0,0],    // block 7 (end)
-    ];
+    if(location.host == "js13kgames.com" || location.host == "xem.github.io" || location.host == "localhost"){
+      track = [
+        [-300,0,0,1],   // block 0
+        [-200,0,0,1],   // block 1
+        [-100,100,0,1], // block 2
+        [0,0,0,1],      // block 3
+        [100,0,0,1],    // block 4
+        [202,-200,0,1], // block 5
+        [300,0,0,1],    // block 6
+        [400,0,0,0],    // block 7 (end)
+      ];
+    }
+    else {
+      track = [];
+    }
     
     // links between track pieces in each view (2D, 3D)
     links = {
@@ -433,6 +438,43 @@ levels = () => {
         [null, null],   // block 3
         [null, 5],   // block 4
         [4, null],      // block 5
+      ],
+    }
+    
+  }
+  
+    // Level 7
+  else if(state == 7){
+    
+    draw_boat(100,-100,-235);
+    
+    // Define each track piece (x, y, z, pillar, scale)
+    track = [
+      [-300,0,0,1],         // block 0
+      [-200,-300,0,1],         // block 1
+      [-100,-300,0,1],         // block 2
+      [0,-300,0,1],            // block 3
+      [100,-300,0,1],          // block 4
+      [200,-300,0,1],          // block 5
+      //[300,-300,0,1],          // block 6
+      [400,-0,0,0],          // block 7 (end)
+    ];
+    
+    // links between track pieces in each view (2D, 3D)
+    links = {
+      "3d": {
+
+      },
+      
+      "default": [
+        [null, null],   // block 0
+        [null, null],   // block 1
+        [null, null],   // block 2
+        [null, null],   // block 3
+        [null, null],   // block 4
+        [null, null],   // block 5
+        [null, null],   // block 6
+        [null, null],   // block 7
       ],
     }
     

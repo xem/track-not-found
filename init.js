@@ -37,6 +37,7 @@ init = e => {
   viewport.classList.remove("rumble");
   k[67]=0;
   k[88]=0;
+  oktolose = 1;
   
   easteregg6 = 0;
           
@@ -50,7 +51,7 @@ init = e => {
     ([
       ,
       "Move the train with X and C", // 1
-      "Change perspective with E and R", // 2
+      location.host == "js13kgames.com" || location.host == "xem.github.io" || location.host == "localhost" ? "Change perspective with E and R" : "Stolen content! Go play this game on js13kgames.com", // 2
       "Optical illusions can help completing the track", // 5
       "Move the camera up & down with the arrow keys", // 4
       "Success is not always a straight line", // 5
@@ -66,24 +67,24 @@ init = e => {
       h3.remove();
     }
     
-    buttons.innerHTML += "<button title=X id=b_back class=on>&larr; <span class=reverse>🚂</span></button> <button title=C id=b_front class=on><span class=reverse>🚂</span> &rarr;</button>";
+    buttons.innerHTML += "<button title=X id=b_back class=on>&larr; <span class=reverse><img src=1f682.svg width=25 height=25></span></button> <button title=C id=b_front class=on><span class=reverse><img src=1f682.svg width=25 height=25></span> &rarr;</button>";
   }
   
   if(state >= 2){
     
-    buttons.innerHTML += "<button title=E id=b_2d><span>👁️</span> 2D</button> <button title=R id=b_3d class=on><span>👁️</span> 3D</button>";
+    buttons.innerHTML += "<button title=E id=b_2d><span><img src=1f441.svg width=30 height=25></span> 2D</button> <button title=R id=b_3d class=on><span><img src=1f441.svg width=30 height=25></span> 3D</button>";
     
   }
   
   if(state >= 4 && state < 6){
     
-    buttons.innerHTML += "<div title=up class=campos1><button id=b_up class=on>&uarr;</button><br> <span>📷</span><br><button title=down id=b_down class=on>&darr;</button></div>";
+    buttons.innerHTML += "<div title=up class=campos1><button id=b_up class=on>&uarr;</button><br> <span><img src=1f4f7.svg width=30 height=30 style='position:relative;top:5px'></span><br><button title=down id=b_down class=on>&darr;</button></div>";
     
   }
   
   if(state >= 6){
     
-    buttons.innerHTML += "<div class=campos2><button id=b_up class=on>&uarr;</button><br><button id=b_left class=on>&larr;</button> <span>📷</span> <button id=b_right class=on>&rarr;</button><br><button id=b_down class=on>&darr;</button></div>";
+    buttons.innerHTML += "<div class=campos2><button id=b_up class=on>&uarr;</button><br><button id=b_left class=on>&larr;</button> <span><img src=1f4f7.svg width=30 height=30 style='position:relative;top:5px'></span> <button id=b_right class=on>&rarr;</button><br><button id=b_down class=on>&darr;</button></div>";
     
   }
   
@@ -167,8 +168,8 @@ init = e => {
       C.plane({w:10,h:20,z:5,x:i,b:"#ca0",css:"wood"})
     }
     
-    C.sprite({w:60,h:60,x:0,y:-50,z:0,html:"🌳",css:"tree tree1",o:"bottom"});
-    C.plane({w:60,h:60,x:0,y:-50,z:0,html:"🌳",css:"tree shadow tree1 shadow1",o:"bottom",rz:-25});
+    C.sprite({w:60,h:60,x:0,y:-100,z:0,html:"🌳",css:"tree tree1",o:"bottom"});
+    C.plane({w:60,h:60,x:0,y:-100,z:0,html:"🌳",css:"tree shadow tree1 shadow1",o:"bottom",rz:-25});
     
     C.sprite({w:60,h:60,x:0,y:-100,z:0,html:"🌴",css:"tree tree2",o:"bottom"});
     C.plane({w:60,h:60,x:0,y:-100,z:0,html:"🌴",css:"tree shadow tree2 shadow2",o:"bottom",rz:-25});
@@ -182,8 +183,8 @@ init = e => {
     C.sprite({w:60,h:60,x:0,y:150,z:0,html:"🌲",css:"tree tree5",o:"bottom"});
     C.plane({w:60,h:60,x:0,y:150,z:0,html:"🌲",css:"tree shadow tree5 shadow5",o:"bottom",rz:-25});
     
-    C.sprite({w:60,h:60,x:0,y:-40,z:0,html:"🌳",css:"tree tree6",o:"bottom"});
-    C.plane({w:60,h:60,x:0,y:-40,z:0,html:"🌳",css:"tree shadow tree6 shadow6",o:"bottom",rz:-25});
+    C.sprite({w:60,h:60,x:0,y:-140,z:0,html:"🌳",css:"tree tree6",o:"bottom"});
+    C.plane({w:60,h:60,x:0,y:-140,z:0,html:"🌳",css:"tree shadow tree6 shadow6",o:"bottom",rz:-25});
     
     C.sprite({w:60,h:60,x:0,y:80,z:0,html:"🌲",css:"tree tree7",o:"bottom"});
     C.plane({w:60,h:60,x:0,y:80,z:0,html:"🌲",css:"tree shadow tree7 shadow7",o:"bottom",rz:-25});
@@ -223,6 +224,8 @@ init = e => {
   levels();
   
   setTimeout(()=>{
-    boat.style.transition = "1s";
+    if(state > 0){
+      boat.style.transition = "1s";
+    }
   },1000);
 }

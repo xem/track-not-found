@@ -71,15 +71,18 @@ animate = () => {
         }
         
         // Level 6: break the middle chunk when passing 25% of chunk 1
-        if(state == 6 && chunk == 2 && posonchunk > .5 && !easteregg6){
+        if(state == 6 && chunk == 2 && posonchunk > .2 && !easteregg6){
           group0.style.transition = "3s";
-          //group0.style.transformOrigin='0 -600px -600px';
           viewport.classList.add("rumble");
+          if(navigator.vibrate) navigator.vibrate(500);
           C.move({n:"group0",rx:90,y:-600,z:-600});
           easteregg6 = 1;
+          oktolose = 0;
           setTimeout(()=>{
             group0.remove();
-          },3500);
+            if(navigator.vibrate) navigator.vibrate(0);
+            oktolose = 1;
+          },3000);
           
         }
         
@@ -135,7 +138,7 @@ animate = () => {
             scene.style.transition = "none";
             
             init();
-          }, 1000);
+          }, oktolose ? 1000 : 3000);
         }
       }
     }
@@ -148,7 +151,7 @@ animate = () => {
         b_2d.className = "on";
         b_3d.className = "";
         cam = "2d";
-        if(state < 6 && (camheight == "midup" || camheight == "middown")){ camheight = "middle" }
+        if(/*state < 6 &&*/ (camheight == "midup" || camheight == "middown")){ camheight = "middle" }
         
         // Move train to real position/scale immediately
         traintoreal();
@@ -168,7 +171,9 @@ animate = () => {
         b_3d.className = "on";
         b_2d.className = "";
         cam = "3d";
-        if(state < 4){ camheight = "midup" }
+        //if(state < 4){ 
+          camheight = "midup"
+        //}
         
         // Move train to real position/scale immediately
         traintoreal();

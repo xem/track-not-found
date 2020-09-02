@@ -44,25 +44,73 @@ camera = () => {
     C.camera({rx: 45});
   }
   else if(camheight == "middle"){
-    C.camera({rx: cam == "3d" ? 85 : 90 });
+    C.camera({rx: cam == "3d" || campos == "left" || campos == "right" ? 85 : 90 });
     if(boat)boat.style.opacity = 1;
-    setTimeout(()=>{
-      //console.log(1);
+    setTimeout(() => {
+      h2left.style.opacity =
       h3left.style.opacity =
-      h3left2.style.opacity =
-      h3right.style.opacity =
-      h3right2.style.opacity = 1;
-    },900);
+      h2right.style.opacity =
+      h3right.style.opacity = 
+      1;
+    }, 900);
   }
   else if(camheight == "middown"){
     C.camera({rx: 135});
-    if(boat)boat.style.opacity = 0;
-    h3left.style.opacity =
-    h3left2.style.opacity =
-    h3right.style.opacity =
-    h3right2.style.opacity = 0;
+    
+    if(boat) boat.style.opacity = 0;
+    
+    //h3left.style.opacity =
+    //h3right.style.opacity = 0;
+    
+    if(cam == "3d"){
+      if(campos == "left" || campos == "leftfront" || campos == "leftback"){
+        h2left.style.opacity = 0;
+        h3left.style.opacity = 0;
+      }
+      else {
+        setTimeout(()=>{
+          h2left.style.opacity = 1;
+          h3left.style.opacity = 1;
+        },900);
+      }
+    
+      if(campos == "right" || campos == "rightfront" || campos == "rightback"){
+        h2right.style.opacity = 0;
+        h3right.style.opacity = 0;
+      }
+      else {
+        setTimeout(()=>{
+          h2right.style.opacity = 1;
+          h3right.style.opacity = 1;
+        },900);      
+      }
+    }
+    
+    if(cam == "2d"){
+      h2left.style.opacity =
+      h3left.style.opacity =
+      h2right.style.opacity =
+      h3right.style.opacity = 
+      0;
+    }
+    
   }
   else if(camheight == "down"){
     C.camera({rx: cam == "3d" ? 175 : 180});
+    
+    if(cam == "3d"){
+      h2left.style.opacity =
+      h3left.style.opacity =
+      h2right.style.opacity =
+      h3right.style.opacity = 
+      1;
+    }
+    else {
+      h2left.style.opacity =
+      h3left.style.opacity =
+      h2right.style.opacity =
+      h3right.style.opacity = 
+      0;
+    }
   }
 }
