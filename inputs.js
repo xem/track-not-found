@@ -5,8 +5,6 @@ onclick = ontouchstart = e => {
   
     // Title
     case 0:
-      document.body.scrollTop = 99;
-      document.documentElement.scrollTop = 99;
       black.style.opacity = 1;
       setTimeout(()=>{
         state = 1;
@@ -39,6 +37,4 @@ onresize = () => {
   else {
     all.style.transform = "scale(" + (window.innerWidth / 853) + ")"
   }
-  document.body.scrollTop = 99;
-  document.documentElement.scrollTop = 99;
 }
