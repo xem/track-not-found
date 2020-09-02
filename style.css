@@ -88,7 +88,8 @@ body { font-family: calibri, arial; overflow: hidden; margin: 0; }
 /*.river { background: linear-gradient(#fff0, #7788ddfa 10%, #4455fffa 90%, #fff0); backface-visibility: hidden; }*/
 .river { background: linear-gradient(#fff0, #78d 10%, #45f 90%, #fff0); backface-visibility: hidden; }
 #buttons { margin: 370px 0; }
-button { font-size: 25px; background: #c8c8c8; min-width: 50px; min-height: 40px; }
+button { font-size: 25px; background: #c8c8c8; min-width: 50px; min-height: 50px; }
+button img { vertical-align: bottom }
 button span { font-family: emoji, calibri; }
 .reverse { transform: scaleX(-1); display: inline-block; }
 #b_2d { margin-left: 50px }
@@ -96,6 +97,7 @@ button.on { background: #fff }
 #black { width: 853px; height: 480px; background: #000; position: absolute; top: 0; opacity: 1; transition: opacity .5s; pointer-events: none; }
 .campos1 { position: absolute; top: 325px; left: 790px; text-align: center }
 .campos2 { position: absolute; top: 325px; left: 690px; text-align: center }
+.campos1 button, .campos2 button { min-height: 40px; }
 .woods { background: linear-gradient(90deg, #ca0, #ca0 50%, #fff0 50%); background-size: 16.5px; background-position: 25px 0; font-size: 40px; font-family: arial; text-indent: 50px; padding-top: 20px; }
 .track * { pointer-events: none }
 .river2 { background: linear-gradient(#fff1, #fff0 10%, #fff0 50%, #fff2); background-size: 100% 200px; animation: waves 15s linear infinite; backface-visibility: hidden; }

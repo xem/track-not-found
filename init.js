@@ -72,7 +72,7 @@ init = e => {
   
   if(state >= 2){
     
-    buttons.innerHTML += "<button title=E id=b_2d><span><img src=1f441.svg width=30 height=25></span> 2D</button> <button title=R id=b_3d class=on><span><img src=1f441.svg width=30 height=25></span> 3D</button>";
+    buttons.innerHTML += "<button title=E id=b_2d><span><img src=1f441.svg width=30 height=30></span> 2D</button> <button title=R id=b_3d class=on><span><img src=1f441.svg width=30 height=30></span> 3D</button>";
     
   }
   

@@ -16,7 +16,7 @@ draw_train = (x,y,z) => {
 // boat
 draw_boat = (x, y, z) => {
   var i;
-  C.sprite({n:"boat",w:50,h:50,x:x,y:y-5,html:["⛵","⛴","🚢","🐳"][i = Math.random()*4|0],z:[-235,-245,-240,-227][i],css:"boat",rx:-90,ry:180,o:"bottom"}); // emoji
+  C.sprite({n:"boat",w:50,h:50,x:x,y:y-5,html:["⛵","⛴","🚢","🐳"][i = Math.random()*3.1|0],z:[-235,-245,-240,-227][i],css:"boat",rx:-90,ry:180,o:"bottom"}); // emoji
 }
 
 // Track (100px)
@@ -83,7 +83,7 @@ draw_hills = () => {
       Y=-120-Math.random()*300;
     }
     
-    C.sprite({w:60,h:60,x:X,y:Y,z:0,html:tree=["<img src=1f333.svg>","🌴","🌲"][Math.random()*3|0],css:"tree fixed",o:"bottom"});
+    C.sprite({w:60,h:60,x:X,y:Y,z:0,html:tree=["🌳","🌴","🌲"][Math.random()*3|0],css:"tree fixed",o:"bottom"});
     C.plane({w:60,h:60,x:X,y:Y,z:0,html:tree,css:"tree fixed shadow",o:"bottom",rz:100});
     X2 = X;
     Y2 = Y;
