@@ -4,21 +4,7 @@
   src: url(twemoji.ttf);
 }
 
-/* CSS3D framework */
-#viewport{width:850px;height:480px;overflow:hidden;border:1px solid;position:relative;perspective:600px}
-#viewport *{transform-style:preserve-3d;box-sizing:border-box}
-#camera{width:0;height:0;position:absolute;top:50%;left:50%}
-.triangle{clip-path:polygon(50% 0,100% 100%,0 100%);border:none}
-.triangle-bottom{clip-path:polygon(0 0,100% 0,50% 100%)}
-.triangle-left{clip-path:polygon(0 50%,100% 0,100% 100%)}
-.triangle-right{clip-path:polygon(0 0,100% 50%,0 100%)}
-.triangle-top-left{clip-path:polygon(0 0,100% 0,0 100%)}
-.triangle-top-right{clip-path:polygon(0 0,100% 0,100% 100%)}
-.triangle-bottom-left{clip-path:polygon(0 0,100% 100%,0 100%)}
-.triangle-bottom-right{clip-path:polygon(100% 0,100% 100%,0 100%)}
-.circle{border-radius:50%}
-
-/* Game */
+/* animations */
 @keyframes wood {
   0% {left: 0;}
   100% {left: -20px;}
@@ -49,6 +35,24 @@
   90% { margin-top: -5px; }
   100% { margin-top: 5px; }
 }
+
+
+/* CSS3D framework */
+#viewport{width:850px;height:480px;overflow:hidden;border:1px solid;position:relative;perspective:600px}
+#viewport *{transform-style:preserve-3d;box-sizing:border-box}
+#camera{width:0;height:0;position:absolute;top:50%;left:50%}
+.triangle{clip-path:polygon(50% 0,100% 100%,0 100%);border:none}
+.triangle-bottom{clip-path:polygon(0 0,100% 0,50% 100%)}
+.triangle-left{clip-path:polygon(0 50%,100% 0,100% 100%)}
+.triangle-right{clip-path:polygon(0 0,100% 50%,0 100%)}
+.triangle-top-left{clip-path:polygon(0 0,100% 0,0 100%)}
+.triangle-top-right{clip-path:polygon(0 0,100% 0,100% 100%)}
+.triangle-bottom-left{clip-path:polygon(0 0,100% 100%,0 100%)}
+.triangle-bottom-right{clip-path:polygon(100% 0,100% 100%,0 100%)}
+.circle{border-radius:50%}
+
+/* the rest */
+* { user-select: none }
 #viewport { background: #6b6; font-family: emoji, calibri; }
 #all { transform-origin: 0 0;}
 #viewport.blue { background: linear-gradient(#abf,#def); }

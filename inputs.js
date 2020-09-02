@@ -5,9 +5,6 @@ onclick = ontouchstart = e => {
   
     // Title
     case 0:
-      if (!document.fullscreenElement) {
-        document.documentElement.requestFullscreen();
-      }
       black.style.opacity = 1;
       setTimeout(()=>{
         state = 1;
