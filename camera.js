@@ -39,13 +39,15 @@ camera = () => {
 
   if(camheight == "up"){
     C.camera({rx: cam == "3d" ? 5 : 0.1});
+    if(window.boat)boat.style.opacity = 0;
   }
   else if(camheight == "midup"){
     C.camera({rx: 45});
+    if(window.boat)boat.style.opacity = 1;
   }
   else if(camheight == "middle"){
     C.camera({rx: cam == "3d" || campos == "left" || campos == "right" ? 85 : 90 });
-    if(boat)boat.style.opacity = 1;
+    if(window.boat)boat.style.opacity = 1;
     setTimeout(() => {
       h2left.style.opacity =
       h3left.style.opacity =
@@ -59,7 +61,7 @@ camera = () => {
   else if(camheight == "middown"){
     C.camera({rx: 135});
     
-    if(boat) boat.style.opacity = 0;
+    if(window.boat) boat.style.opacity = 0;
     
     river.style.opacity = 0;
     if(window.river2) river2.style.opacity = 0;

@@ -15,8 +15,9 @@ draw_train = (x,y,z) => {
 
 // boat
 draw_boat = (x, y, z) => {
-  var i;
-  C.sprite({n:"boat",w:50,h:50,x:x,y:y-5,html:["⛵","⛴","🚢","🐳"][i = Math.random()*3.1|0],z:[-235,-245,-240,-227][i],css:"boat",rx:-90,ry:180,o:"bottom"}); // emoji
+  var i = Math.random()*3.1|0;
+  C.sprite({n:"boat",w:50,h:50,x:x,y:y-5,html:["⛵","⛴","🚢","🐳"][i],z:[-235,-245,-240,-227][i],css:"boat",rx:-90,ry:180,o:"bottom"}); // emoji
+  //boat.style.transformOrigin = "center 65px";
 }
 
 // Track (100px)
@@ -61,9 +62,9 @@ draw_hills = () => {
   var tree, X, Y, Z;
   
   C.sprite({w:500,h:500,x:-1000,y:-2000,z:1000,css:"sun"});
-  C.plane({w:670,h:1200,x:0,z:-247,css:"river"});
+  C.plane({n:"river",w:670,h:1200,x:0,z:-247,css:"river"});
   if(!mobile){
-    C.plane({w:670,h:1200,x:0,z:-246,css:"river2"});
+    C.plane({n:"river2",w:670,h:1200,x:0,z:-246,css:"river2"});
   }
   C.plane({w:600,h:1200,x:-700,z:-.7,css:"hill"});
   C.plane({w:600,h:1200,x:700,z:-.7,css:"hill"});

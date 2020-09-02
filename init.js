@@ -79,13 +79,13 @@ init = e => {
   
   if(state >= 4 && state < 6){
     
-    buttons.innerHTML += "<div title=up class=campos1><button id=b_up class=on>&uarr;</button><br> <span><img src=1f4f7.svg width=30 height=30 style='position:relative;top:5px'></span><br><button title=down id=b_down class=on>&darr;</button></div>";
+    buttons.innerHTML += "<div title=up class=campos1><button id=b_up class=on>&uarr;</button><br> <span><img src=1f4f7.svg width=30 height=30 style='position:relative;left:5px'></span><br><button title=down id=b_down class=on>&darr;</button></div>";
     
   }
   
   if(state >= 6){
     
-    buttons.innerHTML += "<div class=campos2><button id=b_up class=on>&uarr;</button><br><button id=b_left class=on>&larr;</button> <span><img src=1f4f7.svg width=30 height=30 style='position:relative;top:5px'></span> <button id=b_right class=on>&rarr;</button><br><button id=b_down class=on>&darr;</button></div>";
+    buttons.innerHTML += "<div class=campos2><button id=b_up class=on>&uarr;</button><br><button id=b_left class=on>&larr;</button> <span><img src=1f4f7.svg width=30 height=30 style='position:relative;left:5px'></span> <button id=b_right class=on>&rarr;</button><br><button id=b_down class=on>&darr;</button></div>";
     
   }
   
@@ -227,7 +227,7 @@ init = e => {
   
   setTimeout(()=>{
     if(state > 0){
-      boat.style.transition = "1s";
+      boat.style.transition = ".5s";
     }
   },1000);
 }

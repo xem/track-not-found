@@ -275,7 +275,7 @@ animate = () => {
       }
     }
     
-    console.log(chunk, ~~(posonchunk*100));
+    //console.log(chunk, ~~(posonchunk*100));
   }, 16);
 }
 
