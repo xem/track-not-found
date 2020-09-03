@@ -1,5 +1,5 @@
 // Handle clicks in each state
-onclick = ontouchstart = e => {
+all.onmousedown = all.ontouchstart = e => {
   
   switch(state){
   

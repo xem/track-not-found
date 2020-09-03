@@ -27,7 +27,7 @@ draw_track = (x,y,z,pillar,scale=1, debug="") => {
   C.cube({g:"group"+(group_count),w:110,h:6,d:8,x:50,y:-11,b:"#888",b2:"#666",b3:"#aaa",css:"iron"},1,0,0,0,1,1);
   C.plane({g:"group"+(group_count),w:107,h:20,x:50,z:-.5,css:"woods",html:dodebug?debug:""});
   if(pillar){
-    C.cube({g:"group"+(group_count),w:5,h:(z - -244)/scale,d:5,x:50,z:-.2-(z - -244)/scale,b:"#333",b2:"#555",b3:"#333"},0,0,1,1,1,0);
+    C.cube({g:"group"+(group_count),w:5,h:(z - -244)/scale+300,d:5,x:50,z:-.2-(z - -244)/scale-300,b:"#333",b2:"#555",b3:"#333"},0,0,1,1,1,0);
   }
   group_count++;
 }
