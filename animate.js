@@ -151,6 +151,7 @@ animate = () => {
       if(k[69] && cam != "2d" && go && !win && !lose){
         b_2d.className = "on";
         b_3d.className = "";
+        vX = 0;
         cam = "2d";
         if(/*state < 6 &&*/ (camheight == "midup" || camheight == "middown")){ camheight = "middle" }
         
@@ -171,6 +172,7 @@ animate = () => {
       if(k[82] && cam != "3d" && go && !win && !lose){
         b_3d.className = "on";
         b_2d.className = "";
+        vX = 0;
         cam = "3d";
         //if(state < 4){ 
           camheight = "midup"
@@ -192,6 +194,7 @@ animate = () => {
     // Camera positions
     if(state >= 4){
       if(go && u && !win && !lose && camheight != "up"){
+        vX = 0;
         if(camheight == "midup"){ camheight = "up"; }
         else if(camheight == "middle"){ camheight = "midup"; }
         else if(camheight == "middown"){ camheight = "middle"; }
@@ -210,6 +213,7 @@ animate = () => {
       }
       
       if(go && d && !win && !lose && camheight != "down"){
+        vX = 0;
         if(camheight == "up"){ camheight = "midup"; }
         else if(camheight == "midup"){ camheight = "middle"; }
         else if(camheight == "middle"){ camheight = "middown"; }
@@ -231,6 +235,7 @@ animate = () => {
     if(state >= 6){
       
       if(go && l && !win && !lose){
+        vX = 0;
         if(campos == "right"){ campos = "rightfront"; }
         else if(campos == "rightfront"){ campos = "front"; }
         else if(campos == "front"){ campos = "leftfront"; }
@@ -253,6 +258,7 @@ animate = () => {
       }
       
       if(go && r && !win && !lose){
+        vX = 0;
         if(campos == "right"){ campos = "rightback"; }
         else if(campos == "rightback"){ campos = "back"; }
         else if(campos == "back"){ campos = "leftback"; }
@@ -275,7 +281,7 @@ animate = () => {
       }
     }
     
-    //console.log(chunk, ~~(posonchunk*100));
+    console.log(chunk, ~~(posonchunk*100));
   }, 16);
 }
 

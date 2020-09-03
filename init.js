@@ -39,6 +39,9 @@ init = e => {
   k[88]=0;
   oktolose = 1;
   mobile = navigator.userAgent.includes("Android") || navigator.userAgent.includes("iOS");
+  if(mobile){
+    all.className = "mobile";
+  }
   
   easteregg6 = 0;
           
@@ -85,16 +88,17 @@ init = e => {
   
   if(state >= 6){
     
-    buttons.innerHTML += "<div class=campos2><button id=b_up class=on>&uarr;</button><br><button id=b_left class=on>&larr;</button> <span><img src=1f4f7.svg width=30 height=30 style='position:relative;left:5px'></span> <button id=b_right class=on>&rarr;</button><br><button id=b_down class=on>&darr;</button></div>";
+    buttons.innerHTML += "<div class=campos2><button id=b_up class=on>&uarr;</button><br><button id=b_left class=on>&larr;</button> <span><img src=1f4f7.svg width=30 height=30 style='position:relative;left:5px;top:5px'></span> <button id=b_right class=on>&rarr;</button><br><button id=b_down class=on>&darr;</button></div>";
     
   }
   
   // GUI events
   if(state >= 1){
     b_back.onmousedown = b_back.ontouchstart = e => {
-      if(go && !k[88]){
+      console.log(go,k[88]);
+      //if(go && !k[88]){
         k[88] = 1;
-      }
+      //}
     }
   
     b_back.onmouseup = b_back.ontouchend = e => {
@@ -102,9 +106,9 @@ init = e => {
     }
   
     b_front.onmousedown = b_front.ontouchstart = e => {
-      if(go && !k[67]){
+      //if(go && !k[67]){
         k[67] = 1;
-      }
+      //}
     }
   
     b_front.onmouseup = b_front.ontouchend = e => {

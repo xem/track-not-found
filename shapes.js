@@ -65,9 +65,9 @@ draw_hills = () => {
   if(!mobile){
     C.sprite({w:500,h:500,x:-1000,y:-2000,z:1000,css:"sun"});
   }
-  C.plane({n:"river",w:670,h:1200,x:0,z:-247,css:"river"});
+  C.plane({n:"river",w:668,h:1200,x:0,z:-247,css:"river"});
   if(!mobile){
-    C.plane({n:"river2",w:670,h:1200,x:0,z:-246,css:"river2"});
+    C.plane({n:"river2",w:668,h:1200,x:0,z:-246,css:"river2"});
   }
   C.plane({w:600,h:1200,x:-700,z:-.7,css:"hill"});
   C.plane({w:600,h:1200,x:700,z:-.7,css:"hill"});
