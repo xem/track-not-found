@@ -24,8 +24,8 @@ draw_boat = (x, y, z) => {
 // Track (100px)
 draw_track = (x,y,z,pillar,scale=1, debug="") => {
   C.group({n:"group"+(group_count),w:100,h:22,sx:scale,sy:scale,sz:scale,x,y,z,css:"track"});
-  C.cube({g:"group"+(group_count),w:110,h:6,d:8,x:50,y:11,b:"#888",b2:"#666",b3:"#aaa",css:"iron"},1,0,0,0,1,mobile?0:1);
-  C.cube({g:"group"+(group_count),w:110,h:6,d:8,x:50,y:-11,b:"#888",b2:"#666",b3:"#aaa",css:"iron"},1,0,0,0,mobile?0:1,1);
+  C.cube({g:"group"+(group_count),w:110,h:6,d:8,x:50,y:11,b:"#888",css:"iron"},1,0,0,0,1,mobile?0:1);
+  C.cube({g:"group"+(group_count),w:110,h:6,d:8,x:50,y:-11,b:"#888",css:"iron"},1,0,0,0,mobile?0:1,1);
   C.plane({g:"group"+(group_count),w:107,h:16,x:50,z:6,css:"woods",html:dodebug?debug:""});
   if(pillar){
     C.cube({g:"group"+(group_count),w:5,h:(z - -244)/scale+((mobile || state < 4)?0:300),d:5,x:50,z:-.2-(z - -244)/scale-((mobile || state < 4)?0:300),b:"#333",b2:"#555",b3:"#333"},0,0,1,1,1,0);
@@ -36,8 +36,8 @@ draw_track = (x,y,z,pillar,scale=1, debug="") => {
 // Track lite (500px)
 draw_track_lite = (x,y,z,pillar,scale=1, debug="") => {
   C.group({n:"group"+(group_count),w:500,h:22,sx:scale,sy:scale,sz:scale,x,y,z,css:"track"});
-  C.cube({g:"group"+(group_count),w:500,h:6,d:8,x:50,y:11,b:"#888",b2:"#666",b3:"#aaa",css:"iron"},1,0,0,0,1,mobile?0:1);
-  C.cube({g:"group"+(group_count),w:500,h:6,d:8,x:50,y:-11,b:"#888",b2:"#666",b3:"#aaa",css:"iron"},1,0,0,0,mobile?0:1,1);
+  C.cube({g:"group"+(group_count),w:500,h:6,d:8,x:50,y:11,b:"#888",css:"iron"},1,0,0,0,1,mobile?0:1);
+  C.cube({g:"group"+(group_count),w:500,h:6,d:8,x:50,y:-11,b:"#888",css:"iron"},1,0,0,0,mobile?0:1,1);
   C.plane({g:"group"+(group_count),w:500,h:16,x:50,z:6,css:"woods",html:dodebug?debug:""});
   group_count++;
 }
@@ -49,7 +49,7 @@ draw_tracks = () => {
     draw_track(track[i][0], track[i][1], track[i][2], track[i][3], track[i][4], i+"");
   }
   if(track[7]){
-    draw_track_lite(track[7][0]+500, track[7][1], track[7][2]);
+    draw_track_lite(track[7][0]+500, track[7][1], track[7][2], 0, track[7][4]||1);
   }
   else {
     draw_track_lite(track[track.length-1][0]+500, track[track.length-1][1], track[track.length-1][2]);

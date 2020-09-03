@@ -38,7 +38,7 @@ camera = () => {
   }
 
   if(camheight == "up"){
-    C.camera({rx: cam == "3d" ? 5 : 0.1});
+    C.camera({rx: cam == "3d" ? 5 : 0});
     if(window.boat)boat.style.opacity = 0;
   }
   else if(camheight == "midup"){

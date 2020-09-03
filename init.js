@@ -38,6 +38,7 @@ init = e => {
   k[67]=0;
   k[88]=0;
   oktolose = 1;
+  level.style.transform = "translateY(0)rotate(0)";
   mobile = navigator.userAgent.includes("Android") || navigator.userAgent.includes("iOS");
   if(mobile){
     all.className = "mobile";
@@ -59,7 +60,8 @@ init = e => {
       "Optical illusions can help completing the track", // 5
       "Move the camera up & down with " + (mobile ? "the buttons below" : "the arrow keys"), // 4
       "Success is not always a straight line", // 5
-      "Rotate the camera to the left or the right with " + (mobile ? "the buttons below" : "the arrow keys") // 6
+      "Rotate the camera to the left or the right with " + (mobile ? "the buttons below" : "the arrow keys"), // 6
+      "OK, use what you learned so far, the next level will introd!uce something else..." // 7
     ][state] || "");
   }
   buttons.innerHTML = "";

@@ -53,7 +53,7 @@ animate = () => {
           scene.style.transition = "none";
           viewport.style.perspective = default_perspective;
           state++;
-          if(state == 7) state = 0;
+          //if(state == 7) state = 0;
           init();
         }, 1500);
       }
@@ -75,6 +75,8 @@ animate = () => {
         if(state == 6 && chunk == 1 && posonchunk > .5 && !easteregg6){
           group0.style.transition = "3s";
           viewport.classList.add("rumble");
+          level.innerHTML = "Ooops, sorry, you'll need to find another way!";
+          level.style.transform = "translateY(27px)rotate(5deg)";
           if(navigator.vibrate) navigator.vibrate(500);
           C.move({n:"group0",rx:90,y:-600,z:-600});
           easteregg6 = 1;
@@ -153,7 +155,7 @@ animate = () => {
         b_3d.className = "";
         vX = 0;
         cam = "2d";
-        if(/*state < 6 &&*/ (camheight == "midup" || camheight == "middown")){ camheight = "middle" }
+        if(state < 7 && (camheight == "midup" || camheight == "middown")){ camheight = "middle" }
         
         // Move train to real position/scale immediately
         traintoreal();
@@ -174,9 +176,9 @@ animate = () => {
         b_2d.className = "";
         vX = 0;
         cam = "3d";
-        //if(state < 4){ 
+        if(state < 7){ 
           camheight = "midup"
-        //}
+        }
         
         // Move train to real position/scale immediately
         traintoreal();

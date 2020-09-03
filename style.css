@@ -105,4 +105,4 @@ button.on { background: #fff }
 .track * { pointer-events: none }
 .sun { background: radial-gradient(#fea, rgba(255,255,255,0) 50%); transition: transform 1s; }
 .rumble { animation: rumble .7s; }
-#level { padding: 0 0 0 10px; }
+#level { padding: 0 0 0 10px; transition: transform .2s .5s; }
