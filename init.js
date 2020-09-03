@@ -51,12 +51,12 @@ init = e => {
     level.innerHTML = state + ". " + 
     ([
       ,
-      "Move the train with X and C", // 1
-      location.host == "js13kgames.com" || location.host == "xem.github.io" || location.host == "localhost" ? "Change perspective with E and R" : "Stolen content! Go play this game on js13kgames.com/entries/track-not-found", // 2
+      "Move the train with " + (mobile ? "the buttons below" : "X and C"), // 1
+      location.host == "js13kgames.com" || location.host == "xem.github.io" || location.host == "localhost" ? "Change perspective with " + (mobile ? "the buttons below" : "E and R") : "Stolen content! Go play this game on js13kgames.com/entries/track-not-found", // 2
       "Optical illusions can help completing the track", // 5
-      "Move the camera up & down with the arrow keys", // 4
+      "Move the camera up & down with " + (mobile ? "the buttons below" : "the arrow keys"), // 4
       "Success is not always a straight line", // 5
-      "Rotate the camera to the left or the right with the arrow keys" // 6
+      "Rotate the camera to the left or the right with " + (mobile ? "the buttons below" : "the arrow keys") // 6
     ][state] || "");
   }
   buttons.innerHTML = "";
@@ -244,7 +244,7 @@ init = e => {
   onresize();
   
   setTimeout(()=>{
-    if(state > 0){
+    if(state > 0  && window.boat){
       boat.style.transition = ".5s";
     }
   },1000);

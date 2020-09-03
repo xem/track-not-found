@@ -55,8 +55,10 @@ camera = () => {
       h3right.style.opacity = 
       1;
     }, 900);
-    river.style.opacity = 1;
-    if(window.river2) river2.style.opacity = 1;
+    setTimeout(()=>{
+      river.style.opacity = 1;
+      if(window.river2) river2.style.opacity = 1;
+    },500);
   }
   else if(camheight == "middown"){
     C.camera({rx: 135});

@@ -196,7 +196,7 @@ levels = () => {
     track = [
       [-300,0,0,1],     // block 0
       [-200,0,0,1],     // block 1
-      [-100,0,150,1],   // block 2
+      [-73,13,150,1,.73],   // block 2 // 4ter: [-100,0,150,1]
       [0,0,0,1],        // block 3
       [100,0,0,1],      // block 4
       [200,-200,0,1],   // block 5 // 4bis: [200,0,-150, 1]
@@ -219,6 +219,7 @@ levels = () => {
         [6, null],    // block 7 (end)
       ],
 
+      /* // 4 ter
       "2d": {
         "up": [
           [null, 1, -300,0,150,1],  // block 0
@@ -230,6 +231,37 @@ levels = () => {
           [null, 7],      // block 6
           [6, null],   // block 7
         ],
+        
+        
+        
+        "middle": [
+          [null, 1],      // block 0
+          [0, null],      // block 1
+          [null, 3],      // block 2
+          [2, 4],         // block 3
+          [3, 5],         // block 4
+          [4, 6,200,0,0], // block 5
+          [5, 7],         // block 6
+          [6, null],      // block 7
+        ]
+      },
+      */
+      
+      "3d": {
+        "up": [
+          [null, 1, -73-73*2,13,150,.73],  // block 0
+          [0, 2, -73-73,13,150,.73],     // block 1
+          [1, 3],      // block 2
+          [2, 4, -73+73,13,150,.73],        // block 3
+          [3, null, -73+73*2,13,150,.73],       // block 4
+          [null, null],    // block 5
+          [null, 7],      // block 6
+          [6, null],   // block 7
+        ],
+        
+      },
+      
+      "2d": {
         
         "middle": [
           [null, 1],      // block 0

@@ -15,19 +15,20 @@ draw_train = (x,y,z) => {
 
 // boat
 draw_boat = (x, y, z) => {
-  var i = Math.random()*3.1|0;
-  C.sprite({n:"boat",w:50,h:50,x:x,y:y-5,html:["⛵","⛴","🚢","🐳"][i],z:[-235,-245,-240,-227][i],css:"boat",rx:-90,ry:180,o:"bottom"}); // emoji
-  //boat.style.transformOrigin = "center 65px";
+  if(!mobile){
+    var i = Math.random()*3.1|0;
+    C.sprite({n:"boat",w:50,h:50,x:x,y:y-5,html:["⛵","⛴","🚢","🐳"][i],z:[-235,-245,-240,-227][i],css:"boat",rx:-90,ry:180,o:"bottom"}); // emoji
+  }
 }
 
 // Track (100px)
 draw_track = (x,y,z,pillar,scale=1, debug="") => {
   C.group({n:"group"+(group_count),w:100,h:22,sx:scale,sy:scale,sz:scale,x,y,z,css:"track"});
-  C.cube({g:"group"+(group_count),w:110,h:6,d:8,x:50,y:11,b:"#888",b2:"#666",b3:"#aaa",css:"iron"},1,0,0,0,1,1);
-  C.cube({g:"group"+(group_count),w:110,h:6,d:8,x:50,y:-11,b:"#888",b2:"#666",b3:"#aaa",css:"iron"},1,0,0,0,1,1);
-  C.plane({g:"group"+(group_count),w:107,h:20,x:50,z:-.5,css:"woods",html:dodebug?debug:""});
+  C.cube({g:"group"+(group_count),w:110,h:6,d:8,x:50,y:11,b:"#888",b2:"#666",b3:"#aaa",css:"iron"},1,0,0,0,1,mobile?0:1);
+  C.cube({g:"group"+(group_count),w:110,h:6,d:8,x:50,y:-11,b:"#888",b2:"#666",b3:"#aaa",css:"iron"},1,0,0,0,mobile?0:1,1);
+  C.plane({g:"group"+(group_count),w:107,h:16,x:50,z:6,css:"woods",html:dodebug?debug:""});
   if(pillar){
-    C.cube({g:"group"+(group_count),w:5,h:(z - -244)/scale+(mobile?0:300),d:5,x:50,z:-.2-(z - -244)/scale-(mobile?0:300),b:"#333",b2:"#555",b3:"#333"},0,0,1,1,1,0);
+    C.cube({g:"group"+(group_count),w:5,h:(z - -244)/scale+((mobile || state < 4)?0:300),d:5,x:50,z:-.2-(z - -244)/scale-((mobile || state < 4)?0:300),b:"#333",b2:"#555",b3:"#333"},0,0,1,1,1,0);
   }
   group_count++;
 }
@@ -35,9 +36,9 @@ draw_track = (x,y,z,pillar,scale=1, debug="") => {
 // Track lite (500px)
 draw_track_lite = (x,y,z,pillar,scale=1, debug="") => {
   C.group({n:"group"+(group_count),w:500,h:22,sx:scale,sy:scale,sz:scale,x,y,z,css:"track"});
-  C.cube({g:"group"+(group_count),w:500,h:6,d:8,x:50,y:11,b:"#888",b2:"#666",b3:"#aaa",css:"iron"},1,0,0,0,1,1);
-  C.cube({g:"group"+(group_count),w:500,h:6,d:8,x:50,y:-11,b:"#888",b2:"#666",b3:"#aaa",css:"iron"},1,0,0,0,1,1);
-  C.plane({g:"group"+(group_count),w:500,h:20,x:50,z:-.5,css:"woods",html:dodebug?debug:""});
+  C.cube({g:"group"+(group_count),w:500,h:6,d:8,x:50,y:11,b:"#888",b2:"#666",b3:"#aaa",css:"iron"},1,0,0,0,1,mobile?0:1);
+  C.cube({g:"group"+(group_count),w:500,h:6,d:8,x:50,y:-11,b:"#888",b2:"#666",b3:"#aaa",css:"iron"},1,0,0,0,mobile?0:1,1);
+  C.plane({g:"group"+(group_count),w:500,h:16,x:50,z:6,css:"woods",html:dodebug?debug:""});
   group_count++;
 }
 
@@ -61,7 +62,9 @@ draw_hills = () => {
   
   var tree, X, Y, Z;
   
-  C.sprite({w:500,h:500,x:-1000,y:-2000,z:1000,css:"sun"});
+  if(!mobile){
+    C.sprite({w:500,h:500,x:-1000,y:-2000,z:1000,css:"sun"});
+  }
   C.plane({n:"river",w:670,h:1200,x:0,z:-247,css:"river"});
   if(!mobile){
     C.plane({n:"river2",w:670,h:1200,x:0,z:-246,css:"river2"});
@@ -73,49 +76,51 @@ draw_hills = () => {
   C.plane({w:600,h:600,x:-620,y:0,z:-300.5,rx:-90,sk:"15deg",css:"hill3",n:"h3left"});
   C.plane({w:600,h:600,x:620,y:0,z:-300.5,rx:-90,sk:"-15deg",css:"hill3",n:"h3right"});
   
-  X = 0;
-  Y = 0;
-  X2 = 0;
-  Y2 = 0;
-  
-  var n = mobile ? 0 : Math.random()*3|0 + 1;
-  for(var i = 0; i < n; i++){
+  if(!mobile){
+    X = 0;
+    Y = 0;
+    X2 = 0;
+    Y2 = 0;
     
-    while(Math.abs(X2-X) < 80 && Math.abs(Y2-Y) < 80){
-      X=-470-Math.random()*300;
-      Y=-120-Math.random()*300;
+    var n = Math.random()*3|0 + 1;
+    for(var i = 0; i < n; i++){
+      
+      while(Math.abs(X2-X) < 80 && Math.abs(Y2-Y) < 80){
+        X=-470-Math.random()*300;
+        Y=-120-Math.random()*300;
+      }
+      
+      C.sprite({w:60,h:60,x:X,y:Y,z:0,html:tree=["🌳","🌴","🌲"][Math.random()*3|0],css:"tree fixed",o:"bottom"});
+      C.plane({w:60,h:60,x:X,y:Y,z:0,html:tree,css:"tree fixed shadow",o:"bottom",rz:100});
+      X2 = X;
+      Y2 = Y;
     }
+    
+    var n = Math.random()*3|0 + 1;
+    for(var i = 0; i < n; i++){
+      
+      while(Math.abs(X2-X) < 80 && Math.abs(Y2-Y) < 80){
+        X=470+Math.random()*300;
+        Y=-120-Math.random()*300;
+      }
+      
+      C.sprite({w:60,h:60,x:X,y:Y,z:0,html:tree=["🌳","🌴","🌲"][Math.random()*3|0],css:"tree fixed",o:"bottom"});
+      C.plane({w:60,h:60,x:X,y:Y,z:0,html:tree,css:"tree fixed shadow",o:"bottom",rz:100});
+      
+      X2 = X;
+      Y2 = Y;
+    }
+
+    X=470+Math.random()*300;
+    Y=120+Math.random()*300;
     
     C.sprite({w:60,h:60,x:X,y:Y,z:0,html:tree=["🌳","🌴","🌲"][Math.random()*3|0],css:"tree fixed",o:"bottom"});
     C.plane({w:60,h:60,x:X,y:Y,z:0,html:tree,css:"tree fixed shadow",o:"bottom",rz:100});
-    X2 = X;
-    Y2 = Y;
-  }
-  
-  var n = mobile ? 0 : Math.random()*3|0 + 1;
-  for(var i = 0; i < n; i++){
-    
-    while(Math.abs(X2-X) < 80 && Math.abs(Y2-Y) < 80){
-      X=470+Math.random()*300;
-      Y=-120-Math.random()*300;
-    }
+
+    X=-470-Math.random()*300;
+    Y=120+Math.random()*300;
     
     C.sprite({w:60,h:60,x:X,y:Y,z:0,html:tree=["🌳","🌴","🌲"][Math.random()*3|0],css:"tree fixed",o:"bottom"});
     C.plane({w:60,h:60,x:X,y:Y,z:0,html:tree,css:"tree fixed shadow",o:"bottom",rz:100});
-    
-    X2 = X;
-    Y2 = Y;
   }
-
-  X=470+Math.random()*300;
-  Y=120+Math.random()*300;
-  
-  C.sprite({w:60,h:60,x:X,y:Y,z:0,html:tree=["🌳","🌴","🌲"][Math.random()*3|0],css:"tree fixed",o:"bottom"});
-  C.plane({w:60,h:60,x:X,y:Y,z:0,html:tree,css:"tree fixed shadow",o:"bottom",rz:100});
-
-  X=-470-Math.random()*300;
-  Y=120+Math.random()*300;
-  
-  C.sprite({w:60,h:60,x:X,y:Y,z:0,html:tree=["🌳","🌴","🌲"][Math.random()*3|0],css:"tree fixed",o:"bottom"});
-  C.plane({w:60,h:60,x:X,y:Y,z:0,html:tree,css:"tree fixed shadow",o:"bottom",rz:100});
 }

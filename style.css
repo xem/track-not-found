@@ -98,7 +98,7 @@ button.on { background: #fff }
 .campos1 { position: absolute; top: 335px; left: 780px; text-align: center }
 .campos2 { position: absolute; top: 330px; left: 680px; text-align: center }
 .campos1 button, .campos2 button { min-height: 40px; }
-.woods { background: linear-gradient(90deg, #ca0, #ca0 50%, rgba(255,255,255,0) 50%); background-size: 16.5px; background-position: 25px 0; font-size: 40px; font-family: arial; text-indent: 50px; padding-top: 20px; }
+.woods { background: linear-gradient(90deg, #ca0, #ca0 50%, rgba(255,255,255,0) 50%); background-size: 16.5px; background-position: 25px 0; font-size: 40px; font-family: arial; text-indent: 50px; padding-top: 16px; }
 .track * { pointer-events: none }
 .sun { background: radial-gradient(#fea, rgba(255,255,255,0) 50%); transition: transform 1s; }
 .rumble { animation: rumble .7s; }
