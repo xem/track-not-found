@@ -92,7 +92,9 @@ init = e => {
   // GUI events
   if(state >= 1){
     b_back.onmousedown = b_back.ontouchstart = e => {
-      k[88] = 1;
+      if(go && !k[88]){
+        k[88] = 1;
+      }
     }
   
     b_back.onmouseup = b_back.ontouchend = e => {
@@ -100,7 +102,9 @@ init = e => {
     }
   
     b_front.onmousedown = b_front.ontouchstart = e => {
-      k[67] = 1;
+      if(go && !k[67]){
+        k[67] = 1;
+      }
     }
   
     b_front.onmouseup = b_front.ontouchend = e => {
@@ -110,32 +114,46 @@ init = e => {
   
   if(state >= 2){
     b_2d.onmousedown = b_2d.ontouchstart = e => {
-      k[69] = 1;
+      if(!k[69] && !k[82] && cam != "2d" && go){
+        console.log("2d");
+        k[69] = 1;
+      }
     }
   
     b_3d.onmousedown = b_3d.ontouchstart = e => {
-      k[82] = 1;
+      if(!k[69] && !k[82] && cam != "3d" && go){
+        console.log("3d");
+        k[82] = 1;
+      }
     }
   }
   
   if(state >= 4){
     b_up.onmousedown = b_up.ontouchstart = e => {
-      u = 1;
+      if(go && !u){
+        u = 1;
+      }
     }
   
     b_down.onmousedown = b_down.ontouchstart = e => {
-      d = 1;
+      if(go && !d){
+        d = 1;
+      }
     }
   }
   
   if(state >= 6){
   
     b_left.onmousedown = b_left.ontouchstart = e => {
-      l = 1;
+      if(go && !l){
+        l = 1;
+      }
     }
     
     b_right.onmousedown = b_right.ontouchstart = e => {
-      r = 1;
+      if(go && !r){
+        r = 1;
+      }
     }
     
   }
