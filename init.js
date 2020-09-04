@@ -24,7 +24,7 @@ init = e => {
   cam = "3d"; // or 2d
   campos = "front"; // or left or back or right
   camheight = "midup"; // or up or middle or middown or down
-  C.camera({rx: 45});
+  C.camera({rz:0,rx: 45});
   hud.style.transition = "1s";
   camrz = 0;
   group_count = 0;
@@ -55,13 +55,13 @@ init = e => {
     level.innerHTML = state + ". " + 
     ([
       ,
-      "Move the train with " + (mobile ? "the buttons below" : "X and C"), // 1
-      location.host == "js13kgames.com" || location.host == "xem.github.io" || location.host == "localhost" ? "Change perspective with " + (mobile ? "the buttons below" : "E and R") : "Stolen content! Go play this game on js13kgames.com/entries/track-not-found", // 2
+      "Move the train with " + (mobile ? "the buttons below" : "X and C, or use the buttons below"), // 1
+      location.host == "js13kgames.com" || location.host == "xem.github.io" || location.host == "localhost" ? "Change perspective with " + (mobile ? "the buttons below" : "E and R, or use the buttons below") : "Stolen content! Go play this game on js13kgames.com/entries/track-not-found", // 2
       "Optical illusions can help completing the track", // 5
-      "Move the camera up & down with " + (mobile ? "the buttons below" : "the arrow keys"), // 4
+      "Move the camera up & down with " + (mobile ? "the buttons below" : "the arrow keys, or use the buttons below"), // 4
       "Success is not always a straight line", // 5
-      "Rotate the camera to the left or the right with " + (mobile ? "the buttons below" : "the arrow keys"), // 6
-      "OK, use what you learned so far, the next level will introd!uce something else..." // 7
+      "Rotate the camera to the left or the right with " + (mobile ? "the buttons below" : "the other arrows"), // 6
+      "I was afraid that my game was too simple..." // 7
     ][state] || "");
   }
   buttons.innerHTML = "";

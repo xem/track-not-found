@@ -76,7 +76,7 @@ animate = () => {
           group0.style.transition = "3s";
           viewport.classList.add("rumble");
           level.innerHTML = "Ooops, sorry, you'll need to find another way!";
-          level.style.transform = "translateY(27px)rotate(5deg)";
+          level.style.transform = "translateY(27px)rotate(3deg)";
           if(navigator.vibrate) navigator.vibrate(500);
           C.move({n:"group0",rx:90,y:-600,z:-600});
           easteregg6 = 1;
@@ -86,7 +86,6 @@ animate = () => {
             if(navigator.vibrate) navigator.vibrate(0);
             oktolose = 1;
           },3000);
-          
         }
         
         

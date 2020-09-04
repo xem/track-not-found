@@ -292,9 +292,9 @@ levels = () => {
       [100,-300,0,1],       // block 4
       [133,-70,-130,1,.65], // block 5
       [117,-151,157,0,1.1], // block 6
-      [411,-34,0,0,.92],    // block 7 (end)
+      [506,-54,0,0,1.47],    // block 7 (end)
       [217,118,151,1,.9],   // block 8
-      [307,118,151,0,.9],   // block 9
+      //[307,118,151,0,.9],   // block 9 // 5 bis
     ];
     
     // links between track pieces in each view (2D, 3D, angles)
@@ -310,8 +310,8 @@ levels = () => {
         [null, null],   // block 5
         [null, null],   // block 6
         [null, null],   // block 7
-        [null, 9],      // block 8
-        [8, null],      // block 9
+        [null, null],      // block 8
+        //[8, null],      // block 9
       ],
 
       "2d": {
@@ -324,8 +324,8 @@ levels = () => {
           [null, null],   // block 5
           [null, 8],      // block 6
           [null, null],   // block 7
-          [6, 9],         // block 8
-          [8, null],      // block 9
+          [6, null],         // block 8
+          //[8, null],      // block 9
         ],
         
         "midup": [
@@ -337,8 +337,8 @@ levels = () => {
           [null, null],   // block 5
           [null, null],   // block 6
           [9, null, 397,118,151,.9],      // block 7
-          [null, 9],      // block 8
-          [8, 7],         // block 9
+          [null, null],      // block 8
+          //[8, 7],         // block 9
         ]
       },
       
@@ -352,8 +352,8 @@ levels = () => {
           [4, null,200,-300,0,1],      // block 5
           [null, 8],      // block 6
           [null, null],   // block 7
-          [null, 9],      // block 8
-          [8, null],      // block 9
+          [null, null],      // block 8
+          //[8, null],      // block 9
         ],
         
         "down": [
@@ -365,9 +365,22 @@ levels = () => {
           [6,null,117+110,-151,157,1.1],      // block 5
           [null, 5],      // block 6
           [null, null],   // block 7
-          [null, 9],      // block 8
-          [8, null],      // block 9
-        ]
+          [null, null],      // block 8
+          //[8, null],      // block 9
+        ],
+        
+        "midup": [
+          [null, null],   // block 0
+          [null, 2],      // block 1
+          [1, 3],         // block 2
+          [2, 4],         // block 3
+          [3, null],      // block 4
+          [null, null],   // block 5
+          [null, null],   // block 6
+          [8, null,217+90,118,151,.9],   // block 7
+          [null, 7],      // block 8
+          //[8, null],      // block 9
+        ],
       },
     }
   }
@@ -499,6 +512,8 @@ levels = () => {
       [582,204,440,0,2],     // block 14
       [82-75*4,78,-200,1,.75],     // block 15
       [582+200,204,440,0,2],     // block 16
+      [-34,-1,-250,0,1.4],     // block 17
+      [-8,-400,115,1,.8],     // block 18
     ];
     
     // links between track pieces in each view (2D, 3D)

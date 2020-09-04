@@ -49,7 +49,7 @@ draw_tracks = () => {
     draw_track(track[i][0], track[i][1], track[i][2], track[i][3], track[i][4], i+"");
   }
   if(track[7]){
-    draw_track_lite(track[7][0]+500, track[7][1], track[7][2], 0, track[7][4]||1);
+    draw_track_lite(track[7][0]+500*(track[7][4]||1), track[7][1], track[7][2], 0, track[7][4]||1);
   }
   else {
     draw_track_lite(track[track.length-1][0]+500, track[track.length-1][1], track[track.length-1][2]);
