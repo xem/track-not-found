@@ -16,21 +16,21 @@ animate = () => {
       }
       
       // Go right
-      if(go && k[67] && vX < 7){
-        vX += .2;
+      if(go && k[67] && vX < (scale < 1 ? 7 * scale : 7)){
+        vX += (scale < 1 ? .2 * scale : .2);
         dir = 1;
       }
       
       // Go left
-      else if(go && k[88] && vX > -5){
-        vX -= .2;
+      else if(go && k[88] &&  vX < (scale < 1 ? 5 * scale : 5)){
+        vX -= (scale < 1 ? .2 * scale : .2);
         dir = 0;
       }
       
       // Move
       if(go && !win && !lose){
         X += vX;
-        if(X < -400 && Y == 0){
+        if(X < -400 && Y == 0 && scale == 1){
           X = -400;
           vX = 0;
         }
@@ -93,6 +93,7 @@ animate = () => {
         if(posonchunk > 1){
           if(link[chunk][dir] !== null){
             posonchunk -= 1;
+            if(posonchunk < 0) posonchunk = 0;
             chunk = link[chunk][dir];
           }
           else {
@@ -104,6 +105,7 @@ animate = () => {
         else if(posonchunk < 0 && chunk != 0){
           if(link[chunk][dir] !== null){
             posonchunk += 1;
+            if(posonchunk < 1) posonchunk = 1;
             chunk = link[chunk][dir];
           }
           else {
@@ -282,7 +284,7 @@ animate = () => {
       }
     }
     
-    console.log(chunk, ~~(posonchunk*100));
+    console.log(chunk, ~~(posonchunk*100), ~~vX, link[chunk]);
   }, 16);
 }
 

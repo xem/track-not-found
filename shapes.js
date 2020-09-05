@@ -73,8 +73,8 @@ draw_hills = () => {
   C.plane({w:600,h:1200,x:700,z:-.7,css:"hill"});
   C.plane({w:600,h:1200,x:-400,z:-.5,ry:75,o:"left",css:"hill2",n:"h2left"});
   C.plane({w:600,h:1200,x:400,z:-.5,ry:-75,o:"right",css:"hill2",n:"h2right"});
-  C.plane({w:600,h:600,x:-620,y:0,z:-300.5,rx:-90,sk:"15deg",css:"hill3",n:"h3left"});
-  C.plane({w:600,h:600,x:620,y:0,z:-300.5,rx:-90,sk:"-15deg",css:"hill3",n:"h3right"});
+  C.plane({w:600,h:600,x:-620,y:0,z:-300.8,rx:-90,sk:"15deg",css:"hill3",n:"h3left"});
+  C.plane({w:600,h:600,x:620,y:0,z:-300.8,rx:-90,sk:"-15deg",css:"hill3",n:"h3right"});
   
   if(!mobile){
     X = 0;

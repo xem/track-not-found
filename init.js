@@ -60,8 +60,8 @@ init = e => {
       "Optical illusions can help completing the track", // 5
       "Move the camera up & down with " + (mobile ? "the buttons below" : "the arrow keys, or use the buttons below"), // 4
       "Success is not always a straight line", // 5
-      "Rotate the camera to the left or the right with " + (mobile ? "the buttons below" : "the other arrows"), // 6
-      "I was afraid that my game was too simple..." // 7
+      "Rotate the camera to the left or the right with " + (mobile ? "the buttons below" : "the other arrow keys"), // 6
+      "Let's increase the difficulty a little...", // 7
     ][state] || "");
   }
   buttons.innerHTML = "";

@@ -249,11 +249,11 @@ levels = () => {
       
       "3d": {
         "up": [
-          [null, 1, -73-73*2,13,150,.73],  // block 0
-          [0, 2, -73-73,13,150,.73],     // block 1
+          [null, 1, -73-73*2,13,150,.72],  // block 0
+          [0, 2, -73-73,13,150,.72],     // block 1
           [1, 3],      // block 2
-          [2, 4, -73+73,13,150,.73],        // block 3
-          [3, null, -73+73*2,13,150,.73],       // block 4
+          [2, 4, -73+73,13,150,.72],        // block 3
+          [3, null, -73+73*2,13,150,.72],       // block 4
           [null, null],    // block 5
           [null, 7],      // block 6
           [6, null],   // block 7
@@ -291,7 +291,7 @@ levels = () => {
       [0,-300,0,0],         // block 3
       [100,-300,0,1],       // block 4
       [133,-70,-130,1,.65], // block 5
-      [117,-151,157,0,1.1], // block 6
+      [117,-151,157,0,1.12], // block 6
       [506,-54,0,0,1.47],    // block 7 (end)
       [217,118,151,1,.9],   // block 8
       //[307,118,151,0,.9],   // block 9 // 5 bis
@@ -362,7 +362,7 @@ levels = () => {
           [1, 3],         // block 2
           [2, 4],         // block 3
           [3, null],      // block 4
-          [6,null,117+110,-151,157,1.1],      // block 5
+          [6,null,117+110,-151,157,1.12],      // block 5
           [null, 5],      // block 6
           [null, null],   // block 7
           [null, null],      // block 8
@@ -494,6 +494,10 @@ levels = () => {
     draw_boat(100,-100,-235);
     
     // Define each track piece (x, y, z, pillar, scale)
+    
+    
+    /* 
+    //7bis
     track = [
       [-300,0,0,1],             // block 0
       [-200,-300,0,1],          // block 1
@@ -516,23 +520,235 @@ levels = () => {
       [-8,-400,115,1,.8],     // block 18
     ];
     
+    */
+    
+    track = [
+      [-300,0,0,0],             // block 0
+      [-200,0,0,1],             // block 1
+      [111,0,-252,0,1.4],             // block 2
+      [-0,0,0,0],             // block 3
+      [-392,0,422,0,.3],             // block 4
+      [200,0,0,1],             // block 5
+      [-290,468,225,1,.65],             // block 6
+      [402,123,0,0,.5],             // block 7 (end)
+      [-256,-468,261,1,.7], // 8
+      [-290+65*2,468,225,0,.65], // 9
+      [-256+70*2,-468,261,0,.7], // 10
+      [-293+65*4,468,225,0,.65], // 11
+      [-256+70*4,-468,261,0,.7], // 12
+      [-300+65*6,468,225,0,.65], // 13
+      [-256+70*6,-468,261,1,.7], // 14
+      [243,-34,153,1,.32], // 15
+      [123,115,439,0,.5], // 16
+      [123-50,115,439,0,.5], // 17
+      [24,120,210,0,.52], // 18
+      [24+52,120,210,1,.52], // 19
+      [25+52*2,120,210,0,.52], // 20
+      
+    ];
+    
     // links between track pieces in each view (2D, 3D)
     links = {
+      "2d": {
+        "frontmiddle": [
+          [null, 1],   // block 0
+          [0, null],   // block 1
+          [null, null],   // block 2
+          [null, null],   // block 3
+          [null, null],   // block 4
+          [null, null],   // block 5
+          [null, 8],   // block 6
+          [null, null],   // block 7
+          [6, 9, -290+65,468,225,.65],   // block 8
+          [8, 10],   // block 9
+          [9, 11, -291+65*3,468,225,.65],   // block 10
+          [10, 12],   // block 11
+          [11, 13, -296+65*5,468,225,.65],   // block 12
+          [12, 14],   // block 13
+          [13, null, -302+65*7,468,225,.65],   // block 14
+          [null, null],   // block 15
+          [17, null],   // block 16
+          [null, 16],   // block 17
+          [null, 19],   // block 18
+          [18, 20],   // block 19
+          [19, null],   // block 20
+        ],
+        
+        "up": [
+          [null, 1],   // block 0
+          [0, null],   // block 1
+          [null, null],   // block 2
+          [null, null],   // block 3
+          [null, null],   // block 4
+          [null, null],   // block 5
+          [null, null],   // block 6
+          [null, null],   // block 7
+          [null, null],   // block 8
+          [null, null],   // block 0
+          [null, null],   // block 10
+          [null, null],   // block 11
+          [null, null],   // block 12
+          [null, null],   // block 13
+          [null, null],   // block 14
+          [null, null],   // block 15
+          [17, null],   // block 16
+          [18, 16],   // block 17
+          [null, 17,123-50*2,115,439,.5],   // block 18
+          [18, 20],   // block 19
+          [19, null],   // block 20
+        ],
+        
+        "leftmidup": [
+          [null, 1],   // block 0
+          [0, null],   // block 1
+          [null, null],   // block 2
+          [null, null],   // block 3
+          [null, null],   // block 4
+          [null, null],   // block 5
+          [null, null],   // block 6
+          [20, null,25+52*3,120,210,.52],   // block 7
+          [null, null],   // block 8
+          [null, null],   // block 0
+          [null, null],   // block 10
+          [null, null],   // block 11
+          [null, null],   // block 12
+          [null, null],   // block 13
+          [null, null],   // block 14
+          [null, null],   // block 15
+          [17, null],   // block 16
+          [null, 16],   // block 17
+          [null, 19],   // block 18
+          [18, 20],   // block 19
+          [19, 7],   // block 20
+        ],
+      },
+      
       "3d": {
-
+        
+        "leftmidup": [
+          [null, 1, -392-120,0,422,.3],   // block 0
+          [0, 2, -392-30*3,0,422,.3],   // block 1
+          [1, 3, -392-30*2,0,422,.3],   // block 2
+          [2, 4, -392-30,0,422,.3],   // block 3
+          [3, 5],   // block 4
+          [4, null, -392+30,0,422,.3],   // block 5
+          [null, null],   // block 6
+          [null, null],   // block 7
+          [null, null],   // block 8
+          [null, null],   // block 9
+          [null, null],   // block 10
+          [null, null],   // block 11
+          [null, null],   // block 12
+          [null, null],   // block 13
+          [null, null],   // block 14
+          [null, null],   // block 15
+          [17, null],   // block 16
+          [null, 16],   // block 17
+          [null, 19],   // block 18
+          [18, 20],   // block 19
+          [19, null],   // block 20
+        ],
+        
+        "leftbackmidup": [
+          [null, 1],   // block 0
+          [0, null],   // block 1
+          [null, null],   // block 2
+          [null, null],   // block 3
+          [null, 6],   // block 4
+          [null, null],   // block 5
+          [4, null, -392+30,0,422,.3],   // block 6
+          [null, null],   // block 7
+          [null, null],   // block 8
+          [null, null],   // block 9
+          [null, null],   // block 10
+          [null, null],   // block 11
+          [null, null],   // block 12
+          [null, null],   // block 13
+          [null, null],   // block 14
+          [null, null],   // block 15
+          [17, null],   // block 16
+          [null, 16],   // block 17
+          [null, 19],   // block 18
+          [18, 20],   // block 19
+          [19, null],   // block 20
+        ],
+        
+        "rightfrontmiddle": [
+          [null, 1],   // block 0
+          [0, null],   // block 1
+          [null, null],   // block 2
+          [null, null],   // block 3
+          [null, null],   // block 4
+          [null, null],   // block 5
+          [null, null],   // block 6
+          [null, null],   // block 7
+          [null, null],   // block 8
+          [null, null],   // block 9
+          [null, null],   // block 10
+          [null, null],   // block 11
+          [null, 15],   // block 12
+          [null, null],   // block 13
+          [15, null],   // block 14
+          [12, 14,-256+70*5,-468,261,.7],   // block 15
+          [17, null],   // block 16
+          [null, 16],   // block 17
+          [null, 19],   // block 18
+          [18, 20],   // block 19
+          [19, null],   // block 20
+        ],
+        
+        "rightbackmiddown": [
+          [null, 1],   // block 0
+          [0, null],   // block 1
+          [null, null],   // block 2
+          [null, null],   // block 3
+          [null, null],   // block 4
+          [null, null],   // block 5
+          [null, null],   // block 6
+          [null, null],   // block 7
+          [null, null],   // block 8
+          [null, null],   // block 9
+          [null, null],   // block 10
+          [null, null],   // block 11
+          [null, null],   // block 12
+          [null, null],   // block 13
+          [null, null],   // block 14
+          [16, null, 123+50,115,439,.5],   // block 15
+          [17, 15],   // block 16
+          [null, 16],   // block 17
+          [null, 19],   // block 18
+          [18, 20],   // block 19
+          [19, null],   // block 20
+        ]
       },
       
       "default": [
-        [null, null],   // block 0
-        [null, null],   // block 1
+        [null, 1],   // block 0
+        [0, null],   // block 1
         [null, null],   // block 2
         [null, null],   // block 3
         [null, null],   // block 4
         [null, null],   // block 5
         [null, null],   // block 6
         [null, null],   // block 7
+        [null, null],   // block 8
+        [null, null],   // block 0
+        [null, null],   // block 10
+        [null, null],   // block 11
+        [null, null],   // block 12
+        [null, null],   // block 13
+        [null, null],   // block 14
+        [null, null],   // block 15
+        [17, null],   // block 16
+        [null, 16],   // block 17
+        [null, 19],   // block 18
+        [18, 20],   // block 19
+        [19, null],   // block 20
       ],
     }
+    
+    
+    
     
   }
   
