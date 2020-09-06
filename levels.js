@@ -488,7 +488,7 @@ levels = () => {
     
   }
   
-    // Level 7
+  // Level 7
   else if(state == 7){
     
     draw_boat(100,-100,-235);
@@ -749,6 +749,116 @@ levels = () => {
     
     
     
+    
+  }
+  
+  
+  // Level 8
+  else if(state == 8){
+    
+    draw_boat(-230,80,-235);
+    
+     track = [
+      [-300,0,0,0],             // block 0
+      [-200,0,0,1],             // block 1
+      [0,0,-10000,0,1.4],       // block 2 (moving)
+      [200,0,0,1],              // block 3
+      [300,0,0,0],              // block 4
+      [400,0,0,0],              // block 5 (end)
+    ];
+    
+    draw_track(-100,0,0,0);
+    draw_dynamite(-100,0,0,1);
+    draw_track(0,0,0,0);
+    draw_dynamite(0,0,0,2);
+    draw_track(100,0,0,0);
+    draw_dynamite(100,0,0,3);
+    
+    group0.style.transition =
+    group1.style.transition =
+    group2.style.transition = "transform 1s";
+    
+    setTimeout(()=>{
+      d_1.innerHTML = "<img src=1f4a5.svg width=60 height=60>";
+      if(navigator.vibrate) navigator.vibrate(2500);
+      viewport.classList.add("rumble2");
+      group6.style.transition = "opacty 1s";
+      group6.style.opacity = "0";
+    },2500);
+    
+    setTimeout(()=>{
+      viewport.classList.remove("rumble2");
+    },2900);
+    
+    setTimeout(()=>{
+      d_2.innerHTML = "<img src=1f4a5.svg width=60 height=60>";
+      d_1.innerHTML = "";
+      C.move({n:"group0",z:-350});
+      viewport.classList.add("rumble2");
+    },3000);
+    
+    setTimeout(()=>{
+      viewport.classList.remove("rumble2");
+    },3400);
+    
+    setTimeout(()=>{
+      d_3.innerHTML = "<img src=1f4a5.svg width=60 height=60>";
+      d_2.innerHTML = "";
+      C.move({n:"group1",z:-350});
+      viewport.classList.add("rumble2");
+    },3500);
+    
+    setTimeout(()=>{
+      d_3.innerHTML = "";
+      C.move({n:"group2",z:-350});
+      if(navigator.vibrate) navigator.vibrate(0);
+      viewport.classList.remove("rumble2");
+    },4000);
+    
+    setTimeout(()=>{
+      level.innerHTML = "OK, sending you some help, catch it!";
+      level.style.transform = "translateY(18px)rotate(2deg)";
+      group0.style.display =
+      group1.style.display =
+      group2.style.display = "none";
+      C.move({n:"group6",y:-600,z:-235});
+      group6.style.opacity = 1;
+      group6go = 1;
+      track[2][2] = -235;
+    },5000);
+    
+    // links between track pieces in each view (2D, 3D)
+    links = {
+      "default": [
+        [null,1], // 0
+        [0,null], // 1
+        [null,null], // 2 (moving)
+        [null,4], // 3
+        [3,5], // 4
+        [4,null], // 5 (end)
+      ],
+      
+      "3d": {
+        "leftfrontmidup": [
+          [null,1], // 0
+          [0,null], // 1
+          [null,null], // 2 (moving)
+          [null,4], // 3
+          [3,5], // 4
+          [4,null], // 5 (end)
+        ],
+        
+        "rightbackmidup": [
+          [null,1], // 0
+          [0,null], // 1
+          [null,null], // 2 (moving)
+          [null,4], // 3
+          [3,5], // 4
+          [4,null], // 5 (end)
+        ],
+      }
+        
+    };
     
   }
   

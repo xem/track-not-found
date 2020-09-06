@@ -85,9 +85,17 @@ animate = () => {
             group0.remove();
             if(navigator.vibrate) navigator.vibrate(0);
             oktolose = 1;
+            viewport.classList.remove("rumble");
           },3000);
         }
         
+        // Level 8: move floating chunk
+        if(state == 8 && group6go){
+          C.move({n:"group6",y:group6y+=.9});
+          if(group6y > 600){
+            lose = 1;
+          }
+        }
         
         // Move to new chunk on the right (or virtual position)
         if(posonchunk > 1){
@@ -284,7 +292,97 @@ animate = () => {
       }
     }
     
-    console.log(chunk, ~~(posonchunk*100), ~~vX, link[chunk]);
+    // Level 8 crossing
+    if(group6y < -150 && group6y > -210 && !cross1){
+      //console.log(group6y);
+      links["3d"]["leftfrontmidup"] = [
+        [null,1], // 0
+        [0,2], // 1
+        [1,null,-120,0,0,1], // 2 (moving)
+        [null,4], // 3
+        [3,5], // 4
+        [4,null], // 5 (end)
+      ]
+    }
+    else {
+      links["3d"]["leftfrontmidup"] = [
+        [null,1], // 0
+        [0,null], // 1
+        [null,null], // 2 (moving)
+        [null,4], // 3
+        [3,5], // 4
+        [4,null], // 5 (end)
+      ]
+    }
+    
+    if(group6y > 150 && group6y < 210){
+      //console.log(group6y);
+      links["3d"]["rightbackmidup"] = [
+        [null,1], // 0
+        [0,null], // 1
+        [null,3,100,0,0,1], // 2 (moving)
+        [2,4], // 3
+        [3,5], // 4
+        [4,null], // 5 (end)
+      ]
+    }
+    else {
+      links["3d"]["rightbackmidup"] = [
+        [null,1], // 0
+        [0,null], // 1
+        [null,null], // 2 (moving)
+        [null,4], // 3
+        [3,5], // 4
+        [4,null], // 5 (end)
+      ]
+    }
+    
+    if(state == 8 && !cross1 && chunk == 2){
+      Z = -235;
+      scale = 1.4;
+      X = -35;
+      vX = 0;
+      chunkscale = 1.4;
+      chunkmiddle = 0;
+      chunkleft = -70;
+      chunkright = 70;
+      posonchunk = .25;
+      cross1 = 1;
+      C.move({n:"train",x:X,y:group6y-11,z:Z,sx:1.4,sy:1.4,sz:1.4});
+      go = 0;
+      setTimeout(()=>{
+        go = 1;
+      },200);
+    }
+    
+    if(state == 8 && chunk == 2){
+      //console.log(train.style.transform, train.style.transition);
+      Y = group6y - 11;
+      C.move({n:"train", y:Y});
+    }
+    
+    
+    if(state == 8 && !cross2 && chunk == 3){
+      Z = 0;
+      scale = 1;
+      X = 151;
+      Y = 0;
+      vX = 0;
+      chunkscale = 1;
+      chunkmiddle = 200;
+      chunkleft = 150;
+      chunkright = 250;
+      posonchunk = .01;
+      cross2 = 1;
+      C.move({n:"train",x:X,y:0,z:Z,sx:1,sy:1,sz:1});
+      go = 0;
+      setTimeout(()=>{
+        go = 1;
+      },200);
+    }
+
+    //console.log(chunk, ~~(posonchunk*100), ~~X, ~~Y, ~~vX, link[chunk]);
+
   }, 16);
 }
 
@@ -302,9 +400,9 @@ traintoreal = () => {
   chunkleft = chunkmiddle - 50 * scale;
   chunkright = chunkmiddle + 50 * scale;
   X = chunkleft + (chunkright - chunkleft) * posonchunk;    
-  Y = track[chunk][1];
+  Y = (group6y && chunk == 2) ? (group6y + 11) : track[chunk][1];
   Z = track[chunk][2];
-  C.move({n:"train",x:X,y:Y-10*scale,z:Z,sx:scale,sy:scale,sz:scale});
+  if(!(group6y &&  (chunk == 2 || chunk == 3))) C.move({n:"train",x:X,y:Y-10*scale,z:Z,sx:scale,sy:scale,sz:scale});
 }
 
 traintonew = () => {
@@ -316,9 +414,9 @@ traintonew = () => {
   chunkright = chunkmiddle + 50 * scale;
   
   X = chunkleft + (chunkright - chunkleft) * posonchunk;    
-  Y = link[chunk].length >= 5 ? link[chunk][3] : track[chunk][1];
+  Y = (group6y && chunk == 2) ? (group6y + 11) : link[chunk].length >= 5 ? link[chunk][3] : track[chunk][1];
   Z = link[chunk].length >= 5 ? link[chunk][4] : track[chunk][2];
-  C.move({n:"train",x:X,y:Y-10*scale,z:Z,sx:scale,sy:scale,sz:scale});
+  if(!(group6y && (chunk == 2 || chunk == 3))) C.move({n:"train",x:X,y:Y-10*scale,z:Z,sx:scale,sy:scale,sz:scale});
   
   go = 1;
 

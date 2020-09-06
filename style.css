@@ -20,6 +20,7 @@
   50% { transform: rotate(5deg) }
   100% { transform: rotate(-5deg) }
 }
+
 @keyframes waves {
   100% { background-position: center 100% }
 }
@@ -34,6 +35,10 @@
   80% { margin-top: 5px; }
   90% { margin-top: -5px; }
   100% { margin-top: 5px; }
+}
+
+@keyframes wiggle {
+  50% { transform: scale(1.5); }
 }
 
 
@@ -105,4 +110,6 @@ button.on { background: #fff }
 .track * { pointer-events: none }
 .sun { background: radial-gradient(#fea, rgba(255,255,255,0) 50%); transition: transform 1s; }
 .rumble { animation: rumble .7s; }
+.rumble2 { animation: rumble .4s; }
 #level { padding: 0 0 0 10px; transition: transform .2s .5s; }
+.dynamite img { animation: wiggle 1s infinite }

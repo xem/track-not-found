@@ -56,6 +56,10 @@ draw_tracks = () => {
   }
 }
 
+draw_dynamite = (x, y, z, n) => {
+  C.sprite({w:30,h:30,x,y:y-11,z:z+30,html:"<img src=1f9e8.svg>",css:"dynamite", n: "d_" + n });
+}
+
 
 // Hills
 draw_hills = () => {
