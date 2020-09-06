@@ -488,8 +488,8 @@ levels = () => {
     
   }
   
-  // Level 7
-  else if(state == 7){
+  // Level 7 (now 8)
+  else if(state == 8){
     
     draw_boat(100,-100,-235);
     
@@ -753,8 +753,8 @@ levels = () => {
   }
   
   
-  // Level 8
-  else if(state == 8){
+  // Level 8 (now 7)
+  else if(state == 7){
     
     draw_boat(-230,80,-235);
     
@@ -765,6 +765,8 @@ levels = () => {
       [200,0,0,1],              // block 3
       [300,0,0,0],              // block 4
       [400,0,0,0],              // block 5 (end)
+      
+      //[120,0,0,0,1]
     ];
     
     draw_track(-100,0,0,0);
@@ -784,36 +786,37 @@ levels = () => {
       viewport.classList.add("rumble2");
       group6.style.transition = "opacty 1s";
       group6.style.opacity = "0";
-    },2500);
+    },4500);
     
     setTimeout(()=>{
       viewport.classList.remove("rumble2");
-    },2900);
+    },4900);
     
     setTimeout(()=>{
       d_2.innerHTML = "<img src=1f4a5.svg width=60 height=60>";
       d_1.innerHTML = "";
       C.move({n:"group0",z:-350});
       viewport.classList.add("rumble2");
-    },3000);
+    },5000);
     
     setTimeout(()=>{
       viewport.classList.remove("rumble2");
-    },3400);
+    },5400);
     
     setTimeout(()=>{
       d_3.innerHTML = "<img src=1f4a5.svg width=60 height=60>";
       d_2.innerHTML = "";
       C.move({n:"group1",z:-350});
       viewport.classList.add("rumble2");
-    },3500);
+      go = 1;
+    },5500);
     
     setTimeout(()=>{
       d_3.innerHTML = "";
       C.move({n:"group2",z:-350});
       if(navigator.vibrate) navigator.vibrate(0);
       viewport.classList.remove("rumble2");
-    },4000);
+    },6000);
     
     setTimeout(()=>{
       level.innerHTML = "OK, sending you some help, catch it!";
@@ -825,7 +828,7 @@ levels = () => {
       group6.style.opacity = 1;
       group6go = 1;
       track[2][2] = -235;
-    },5000);
+    },8000);
     
     // links between track pieces in each view (2D, 3D)
     links = {
@@ -869,3 +872,4 @@ levels = () => {
     draw_tracks();
   }
 }
+

@@ -21,9 +21,9 @@
   100% { transform: rotate(-5deg) }
 }
 
-@keyframes waves {
+/*@keyframes waves {
   100% { background-position: center 100% }
-}
+}*/
 @keyframes rumble {
   10% { margin-top: -5px; }
   20% { margin-top: 5px; }
@@ -93,7 +93,7 @@ body { font-family: calibri, arial; overflow: hidden; margin: 0; }
 .hill3 { transition: opacity .2s; background: #494; }
 .river { background: linear-gradient(rgba(255,255,255,0), #78d 10%, #45f 90%, rgba(255,255,255,0)); transition: opacity .5s; }
 .mobile .river { background: linear-gradient(#78d 10%, #45f 90%); }
-.river2 { background: linear-gradient(#fff1, rgba(255,255,255,0) 10%, rgba(255,255,255,0) 50%, #fff2); background-size: 100% 200px; animation: waves 15s linear infinite; transition: opacity .5s; }
+.river2 { background: linear-gradient(#fff1, rgba(255,255,255,0) 10%, rgba(255,255,255,0) 50%, #fff2); background-size: 100% 200px; transition: opacity .5s; }
 #buttons { margin: 370px 0; }
 button { font-size: 25px; background: #c8c8c8; min-width: 50px; min-height: 50px; margin-left: 10px; }
 button img { vertical-align: bottom }

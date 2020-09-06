@@ -94,7 +94,7 @@ draw_hills = () => {
         Y=-120-Math.random()*300;
       }
       
-      C.sprite({w:60,h:60,x:X,y:Y,z:0,html:tree=["🌳","🌴","🌲"][Math.random()*3|0],css:"tree fixed",o:"bottom"});
+      C.sprite({w:60,h:60,x:X,y:Y,z:0,html:tree=["🌳","🌴","🌲","🐄"][Math.random()*3.01|0],css:"tree fixed",o:"bottom"});
       C.plane({w:60,h:60,x:X,y:Y,z:0,html:tree,css:"tree fixed shadow",o:"bottom",rz:100});
       X2 = X;
       Y2 = Y;
@@ -108,7 +108,7 @@ draw_hills = () => {
         Y=-120-Math.random()*300;
       }
       
-      C.sprite({w:60,h:60,x:X,y:Y,z:0,html:tree=["🌳","🌴","🌲"][Math.random()*3|0],css:"tree fixed",o:"bottom"});
+      C.sprite({w:60,h:60,x:X,y:Y,z:0,html:tree=["🌳","🌴","🌲","🦙"][Math.random()*3.01|0],css:"tree fixed",o:"bottom"});
       C.plane({w:60,h:60,x:X,y:Y,z:0,html:tree,css:"tree fixed shadow",o:"bottom",rz:100});
       
       X2 = X;
@@ -118,13 +118,14 @@ draw_hills = () => {
     X=470+Math.random()*300;
     Y=120+Math.random()*300;
     
-    C.sprite({w:60,h:60,x:X,y:Y,z:0,html:tree=["🌳","🌴","🌲"][Math.random()*3|0],css:"tree fixed",o:"bottom"});
+    C.sprite({w:60,h:60,x:X,y:Y,z:0,html:tree=["🌳","🌴","🌲","🦌"][Math.random()*3.01|0],css:"tree fixed",o:"bottom"});
     C.plane({w:60,h:60,x:X,y:Y,z:0,html:tree,css:"tree fixed shadow",o:"bottom",rz:100});
 
     X=-470-Math.random()*300;
     Y=120+Math.random()*300;
     
-    C.sprite({w:60,h:60,x:X,y:Y,z:0,html:tree=["🌳","🌴","🌲"][Math.random()*3|0],css:"tree fixed",o:"bottom"});
+    C.sprite({w:60,h:60,x:X,y:Y,z:0,html:tree=["🌳","🌴","🌲","🐐"][Math.random()*3.01|0],css:"tree fixed",o:"bottom"});
     C.plane({w:60,h:60,x:X,y:Y,z:0,html:tree,css:"tree fixed shadow",o:"bottom",rz:100});
   }
 }
+

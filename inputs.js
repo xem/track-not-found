@@ -38,3 +38,4 @@ onresize = () => {
     all.style.transform = "scale(" + (window.innerWidth / 900) + ")"
   }
 }
+

@@ -42,6 +42,8 @@ init = e => {
   group6y = -600;
   cross1 = 0;
   cross2 = 0;
+  wavesy = 0;
+  if(window.train)train.style.transition = "none";
   level.style.transform = "translateY(0)rotate(0)";
   mobile = navigator.userAgent.includes("Android") || navigator.userAgent.includes("iOS");
   if(mobile){
@@ -65,8 +67,8 @@ init = e => {
       "Move the camera up & down with " + (mobile ? "the buttons below" : "the arrow keys, or use the buttons below"), // 4
       "Success is not always a straight line", // 5
       "Rotate the camera to the left or the right with " + (mobile ?"the buttons below" : "the other arrow keys"), // 6
+      "What the...?!", // 8
       "I had to make one big level, so here it is.", // 7
-      "What the...?!" // 8
     ][state] || "");
   }
   buttons.innerHTML = "";
@@ -244,7 +246,7 @@ init = e => {
     setTimeout(()=>{
       train.style.transition = "none";
       scene.style.transition = "1s";
-      go = 1;
+      if(state != 7) go = 1;
     },3000);
     
     viewport.className="blue";
@@ -260,3 +262,4 @@ init = e => {
     }
   },1000);
 }
+
