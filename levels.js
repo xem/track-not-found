@@ -865,6 +865,38 @@ levels = () => {
     
   }
   
+  // Level 9
+  else if(state == 9){
+    
+    draw_boat(0,150,-235);
+    //viewport.style.background = "#000";
+    //scene.style.opacity = .5;
+    
+    track = [
+      [-300,0,0,1],         // block 0
+      //[0,375,532,1,1.9],   // block 1
+      //[-100,0,0,1],         // block 2
+      //[100,0,0,1],          // block 3
+      //[300,0,0,1],          // block 4
+      //[400,0,0,0],          // block 5 (end)
+    ];
+    
+    for(var i = 0; i < 6; i++){
+      track.push([Math.random()*700 - 350, Math.random()*700 - 600, Math.random() * 460 - 230, Math.random()|1, Math.random() * 2+.2]);
+    }
+    
+    track.push([400,0,0,0]); // 7 end
+    
+    for(var i = 0; i < 10; i++){
+      track.push([Math.random()*700 - 350, Math.random()*700 - 600, Math.random() * 460 - 230, Math.random()|1, Math.random() * 2+.2]);
+    }
+    
+    // links between track pieces in each view (2D, 3D)
+    links = {
+    }
+    
+  }
+  
   if(state >= 1){
     if(links["2d"] && links["2d"]["up"] && !links["2d"]["down"]){
       links["2d"]["down"] = links["2d"]["up"]

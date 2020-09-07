@@ -1,6 +1,30 @@
 camera = () => {
   if(cam == "2d"){ viewport.style.perspective = "6000px"; }
-  else if(cam == "3d"){ viewport.style.perspective = default_perspective; };
+  else if(cam == "3d"){ viewport.style.perspective = default_perspective; }
+  else if(cam == "4d"){
+    go = 0;
+    train.style.transition = "10s";
+    scale = chunkscale = 5;
+    C.move({n:"train",x:600,y:900,z:600,rz:90,sx:scale,sy:scale,sz:scale});
+    var els = document.querySelectorAll("#scene > *, #scene > * > *, .tree");
+    for(var i in els){
+      if(els[i].style && !els[i].classList.contains("river") && els[i].parentNode.id != "train" && !els[i].id.includes("h2") && !els[i].id.includes("h3")){
+        els[i].style.transition = "10s";
+        els[i].style.transform += "rotateX("+(Math.random()>.5?"-":"")+"45deg)rotateY("+(Math.random()>.5?"-":"")+"45deg)rotateZ("+(Math.random()>.5?"-":"")+"45deg)scaleX(2)scaleY(2)scaleZ(2)";
+      }
+    }
+    viewport.style.transition = "10s";
+    setTimeout(()=>{
+      viewport.style.perspective = "-10000px";
+      level.innerHTML = "";
+      hud.style.opacity = 0;
+    },500);
+    
+    setTimeout(()=>{
+      black.style.opacity = 1;
+      black.innerHTML = "<h1>404: dimension not found!</h1><h2>Please download a browser that supports CSS 4D.</h2><h3>(Just kidding, you finished the game. Thanks for playing!)"
+    },10000);
+  }
   
   if(campos == "front"){
     C.camera({z: cam == "3d" ? 50 : 300});

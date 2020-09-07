@@ -57,7 +57,7 @@
 .circle{border-radius:50%}
 
 /* the rest */
-* { user-select: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; touch-action: manipulation; }
+* { user-select: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; touch-action: manipulation; box-sizing: border-box; }
 #viewport { background: #6b6; font-family: emoji, calibri, sans-serif; }
 #all { transform-origin: 0 0; }
 #viewport.blue { background: linear-gradient(#abf,#def); }
@@ -102,7 +102,8 @@ button span { font-family: emoji, calibri; }
 .reverse { transform: scaleX(-1); display: inline-block; }
 #b_2d { margin-left: 50px }
 button.on { background: #fff }
-#black { width:900px; height: 480px; background: #000; position: absolute; top: 0; opacity: 1; transition: opacity .5s; pointer-events: none; }
+#black { width:900px; height: 480px; background: #000; position: absolute; top: 0; opacity: 1; transition: opacity .5s; pointer-events: none; color: #fff; text-align: center; padding: 120px 0 0; }
+#black h1 { margin-left: 0 }
 .campos1 { position: absolute; top: 335px; left: 830px; text-align: center }
 .campos2 { position: absolute; top: 330px; left: 730px; text-align: center }
 .campos1 button, .campos2 button { min-height: 40px; }

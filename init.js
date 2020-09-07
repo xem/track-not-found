@@ -61,14 +61,15 @@ init = e => {
     level.innerHTML = state + ". " + 
     ([
       ,
-      "Move the train with " + (mobile ? "the buttons below" : "X and C, or use the buttons below"), // 1
+      "Move the train with " + (mobile ? "the buttons below" : "the keys X and C, or use the buttons below"), // 1
       location.host == "js13kgames.com" || location.host == "xem.github.io" || location.host == "localhost" ? "Change perspective with " + (mobile ? "the buttons below" : "E and R, or use the buttons below") : "Stolen content! Go play this game on js13kgames.com/entries/track-not-found", // 2
       "Optical illusions can help completing the track", // 5
       "Move the camera up & down with " + (mobile ? "the buttons below" : "the arrow keys, or use the buttons below"), // 4
       "Success is not always a straight line", // 5
       "Rotate the camera to the left or the right with " + (mobile ?"the buttons below" : "the other arrow keys"), // 6
-      "What the...?!", // 8
-      "I had to make one big level, so here it is.", // 7
+      "What the...?!", // 8 now 7
+      "I had to make one big level, so here it is.", // 7 now 8
+      "Finally, go into the 4th dimension " + (mobile ? "with the button below!": "by pressing T, or use the button below!"), // 9
     ][state] || "");
   }
   buttons.innerHTML = "";
@@ -89,6 +90,12 @@ init = e => {
     
   }
   
+  if(state == 9){
+    
+    buttons.innerHTML += "<button title=E id=b_4d><span><img src=1f441.svg width=30 height=30></span> 4D</button>";
+    
+  }
+  
   if(state >= 4 && state < 6){
     
     buttons.innerHTML += "<div title=up class=campos1><button id=b_up class=on>&uarr;</button><br> <span><img src=1f4f7.svg width=30 height=30 style='position:relative;left:5px'></span><br><button title=down id=b_down class=on>&darr;</button></div>";
@@ -104,7 +111,7 @@ init = e => {
   // GUI events
   if(state >= 1){
     b_back.onmousedown = b_back.ontouchstart = e => {
-      console.log(go,k[88]);
+      //console.log(go,k[88]);
       //if(go && !k[88]){
         k[88] = 1;
       //}
@@ -128,15 +135,25 @@ init = e => {
   if(state >= 2){
     b_2d.onmousedown = b_2d.ontouchstart = e => {
       if(!k[69] && !k[82] && cam != "2d" && go){
-        console.log("2d");
+        //console.log("2d");
         k[69] = 1;
       }
     }
   
     b_3d.onmousedown = b_3d.ontouchstart = e => {
       if(!k[69] && !k[82] && cam != "3d" && go){
-        console.log("3d");
+        //console.log("3d");
         k[82] = 1;
+      }
+    }
+    
+  }
+  
+  if(state == 9){
+    b_4d.onmousedown = b_4d.ontouchstart = e => {
+      if(!k[84] && cam != "4d" && go){
+        //console.log("4d");
+        k[84] = 1;
       }
     }
   }

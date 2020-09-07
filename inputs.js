@@ -6,6 +6,28 @@ all.onmousedown = all.ontouchstart = e => {
     // Title
     case 0:
       black.style.opacity = 1;
+      
+      
+      // Music
+      // =====
+      song = camera.toString().replace(/\s/g,'').substr(0,500);
+      Z = 0;
+      D = [...song].map(a=>((a.charCodeAt() + Z++)%10)+10);
+      
+      with(new AudioContext)
+      with(G=createGain())
+      for(i in D)
+      with(createOscillator())
+      if(D[i])
+      connect(G),
+      G.connect(destination),
+      start(i*.2),
+      frequency.setValueAtTime(440*1.06**(13-D[i]),i*.2),type='wave',
+      gain.setValueAtTime(.5,i*.2),
+      gain.setTargetAtTime(.001,i*.2+.15,.05),
+      stop(i*.2+.19);
+      
+      
       setTimeout(()=>{
         state = 1;
         init();

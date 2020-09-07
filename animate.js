@@ -227,6 +227,20 @@ animate = () => {
         
         k[82] = 0;
       }
+      
+      // 4D
+      if(state == 9 && k[84] && cam != "4d" && go && !win && !lose){
+        b_4d.className = "on";
+        b_2d.className = "";
+        b_3d.className = "";
+        vX = 0;
+        cam = "4d";
+        
+        // Move camera
+        camera();
+        
+        k[84] = 0;
+      }
     }
     
     // Camera positions
@@ -343,7 +357,7 @@ animate = () => {
     }
     
     if(state == 7 && group6y > 150 && group6y < 210){
-      console.log(group6y);
+      //console.log(group6y);
       links["3d"]["rightbackmidup"] = [
         [null,1], // 0
         [0,null], // 1
@@ -433,7 +447,7 @@ getlink = () => {
 
 // Move train to real position/scale immediately
 traintoreal = () => {
-  if(!(state == 7 && group6y &&  (chunk == 2 || chunk == 3))){
+  if(link && !(state == 7 && group6y &&  (chunk == 2 || chunk == 3))){
     go = 0;
     link = getlink();
     chunkmiddle = track[chunk][0];
@@ -448,7 +462,7 @@ traintoreal = () => {
 }
 
 traintonew = () => {
-  if(!(state == 7 && group6y && (chunk == 2 || chunk == 3))){
+  if(link && !(state == 7 && group6y && (chunk == 2 || chunk == 3))){
     link = getlink();
     chunkmiddle = link[chunk].length > 2 ? link[chunk][2] : track[chunk][0];
     scale = (link[chunk].length > 2 ? link[chunk][5] : track[chunk][4]) || 1;
