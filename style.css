@@ -6,8 +6,7 @@
 
 /* animations */
 @keyframes wood {
-  0% {left: 0;}
-  100% {left: -20px;}
+  100% { background-position: -100% center; }
 }
 
 @keyframes tree {
@@ -21,9 +20,6 @@
   100% { transform: rotate(-5deg) }
 }
 
-/*@keyframes waves {
-  100% { background-position: center 100% }
-}*/
 @keyframes rumble {
   10% { margin-top: -5px; }
   20% { margin-top: 5px; }
@@ -74,7 +70,7 @@ body { font-family: calibri, arial; overflow: hidden; margin: 0; }
 .ground { border-radius: 50% }
 .tree { font-size: 60px; line-height: 60px }
 .shadow { color: rgba(0,0,0,.002); text-shadow: 0px 0px rgba(0,0,0,.35); line-height: 70px; }
-.wood { position: fixed; animation: wood .15s infinite linear; }
+.title .woods { position: fixed; animation: wood .9s infinite linear; }
 .tree { position: fixed; animation: tree 9s infinite linear; }
 .tree.fixed { animation: none; transition: 1s;}
 .tree2 { animation-delay: -1.5s }

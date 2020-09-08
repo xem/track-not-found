@@ -1,6 +1,9 @@
 music = () => {
   
-  // Music
+  //var i,k,t;
+  //with(new AudioContext)with(createScriptProcessor(k=8192,t=0,1))connect(destination),onaudioprocess=x=>{for(i=0;i<k;t+=2e-5)x.outputBuffer.getChannelData(0)[i++]='AIW,%7:'.charCodeAt(i%7)*t%.1*(1-t/(Math.tan(i%7)+9)%1)/5}
+  
+  /*// Music
   musicint = $ = _ = 0,
   Phase = function () {
     var phase = 0;
@@ -13,11 +16,11 @@ music = () => {
 
   Note = function (value, x){
     var phase = new Phase();
-    var vibrato_phase = new Phase();
+    //var vibrato_phase = new Phase();
     var gain = 0.1;
     this.sample = function (){
       if (!value) return 0;
-      var v = value + 0.4 * Math.sin(vibrato_phase.sample(3));
+      var v = value;// + 0.4 * Math.sin(vibrato_phase.sample(3));
       var hz = 440*Math.pow(2, (v-57)/12);
       gain *= 0.9998;
       var phi = phase.sample(hz);
@@ -141,13 +144,13 @@ music = () => {
   },*/
     
   //song1 = new Song(camera.toString().replace(/[^a-z]/g,'').substr(0,30)),
-  song1 = new Song("nbo0risiubv0uisirbs0uiniojrlsjuivjymvjubv0uisgu0vnxnzgx0vnunsgrisjulvmulsjufscrbs0ui"),
+  //song1 = new Song("nbo0risiubv0uisirbs0uiniojrlsjuivjymvjubv0uisgu0vnxnzgx0vnunsgrisjulvmulsjufscrbs0ui"),
 
   //song1 = new Song("nbo0risiubv0uisirbs0ui0i0b0c0f0gniojrlsjuivjymvjubv0ui0i0j0m0n0rsgu0vnxnzgx0vnunsg0n0o0n0g0s0o0nrisjulvgufsjufscrbo0ni0j0b0i0j0il`n0ogqgs`u0vgxgz`0gxl0nsouqvsxuuev0u`0`0eq0slulqcs0qcs0qbs0q`s0njo0reseujv0xeveuj0v0e0q0j0i0g0e0cu0scq00bv0ufr0sgn0vbr0xiz0zjr0sgu0vbx0zgx0vbubsg{0zb{`z^{0zi{fzgv0xiu0vjs0ulr0sbn0oll0nbl0jfi0g00bxc0`zb0^{`0]z^0[z]0Zz[0]z^0`zb0]uf0bxi0f{l0izr0ozn0ixr0nrulrnbo0risiufs0r`o0nb0czf0gzi0gzf0cub0i0j0mvn0m0j0irbscrbs`rbs`sbrbo`q0sgugv`x0zg{gz`s0x`s0v`x0vcx0ues0q`l00eu00`x00ev00`u00eq00`o`"),
   
-  currentsong = song1;
+  //currentsong = song1;
   
-  setInterval(currentsong.forward,400);
+  //setInterval(currentsong.forward,400);
 
   
   // Music
@@ -213,4 +216,22 @@ music = () => {
   
   
   //setTimeout(music, 60000);
+  
+  var D = "nruuru00nruyuu00svzvss00ruuuru00rsvzxsvuuuuu";
+  
+  with(new AudioContext)
+  with(G=createGain())
+  for(i=0;i<D.length;i++)
+  with(createOscillator())
+  if(D[i=+i] && D[i] != "0")
+  connect(G),
+  G.connect(destination),
+  
+  start(i*.3),
+  frequency.setValueAtTime(440*1.06**(115-D.charCodeAt(i)),i*.3),type='wave',
+  gain.setValueAtTime(.5,i*.3),
+  gain.setTargetAtTime(.001,i*.3+.1,.05),
+  stop(i*.3+.29);
+  
+  
 }

@@ -12,7 +12,7 @@ all.onmousedown = all.ontouchstart = e => {
       setTimeout(()=>{
         state = 1;
         init();
-      }, 800);
+      }, 1500);
     break;
   }
 

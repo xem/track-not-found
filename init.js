@@ -35,6 +35,12 @@ init = e => {
   scale = 1;
   dir = 1;
   viewport.classList.remove("rumble");
+  if(state == 0){
+    viewport.classList.add("title");
+  }
+  else {
+    viewport.classList.remove("title");
+  }
   k[67]=0;
   k[88]=0;
   oktolose = 1;
@@ -199,10 +205,10 @@ init = e => {
     C.plane({w:600,h:500,z:-10,b:"radial-gradient(#aea, #6b6 50%)"});
     
     // Train
-    draw_train(0,0,0);
+    draw_train(0,0,1);
   
     // Track
-    C.cube({w:500,h:6,d:8,y:11,b:"#888",b2:"#666",b3:"#aaa",css:"iron"},1,0,0,0,1,1);
+    /*C.cube({w:500,h:6,d:8,y:11,b:"#888",b2:"#666",b3:"#aaa",css:"iron"},1,0,0,0,1,1);
     C.cube({w:500,h:6,d:8,x:-500,y:11,b:"#888",b2:"#666",b3:"#aaa",css:"iron"},1,0,0,0,1,1);
     C.cube({w:500,h:6,d:8,x:-1000,y:11,b:"#888",b2:"#666",b3:"#aaa",css:"iron"},1,0,0,0,1,1);
     C.cube({w:500,h:6,d:8,x:500,y:11,b:"#888",b2:"#666",b3:"#aaa",css:"iron"},1,0,0,0,1,1);
@@ -214,7 +220,11 @@ init = e => {
     C.cube({w:500,h:6,d:8,x:1000,y:-11,b:"#888",b2:"#666",b3:"#aaa"},1,0,0,0,1,1);
     
     for(var i=-700;i<700;i+=20){
-      C.plane({w:10,h:20,z:5,x:i,b:"#ca0",css:"wood"})
+      C.plane({w:10,h:16,z:5,x:i,b:"#ca0",css:"wood"})
+    }*/
+    
+    for(var i = -600; i < 700; i += 100){
+      draw_track(i,11,0);
     }
     
     C.sprite({w:60,h:60,x:0,y:-100,z:0,html:"🌳",css:"tree tree1",o:"bottom"});
