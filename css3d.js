@@ -77,7 +77,7 @@ cube: (t,u,d,l,r,f,b) => {
   if(u)C.plane({g:t.n,x:t.w/2,y:t.d/2,z:t.h,w:t.w,h:t.d,b:t.b,css:"top"});
 },
 
-pyramid: t => {
+/*pyramid: t => {
   t.n||(t.n=`pyramid${C.pyramid_count++}`);
   C.init(t);
   C.group({n:t.n,g:t.g,x:t.x,y:t.y,z:t.z,w:100,d:100,rx:t.rx,ry:t.ry,rz:t.rz,sx:t.w/100,sy:t.d/100,sz:t.h/86.6025,css:t.css});
@@ -86,7 +86,7 @@ pyramid: t => {
   C.plane({g:t.n,x:100,y:50,w:100,h:100,b:t.b,ry:-120,rz:90,css:"triangle right",o:"bottom"});
   C.plane({g:t.n,x:50,y:0,w:100,h:100,b:t.b,rx:-120,css:"triangle back",o:"bottom"});
   C.plane({g:t.n,x:50,y:100,w:100,h:100,b:t.b,rx:-60,css:"triangle front",o:"bottom"});
-},
+},*/
 
 camera: t => {
   t&&(t.x||0===t.x)&&(C.camX=t.x),
