@@ -19,6 +19,7 @@
   <div id=h1>Track not found?!</div>
   <div id=h2>JS13kgames 2020 - Maxime EUZIERE & GregPeck</div>
   <div id=h3 style=display:none>Click to start</div>
+  <div id=h4 title="toggle fullscreen">⛶</div>
   <div id=hud>
     <div id=level></div>
     <div id=buttons></div>
@@ -35,6 +36,7 @@
 <script src=music.js></script>
 <script>
 onload = () => {
+  fullscreen = 0;
   state = 0;
   dodebug = 0;
   onresize();

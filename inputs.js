@@ -1,11 +1,12 @@
 // Handle clicks in each state
-all.onmousedown = all.ontouchstart = e => {
+h3.onmousedown = h3.ontouchstart = e => {
   
   switch(state){
   
     // Title
     case 0:
       black.style.opacity = 1;
+      h4.remove();
       
       music();
       
@@ -16,6 +17,18 @@ all.onmousedown = all.ontouchstart = e => {
     break;
   }
 
+}
+
+h4.onclick = () => {
+  fullscreen = 1-fullscreen;
+  if(fullscreen){
+    document.body.requestFullscreen();
+  }
+  else {
+    document.exitFullscreen();
+  }
+  onresize();
+  //h4.innerHTML = ["Go fullscreen","Quit fullscreen"][fullscreen];
 }
 
 // Handle key presses
@@ -34,11 +47,17 @@ onkeydown = onkeyup = e => {
 
 
 onresize = () => {
-  if(window.innerWidth / window.innerHeight > 900 / 480){
-    all.style.transform = "scale(" + (window.innerHeight / 480) + ")"
+  if(fullscreen){
+    
+    if(window.innerWidth / window.innerHeight > 900 / 480){
+      all.style.transform = "scale(" + (window.innerHeight / 480) + ")"
+    }
+    else {
+      all.style.transform = "scale(" + (window.innerWidth / 900) + ")"
+    }
   }
   else {
-    all.style.transform = "scale(" + (window.innerWidth / 900) + ")"
+    all.style.transform = "";
   }
 }
 

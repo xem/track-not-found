@@ -235,6 +235,7 @@ animate = () => {
         b_3d.className = "";
         vX = 0;
         cam = "4d";
+        black.style.pointerEvents = "all";
         
         // Move camera
         camera();
@@ -365,10 +366,28 @@ animate = () => {
         [2,4], // 3
         [3,5], // 4
         [4,null], // 5 (end)
-      ]
+      ];
+      
+      links["3d"]["leftbackmidup"] = [
+        [null,1], // 0
+        [0,2], // 1
+        [1,null], // 2 (moving)
+        [null,4], // 3
+        [3,5], // 4
+        [4,null], // 5 (end)
+      ];
     }
     else if(state == 7) {
       links["3d"]["rightbackmidup"] = [
+        [null,1], // 0
+        [0,null], // 1
+        [null,null], // 2 (moving)
+        [null,4], // 3
+        [3,5], // 4
+        [4,null], // 5 (end)
+      ];
+      
+      links["3d"]["leftbackmidup"] = [
         [null,1], // 0
         [0,null], // 1
         [null,null], // 2 (moving)

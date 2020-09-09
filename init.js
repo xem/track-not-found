@@ -54,6 +54,8 @@ init = e => {
   mobile = navigator.userAgent.includes("Android") || navigator.userAgent.includes("iOS");
   if(mobile){
     all.className = "mobile";
+    fullscreen = 1;
+    onresize();
   }
   
   easteregg6 = 0;

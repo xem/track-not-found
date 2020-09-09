@@ -3,10 +3,11 @@ camera = () => {
   else if(cam == "3d"){ viewport.style.perspective = default_perspective; }
   else if(cam == "4d"){
     go = 0;
+    viewport.classList.add("rumble");
     train.style.transition = "10s";
     scale = chunkscale = 5;
     C.move({n:"train",x:600,y:900,z:600,rz:90,sx:scale,sy:scale,sz:scale});
-    var els = document.querySelectorAll("#scene > *, #scene > * > *, .tree");
+    var els = document.querySelectorAll("#scene > *");
     for(var i in els){
       if(els[i].style && !els[i].classList.contains("river") && els[i].parentNode.id != "train" && !els[i].id.includes("h2") && !els[i].id.includes("h3")){
         els[i].style.transition = "10s";
@@ -15,14 +16,14 @@ camera = () => {
     }
     viewport.style.transition = "10s";
     setTimeout(()=>{
-      viewport.style.perspective = "-10000px";
-      level.innerHTML = "";
+      viewport.style.perspective = "50px";
+      level.innerHTML = "AAAAAAAAAAAAAAHHHHHHHH!";
       hud.style.opacity = 0;
     },500);
     
     setTimeout(()=>{
       black.style.opacity = 1;
-      black.innerHTML = "<h1>404: dimension not found!</h1><h2>Please download a browser that supports CSS 4D.</h2><h3>(Just kidding, you finished the game. Thanks for playing!)"
+      black.innerHTML = "<h1>404: dimension not found!</h1><h2>Please download a browser that supports CSS 4D.</h2><h3>(Just kidding, you finished the game. Thanks for playing!<br><br><a target=_blank href='//xem.github.io/articles/js13k19.html'>Read the making-of</a><br><br><a target=_blank href='https://twitter.com/intent/tweet?text=I%20played%20Track%20Not%20Found%2C%20a%2013kb%20game%20by%20%40MaximeEuziere%0ATry%20it%20here%3A%20http%3A%2F%2Fjs13kgames.com%2Fentries%2Ftrack-not-found'>Tweet</a>"
     },10000);
   }
   
