@@ -87,20 +87,20 @@ levels = () => {
   }
   
   // Level 2 bis
-  /*if(state == 3){
+  /*if(state == 10){
     
     draw_boat(0,0,-235);
     
     // Define each track piece (x, y, z, pillar, scale)
     track = [
       [0,0,0,1],  // block 0
-      [1.05,2.6,0,1],  // block 1
-      [2,-2,0,1],  // block 2
-      [3,-6,0,1],  // block 3
-      [4,-2,0,1],  // block 4
-      [4.95,2.6,0,1], // block 5
-      [6,0,0,1],  // block 6
-      [7,0,0,0],  // block 7
+      [105,260,0,1],  // block 1
+      [200,-200,0,1],  // block 2
+      [300,-600,0,1],  // block 3
+      [400,-200,0,1],  // block 4
+      [495,260,0,1], // block 5
+      [600,0,0,1],  // block 6
+      [700,0,0,0],  // block 7
     ];
     
     // links between track pieces in each view (2D, 3D)
@@ -495,33 +495,6 @@ levels = () => {
     
     // Define each track piece (x, y, z, pillar, scale)
     
-    
-    /* 
-    //7bis
-    track = [
-      [-300,0,0,1],             // block 0
-      [-200,-300,0,1],          // block 1
-      [-100,-300,0,0],          // block 2
-      [0,-300,0,0],             // block 3
-      [100,-300,0,1],           // block 4
-      [-78,23,268,1,0.56],      // block 5
-      [-242,243,104,1,.77],     // block 6
-      [390,-60,0,0,1.2],             // block 7 (end)
-      [-242+77,243,104,0,.77],     // block 8
-      [-242+77*2,243,104,1,.77],     // block 9
-      [147,74,327,1,.7],     // block 10
-      [82,78,-200,1,.75],     // block 11
-      [82-75,78,-200,0,.75],     // block 12
-      [82-75*2,78,-200,1,.75],     // block 13
-      [582,204,440,0,2],     // block 14
-      [82-75*4,78,-200,1,.75],     // block 15
-      [582+200,204,440,0,2],     // block 16
-      [-34,-1,-250,0,1.4],     // block 17
-      [-8,-400,115,1,.8],     // block 18
-    ];
-    
-    */
-    
     track = [
       [-300,0,0,0],             // block 0
       [-200,0,0,1],             // block 1
@@ -882,18 +855,320 @@ levels = () => {
     ];
     
     for(var i = 0; i < 6; i++){
-      track.push([Math.random()*700 - 350, Math.random()*700 - 600, Math.random() * 460 - 230, Math.random()|1, Math.random() * 2+.2]);
+      track.push([Math.random()*700 - 350, Math.random()*700 - 600, Math.random() * 460 - 230, Math.random()|1, Math.random() * 1.5+.2]);
     }
     
     track.push([400,0,0,0]); // 7 end
     
     for(var i = 0; i < 10; i++){
-      track.push([Math.random()*700 - 350, Math.random()*700 - 600, Math.random() * 460 - 230, Math.random()|1, Math.random() * 2+.2]);
+      track.push([Math.random()*700 - 350, Math.random()*700 - 600, Math.random() * 460 - 230, Math.random()|1, Math.random() * 1.5+.2]);
     }
     
     // links between track pieces in each view (2D, 3D)
     links = {
     }
+    
+  }
+  
+  // Level 10
+  if(state == 10){
+    
+    // Define each track piece (x, y, z, pillar, scale)
+    track = [
+      [-300,0,0,1],             // block 0
+      [-200,-300,0,1],          // block 1
+      [-100,-300,0,0],          // block 2
+      [0,-300,0,0],             // block 3
+      [100,-300,0,1],           // block 4
+      [-78,23,268,1,0.56],      // block 5
+      [-242,243,104,1,.77],     // block 6
+      [390,-60,0,0,1.2],        // block 7 (end)
+      [-242+77,243,104,0,.77],  // block 8
+      [-242+77*2,243,104,1,.77],// block 9
+      [147,74,327,1,.7],        // block 10
+      [82,78,-200,1,.75],       // block 11
+      [82-75,78,-200,0,.75],    // block 12
+      [82-75*2,78,-200,1,.75],  // block 13
+      [582,204,440,0,2],        // block 14
+      [82-75*4,78,-200,1,.75],  // block 15
+      [582+200,204,440,0,2],    // block 16
+      [-34,-1,-250,0,1.4],      // block 17
+      [-8,-400,115,1,.8],       // block 18
+    ];
+    
+    // links between track pieces in each view (2D, 3D)
+    links = {
+      "default": [
+          [null,null], // 0
+          [null,2], // 1
+          [1,3], // 2
+          [2,4], // 3
+          [3,null], // 4
+          [null,null], // 5
+          [null,8], // 6
+          [null,null], // 7 end
+          [6,9], // 8
+          [8,null], // 9
+          [null,null], // 10
+          [12,null], // 11
+          [13,11], // 12
+          [null,12], // 13
+          [null,16], // 14
+          [null,null], // 15
+          [14,null], // 16
+          [null,null], // 17
+          [null,null], // 18
+      ],
+      
+      "2d": {
+        "frontmiddle": [
+          [null,1], // 0
+          [0,2,-200,0,0], // 1
+          [1,3,-100,0,0], // 2
+          [2,4,0,0,0], // 3
+          [3,null,100,0,0], // 4
+          [null,null], // 5
+          [null,8], // 6
+          [null,null], // 7 end
+          [6,9], // 8
+          [8,18], // 9
+          [null,null], // 10
+          [12,null], // 11
+          [13,11], // 12
+          [null,12], // 13
+          [null,16], // 14
+          [null,null], // 15
+          [14,null], // 16
+          [null,null], // 17
+          [9,null,-242+77*2+77,243,104,.77], // 18
+        ],
+        
+        "backmiddle": [
+          [null,1], // 0
+          [0,2,-200,0,0], // 1
+          [1,3,-100,0,0], // 2
+          [2,4,0,0,0], // 3
+          [3,null,100,0,0], // 4
+          [null,null], // 5
+          [null,8], // 6
+          [null,null], // 7 end
+          [6,9], // 8
+          [8,null], // 9
+          [null,null], // 10
+          [12,null], // 11
+          [13,11], // 12
+          [null,12], // 13
+          [null,16], // 14
+          [null,null], // 15
+          [14,null], // 16
+          [null,null], // 17
+          [null,null], // 18
+        ],
+        
+        "frontup": [
+          [null,null], // 0
+          [null,2], // 1
+          [1,3], // 2
+          [2,4], // 3
+          [3,null], // 4
+          [null,null], // 5
+          [null,8], // 6
+          [null,null], // 7 end
+          [6,9], // 8
+          [8,null], // 9
+          [null,null], // 10
+          [12,null], // 11
+          [13,11], // 12
+          [null,12], // 13
+          [null,16], // 14
+          [null,null], // 15
+          [14,null], // 16
+          [null,null], // 17
+          [null,null], // 18
+        ],
+        
+        "backup": [
+          [null,null], // 0
+          [null,2], // 1
+          [1,3], // 2
+          [2,4], // 3
+          [3,null], // 4
+          [null,null], // 5
+          [null,8], // 6
+          [null,null], // 7 end
+          [6,9], // 8
+          [8,null], // 9
+          [null,null], // 10
+          [12,null], // 11
+          [13,11], // 12
+          [null,12], // 13
+          [null,16], // 14
+          [null,null], // 15
+          [14,null], // 16
+          [null,null], // 17
+          [null,null], // 18
+        ],
+        
+        "up": [
+          [null,null], // 0
+          [null,2], // 1
+          [1,3], // 2
+          [2,4], // 3
+          [3,null], // 4
+          [null,null], // 5
+          [null,8], // 6
+          [null,null], // 7 end
+          [6,9], // 8
+          [8,null], // 9
+          [11,null], // 10
+          [12,10,147-70,74,327,.7], // 11
+          [13,11,147-70*2,74,327,.7], // 12
+          [null,12,147-70*3,74,327,.7], // 13
+          [null,16], // 14
+          [null,null], // 15
+          [14,null], // 16
+          [null,null], // 17
+          [null,null], // 18
+        ],
+        
+        "rightbackmidup": [
+          [null,null], // 0
+          [null,2], // 1
+          [1,3], // 2
+          [2,4], // 3
+          [3,null], // 4
+          [null,null], // 5
+          [null,8, 147-70*3,74,327,.7], // 6
+          [null,null], // 7 end
+          [6,9, 147-70*2,74,327,.7], // 8
+          [8,10, 147-70,74,327,.7], // 9
+          [9,null], // 10
+          [12,null], // 11
+          [13,11], // 12
+          [null,12], // 13
+          [null,16], // 14
+          [null,null], // 15
+          [14,null], // 16
+          [null,null], // 17
+          [null,null], // 18
+        ],
+      },
+      
+      "3d": {
+        "leftmidup": [
+          [null,17], // 0
+          [null,2], // 1
+          [1,3], // 2
+          [2,4], // 3
+          [3,null], // 4
+          [null,null], // 5
+          [null,8], // 6
+          [null,null], // 7 end
+          [6,9], // 8
+          [8,null], // 9
+          [null,null], // 10
+          [12,null], // 11
+          [13,11], // 12
+          [null,12], // 13
+          [null,16], // 14
+          [null,null], // 15
+          [14,null], // 16
+          [0,null,-200,0,0], // 17
+          [null,null], // 18
+        ],
+        
+        "leftfrontmidup": [
+          [null,null], // 0
+          [null,2,-78-56*4,23,268,0.56], // 1
+          [1,3,-78-56*3,23,268,0.56], // 2
+          [2,4,-78-56*2,23,268,0.56], // 3
+          [3,5,-78-56,23,268,0.56], // 4
+          [4,null], // 5
+          [null,8], // 6
+          [null,null], // 7 end
+          [6,9], // 8
+          [8,null], // 9
+          [null,null], // 10
+          [12,null], // 11
+          [13,11], // 12
+          [null,12], // 13
+          [null,16], // 14
+          [null,null], // 15
+          [14,null], // 16
+          [null,null], // 17
+          [null,null], // 18
+        ],
+        
+        "rightbackmidup": [
+          [null,null], // 0
+          [null,2], // 1
+          [1,3], // 2
+          [2,4], // 3
+          [3,null], // 4
+          [null,6], // 5
+          [5,8,-78+56,23,268,0.56], // 6
+          [null,null], // 7 end
+          [6,9,-78+56*2,23,268,0.56], // 8
+          [8,null,-78+56*3,23,268,0.56], // 9
+          [null,null], // 10
+          [12,null], // 11
+          [13,11], // 12
+          [null,12], // 13
+          [null,16], // 14
+          [null,null], // 15
+          [14,null], // 16
+          [null,null], // 17
+          [null,null], // 18
+        ],
+        
+        "leftbackmiddown": [
+          [null,null], // 0
+          [null,2], // 1
+          [1,3], // 2
+          [2,4], // 3
+          [3,null], // 4
+          [null,null], // 5
+          [null,8], // 6
+          [16,null,582+200+200,204,440,2], // 7 end
+          [6,9], // 8
+          [8,null], // 9
+          [null,null], // 10
+          [12,null], // 11
+          [13,11], // 12
+          [null,12], // 13
+          [null,16], // 14
+          [null,null], // 15
+          [14,7], // 16
+          [null,null], // 17
+          [null,null], // 18
+        ],
+        
+        "leftmiddown": [
+          [null,null], // 0
+          [null,2], // 1
+          [1,3], // 2
+          [2,4], // 3
+          [3,null], // 4
+          [null,null], // 5
+          [null,8], // 6
+          [null,null], // 7 end
+          [6,9], // 8
+          [8,null], // 9
+          [null,null], // 10
+          [12,null, 582+200*3,204,440,2], // 11
+          [13,11, 582+200*2,204,440,2], // 12
+          [14,12, 582+200,204,440,2], // 13
+          [15,13], // 14
+          [null,14, 582-200,204,440,2], // 15
+          [14,null], // 16
+          [null,null], // 17
+          [null,null], // 18
+        ],
+        
+      }
+        
+    };
+    
     
   }
   

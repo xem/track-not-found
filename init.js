@@ -20,6 +20,7 @@ init = e => {
   vX = 0;
   scale = 1;
   black.style.opacity = 0;
+  black.style.pointerEvents = "none";
   viewport.style.perspective = default_perspective;
   cam = "3d"; // or 2d
   campos = "front"; // or left or back or right
@@ -34,6 +35,9 @@ init = e => {
   posonchunk = 0;
   scale = 1;
   dir = 1;
+  if(state && window.h4){
+    h4.style.display = "none";
+  }
   viewport.classList.remove("rumble");
   if(state == 0){
     viewport.classList.add("title");
@@ -77,7 +81,8 @@ init = e => {
       "Rotate the camera to the left or the right with " + (mobile ?"the buttons below" : "the other arrow keys"), // 6
       "What the...?!", // 8 now 7
       "I had to make one big level, so here it is.", // 7 now 8
-      "Finally, go into the 4th dimension " + (mobile ? "with the button below!": "by pressing T, or use the button below!"), // 9
+      "To solve this one, go in the 4th dimension " + (mobile ? "with the button below!": "by pressing T or the button below!"), // 9
+      "Here's the bonus level :3" // 10
     ][state] || "");
   }
   buttons.innerHTML = "";
@@ -225,7 +230,7 @@ init = e => {
       C.plane({w:10,h:16,z:5,x:i,b:"#ca0",css:"wood"})
     }*/
     
-    for(var i = -600; i < 700; i += 100){
+    for(var i = -800; i < 900; i += 100){
       draw_track(i,11,0);
     }
     
@@ -284,6 +289,10 @@ init = e => {
   
   levels();
   onresize();
+  
+  if(state > 10){
+    location = location;
+  }
   
   setTimeout(()=>{
     if(state > 0  && window.boat){

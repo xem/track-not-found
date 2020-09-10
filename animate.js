@@ -454,14 +454,14 @@ animate = () => {
       wavesy += .5;
     }
 
-    //console.log(chunk, ~~(posonchunk*100), ~~X, ~~Y, ~~Z, ~~vX, link[chunk]);
+    //console.log(chunk, ~~(posonchunk*100), ~~X, ~~Y, ~~Z, ~~vX, link[chunk],track[chunk]);
 
   }, 16);
 }
 
 
 getlink = () => {
-  return link = links[cam] ? (links[cam][campos] || links[cam][camheight] || links[cam][campos+camheight] || links["default"]) : links["default"];
+  return link = links[cam] ? (links[cam][campos+camheight] || links[cam][campos] || links[cam][camheight] || links["default"]) : links["default"];
 }
 
 // Move train to real position/scale immediately

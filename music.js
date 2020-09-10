@@ -1,7 +1,7 @@
 
 
 music = () => {
-  n = -2;
+  n = -3;
   A = new AudioContext;
   G=A.createGain();
   note();  
@@ -25,7 +25,7 @@ note = () => {
       O1.start(A.currentTime),
       O1.frequency.setValueAtTime(440*1.06**(n >= 0 ?-105+t[0].charCodeAt(n%64) : 0),A.currentTime),
       O1.type = cam == "2d" ? 'sine' : cam == "3d" ? 'triangle' : "square",
-      G.gain.setValueAtTime(n >= 0 ? .06 : .001, A.currentTime + (cam == "4d" ? Math.random()/3 : 0)),
+      G.gain.setValueAtTime(n >= 0 ? .06 : .0001, A.currentTime + (cam == "4d" ? Math.random()/3 : 0)),
       G.gain.setTargetAtTime(.001,A.currentTime+(cam == "4d" ? Math.random()/4 : .1),.05),
       O1.stop(A.currentTime+(cam == "4d" ? Math.random()/3 : .24));
     }
@@ -36,7 +36,7 @@ note = () => {
       O2.start(A.currentTime),
       O2.frequency.setValueAtTime(440*1.06**(n >= 0 ?-105+t[1].charCodeAt(n%64) : 0),A.currentTime),
       O2.type = cam == "2d" ? 'sine' : cam == "3d" ? 'triangle' : "square",
-      G.gain.setValueAtTime(n >= 0 ? .08 : .001, A.currentTime + (cam == "4d" ? Math.random()/3 : 0)),
+      G.gain.setValueAtTime(n >= 0 ? .08 : .0001, A.currentTime + (cam == "4d" ? Math.random()/3 : 0)),
       G.gain.setTargetAtTime(.001,A.currentTime+(cam == "4d" ? Math.random()/4 : .1),.05),
       O2.stop(A.currentTime+(cam == "4d" ? Math.random()/3 : .24));
     }

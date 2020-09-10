@@ -34,6 +34,8 @@ h4.onclick = () => {
 // Handle key presses
 k = []; // 88: X, 67: C, 69: E, 82: R
 u = l = d = r = 0; // arrow keys / wasd / zqsd
+skiptimer = 0;
+
 onkeydown = onkeyup = e => {
   k[e.which] = e.type[5]; // update k
   
@@ -41,6 +43,7 @@ onkeydown = onkeyup = e => {
   if(e.which == 37 || e.which == 81 || e.which == 65){ l = e.type[5] } // l
   if(e.which == 40 || e.which == 83){ d = e.type[5] } // d
   if(e.which == 39 || e.which == 68){ r = e.type[5] } // r
+  if(e.which == 27) { if(state && state < 10 && !skiptimer) { win = 1; skiptimer = 1; setTimeout(()=>{skiptimer = 0;},state==7?10000:3000); state++; init(); }}
   
   //console.log(e.which);
 }

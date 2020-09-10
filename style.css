@@ -63,7 +63,7 @@ body { font-family: calibri, arial; overflow: hidden; margin: 0; background: #00
 #h1 { margin-top: -480px; font-size: 60px;  }
 #h2 { margin-top: -400px; font-size: 20px; }
 #h3 { margin-top: -100px; font-size: 40px; animation: wobble 2s infinite; cursor: pointer; }
-#h4 { margin-top: -55px; margin-left: 410px; font-size: 30px; cursor: pointer; }
+#h4 { margin-top: -465px; margin-left: 420px; font-size: 30px; cursor: pointer; }
 .mobile #h4 { display: none }
 .plane { opacity: 1 }
 .train { font-size: 50px; line-height:50px; }
@@ -113,3 +113,4 @@ button.on { background: #fff }
 #level { padding: 0 0 0 10px; transition: transform .2s .5s; }
 .dynamite img { animation: wiggle 1s infinite }
 a { color: #57f }
+button.mini { padding: 5px; font-size: 16px; min-height: 0; }
