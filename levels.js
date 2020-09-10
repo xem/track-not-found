@@ -757,6 +757,7 @@ levels = () => {
       d_1.innerHTML = "<img src=1f4a5.svg width=60 height=60>";
       if(navigator.vibrate) navigator.vibrate(2500);
       viewport.classList.add("rumble2");
+      boom();
       group6.style.transition = "opacty 1s";
       group6.style.opacity = "0";
     },4500);
@@ -770,6 +771,7 @@ levels = () => {
       d_1.innerHTML = "";
       C.move({n:"group0",z:-350});
       viewport.classList.add("rumble2");
+      boom();
     },5000);
     
     setTimeout(()=>{
@@ -781,6 +783,7 @@ levels = () => {
       d_2.innerHTML = "";
       C.move({n:"group1",z:-350});
       viewport.classList.add("rumble2");
+      boom();
       go = 1;
     },5500);
     

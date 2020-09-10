@@ -157,6 +157,7 @@ animate = () => {
         // Fall
         if(lose && go) {
           
+          wouwou();
           train.style.transition = ".5s";
           scene.style.transition = "1s";
           hud.style.transition = "none";

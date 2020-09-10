@@ -28,7 +28,7 @@ draw_track = (x,y,z,pillar,scale=1, debug="") => {
   C.cube({g:"group"+(group_count),w:110,h:6,d:8,x:50,y:-11,b:"#888",css:"iron"},1,0,0,0,mobile?0:1,1);
   C.plane({g:"group"+(group_count),w:107,h:16,x:50,z:6,css:"woods",html:dodebug?debug:""});
   if(pillar){
-    C.cube({g:"group"+(group_count),w:5,h:(z - -244)/scale+((mobile || state < 4)?0:300),d:5,x:50,z:-.2-(z - -244)/scale-((mobile || state < 4)?0:300),b:"#333",b2:"#555",b3:"#333"},0,0,1,1,1,0);
+    C.cube({g:"group"+(group_count),w:5,h:(z - -244)/scale+((state != 6 && (mobile || state < 4))?0:300),d:5,x:50,z:-.2-(z - -244)/scale-((state != 6 && (mobile || state < 4))?0:300),b:"#333",b2:"#555",b3:"#333"},0,0,1,1,1,0);
   }
   group_count++;
 }
@@ -95,7 +95,7 @@ draw_hills = () => {
       }
       
       C.sprite({w:60,h:60,x:X,y:Y,z:0,html:tree=["🌳","🌴","🌲","🐄"][Math.random()*3.05|0],css:"tree fixed",o:"bottom"});
-      C.plane({w:60,h:60,x:X,y:Y,z:0,html:tree,css:"tree fixed shadow",o:"bottom",rz:100});
+      if(!mobile)C.plane({w:60,h:60,x:X,y:Y,z:0,html:tree,css:"tree fixed shadow",o:"bottom",rz:100});
       X2 = X;
       Y2 = Y;
     }
@@ -109,7 +109,7 @@ draw_hills = () => {
       }
       
       C.sprite({w:60,h:60,x:X,y:Y,z:0,html:tree=["🌳","🌴","🌲","🦙"][Math.random()*3.05|0],css:"tree fixed",o:"bottom"});
-      C.plane({w:60,h:60,x:X,y:Y,z:0,html:tree,css:"tree fixed shadow",o:"bottom",rz:100});
+      if(!mobile)C.plane({w:60,h:60,x:X,y:Y,z:0,html:tree,css:"tree fixed shadow",o:"bottom",rz:100});
       
       X2 = X;
       Y2 = Y;
@@ -119,13 +119,13 @@ draw_hills = () => {
     Y=120+Math.random()*300;
     
     C.sprite({w:60,h:60,x:X,y:Y,z:0,html:tree=["🌳","🌴","🌲","🦌"][Math.random()*3.05|0],css:"tree fixed",o:"bottom"});
-    C.plane({w:60,h:60,x:X,y:Y,z:0,html:tree,css:"tree fixed shadow",o:"bottom",rz:100});
+    if(!mobile)C.plane({w:60,h:60,x:X,y:Y,z:0,html:tree,css:"tree fixed shadow",o:"bottom",rz:100});
 
     X=-470-Math.random()*300;
     Y=120+Math.random()*300;
     
     C.sprite({w:60,h:60,x:X,y:Y,z:0,html:tree=["🌳","🌴","🌲","🐐"][Math.random()*3.05|0],css:"tree fixed",o:"bottom"});
-    C.plane({w:60,h:60,x:X,y:Y,z:0,html:tree,css:"tree fixed shadow",o:"bottom",rz:100});
+    if(!mobile)C.plane({w:60,h:60,x:X,y:Y,z:0,html:tree,css:"tree fixed shadow",o:"bottom",rz:100});
   //}
 }
 

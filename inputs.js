@@ -6,7 +6,7 @@ h3.onmousedown = h3.ontouchstart = e => {
     // Title
     case 0:
       black.style.opacity = 1;
-      h4.remove();
+      if(window.h4)h4.remove();
       
       music();
       
