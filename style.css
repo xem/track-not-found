@@ -100,7 +100,7 @@ button span { font-family: emoji, calibri; }
 .reverse { transform: scaleX(-1); display: inline-block; }
 #b_2d { margin-left: 50px }
 button.on { background: #fff }
-#black { width:900px; height: 480px; background: #000; position: absolute; top: 0; opacity: 1; transition: opacity .5s; pointer-events: none; color: #fff; text-align: center; padding: 120px 0 0; }
+#black { width: 900px; height: 480px; background: #000; position: absolute; top: 0; opacity: 1; transition: opacity .5s; pointer-events: none; color: #fff; text-align: center; padding: 90px 0 0; }
 #black h1 { margin-left: 0 }
 .campos1 { position: absolute; top: 335px; left: 830px; text-align: center }
 .campos2 { position: absolute; top: 330px; left: 730px; text-align: center }

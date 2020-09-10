@@ -41,6 +41,10 @@ animate = () => {
       if((chunk == 7 || (track.length < 8 && chunk == track.length - 1)) && posonchunk > .75){
         X = 0;
         win = 1;
+        if(state == 6 && !easteregg6){
+          localStorage['OS13kTrophy,🚂,Track Not Found,Bridge saver'] = "You didn't destroy the bridge in Track not Found";
+          console.log("saved bridge");
+        }
         train.style.transition = hud.style.transition = "1s";
         viewport.style.transition = "none";
         C.move({n:"train",x:800});
@@ -72,14 +76,14 @@ animate = () => {
         }
         
         // Level 6: break the middle chunk when passing 25% of chunk 1
-        if(state == 6 && chunk == 1 && posonchunk > .5 && !easteregg6){
+        if(state == 6 && chunk == 1 && posonchunk > .5 && !easteregg6 && campos + camheight == "leftbackmiddown"){
+          easteregg6 = 1;
           group0.style.transition = "3s";
           viewport.classList.add("rumble");
           level.innerHTML = "Ooops, sorry, you'll need to find another way!";
           level.style.transform = "translateY(27px)rotate(3deg)";
           if(navigator.vibrate) navigator.vibrate(500);
           C.move({n:"group0",rx:90,y:-600,z:-600});
-          easteregg6 = 1;
           oktolose = 0;
           setTimeout(()=>{
             group0.remove();
@@ -126,6 +130,8 @@ animate = () => {
           vX = 0;
           X = -318;
           posonchunk = 0.25;
+          localStorage['OS13kTrophy,🚂,Track Not Found,Bonk'] = "You bonked on the mountain in Track not Found";
+          console.log("bonk");
         }
         
         // Move to new chunk on the left (or virtual position)
@@ -408,15 +414,15 @@ animate = () => {
       chunkright = 70;
       posonchunk = .25;
       cross1 = 1;
-      train.style.transition = ".1s";
+      train.style.transition = "transform .2s";
       setTimeout(()=>{
         C.move({n:"train",x:X,y:group6y-11,z:Z,sx:1.4,sy:1.4,sz:1.4});
-      },16);
+      },33);
       go = 0;
       setTimeout(()=>{
         go = 1;
         if(!lose)train.style.transition = "none";
-      },200);
+      },250);
     }
     
     if(state == 7 && chunk == 2){
@@ -438,15 +444,15 @@ animate = () => {
       chunkright = 250;
       posonchunk = .01;
       cross2 = 1;
-      train.style.transition = ".1s";
+      train.style.transition = "transform .2s";
       setTimeout(()=>{
         C.move({n:"train",x:X,y:0,z:Z,sx:1,sy:1,sz:1});
-      },16);
+      },33);
       go = 0;
       setTimeout(()=>{
         go = 1;
         if(!lose)train.style.transition = "none";
-      },200);
+      },250);
     }
     
     if(window.river2){

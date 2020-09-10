@@ -80,7 +80,7 @@ draw_hills = () => {
   C.plane({w:600,h:600,x:-620,y:0,z:-300.8,rx:-90,sk:"15deg",css:"hill3",n:"h3left"});
   C.plane({w:600,h:600,x:620,y:0,z:-300.8,rx:-90,sk:"-15deg",css:"hill3",n:"h3right"});
   
-  if(!mobile){
+  //if(!mobile){
     X = 0;
     Y = 0;
     X2 = 0;
@@ -126,6 +126,6 @@ draw_hills = () => {
     
     C.sprite({w:60,h:60,x:X,y:Y,z:0,html:tree=["🌳","🌴","🌲","🐐"][Math.random()*3.05|0],css:"tree fixed",o:"bottom"});
     C.plane({w:60,h:60,x:X,y:Y,z:0,html:tree,css:"tree fixed shadow",o:"bottom",rz:100});
-  }
+  //}
 }
 

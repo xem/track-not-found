@@ -29,6 +29,8 @@ camera = () => {
     setTimeout(()=>{
       black.style.opacity = 1;
       black.innerHTML = "<h1>404: dimension not found!</h1><h2>Please download a browser that supports CSS 4D.</h2><h3>(Just kidding, you finished the game. Thanks for playing!<br><br><a target=_blank href='//xem.github.io/articles/js13k20.html'>Read the making-of</a><br><br><a target=_blank href='https://twitter.com/intent/tweet?text=I%20played%20Track%20Not%20Found%2C%20a%2013kb%20game%20by%20%40MaximeEuziere%0ATry%20it%20here%3A%20http%3A%2F%2Fjs13kgames.com%2Fentries%2Ftrack-not-found'>Tweet</a><br><br><button class=mini " + (document.monetization && document.monetization.state === 'started' ? "" : "disabled") + " onclick='state=10;init();black.style.display=\"none\"'>Bonus level for Coil members</button>";
+      localStorage['OS13kTrophy,🚂,Track Not Found,100%'] = "You completed the game Track not Found";
+      console.log("100%");
     },10000);
   }
   
