@@ -43,7 +43,23 @@ onkeydown = onkeyup = e => {
   if(e.which == 37 || e.which == 81 || e.which == 65){ l = e.type[5] } // l
   if(e.which == 40 || e.which == 83){ d = e.type[5] } // d
   if(e.which == 39 || e.which == 68){ r = e.type[5] } // r
-  if(e.which == 27) { if(state && state < 10 && !skiptimer) { win = 1; skiptimer = 1; setTimeout(()=>{skiptimer = 0;},state==7?10000:3000); state++; init(); }}
+  if(e.which == 27) {
+    if(state && state < 11 && !skiptimer) {
+      win = 1;
+      skiptimer = 1;
+      setTimeout(()=>{skiptimer = 0;},state==8?10000:3000);
+      black.style.opacity = 1;
+      hud.style.opacity = 0;
+      train.style.transition = hud.style.transition = "1s";
+      viewport.style.transition = "none";
+      setTimeout(()=>{
+        scene.style.transition = "none";
+        viewport.style.perspective = default_perspective;
+        state++;
+        init();
+      }, 1500);
+    }
+  }
   
   //console.log(e.which);
 }

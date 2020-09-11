@@ -41,7 +41,7 @@ animate = () => {
       if((chunk == 7 || (track.length < 8 && chunk == track.length - 1)) && posonchunk > .75){
         X = 0;
         win = 1;
-        if(state == 6 && !easteregg6){
+        if(state == 7 && !easteregg7){
           localStorage['OS13kTrophy,🚂,Track Not Found,Bridge saver'] = "You didn't destroy the bridge in Track not Found";
           console.log("saved bridge");
         }
@@ -75,9 +75,9 @@ animate = () => {
           posonchunk = (X - chunkleft) / (chunkright - chunkleft);
         }
         
-        // Level 6: break the middle chunk when passing 25% of chunk 1
-        if(state == 6 && chunk == 1 && posonchunk > .5 && !easteregg6 && campos + camheight == "leftbackmiddown"){
-          easteregg6 = 1;
+        // Level 6: break the middle chunk when passing 50% of chunk 1
+        if(state == 7 && chunk == 1 && posonchunk > .5 && !easteregg7 && campos + camheight == "leftbackmiddown"){
+          easteregg7 = 1;
           group0.style.transition = "3s";
           viewport.classList.add("rumble");
           level.innerHTML = "Ooops, sorry, you'll need to find another way!";
@@ -94,7 +94,7 @@ animate = () => {
         }
         
         // Level 7: move floating chunk
-        if(state == 7 && group6go){
+        if(state == 8 && group6go){
           C.move({n:"group6",y:group6y+=.9});
           if(group6y > 600){
             if(chunk == 2){
@@ -198,7 +198,7 @@ animate = () => {
         b_3d.className = "";
         vX = 0;
         cam = "2d";
-        if(state < 7 && (camheight == "midup" || camheight == "middown")){ camheight = "middle" }
+        if(state < 8 && state != 6 && (camheight == "midup" || camheight == "middown")){ camheight = "middle" }
         
         // Move train to real position/scale immediately
         traintoreal();
@@ -219,7 +219,7 @@ animate = () => {
         b_2d.className = "";
         vX = 0;
         cam = "3d";
-        if(state < 7){ 
+        if(state < 8){ 
           camheight = "midup"
         }
         
@@ -236,7 +236,7 @@ animate = () => {
       }
       
       // 4D
-      if(state == 9 && k[84] && cam != "4d" && go && !win && !lose){
+      if(state == 10 && k[84] && cam != "4d" && go && !win && !lose){
         b_4d.className = "on";
         b_2d.className = "";
         b_3d.className = "";
@@ -267,7 +267,7 @@ animate = () => {
         camera();
         
         // Move train to new position/scale immediately (real or virtual)
-        setTimeout(traintonew, state == 7 ? 300 : 1000);
+        setTimeout(traintonew, state == 8 ? 300 : 1000);
         
         u = 0;
       }
@@ -286,7 +286,7 @@ animate = () => {
         camera();
         
         // Move train to new position/scale immediately (real or virtual)
-        setTimeout(traintonew, state == 7 ? 300 : 1000);
+        setTimeout(traintonew, state == 8 ? 300 : 1000);
         
         d = 0;
       }
@@ -313,7 +313,7 @@ animate = () => {
         camera();
         
         // Move train to new position/scale immediately (real or virtual)
-        setTimeout(traintonew, state == 7 ? 300 : 1000);
+        setTimeout(traintonew, state == 8 ? 300 : 1000);
         l = 0;
       }
       
@@ -336,13 +336,13 @@ animate = () => {
         camera();
         
         // Move train to new position/scale immediately (real or virtual)
-        setTimeout(traintonew, state == 7 ? 300 : 1000);
+        setTimeout(traintonew, state == 8 ? 300 : 1000);
         r = 0;
       }
     }
     
-    // Level 7 crossings
-    if(state == 7 && group6y < -150 && group6y > -210 && !cross1){
+    // Level 8 crossings
+    if(state == 8 && group6y < -150 && group6y > -200 && !cross1){
       //console.log(group6y);
       links["3d"]["leftfrontmidup"] = [
         [null,1], // 0
@@ -353,7 +353,7 @@ animate = () => {
         [4,null], // 5 (end)
       ]
     }
-    else if(state == 7){
+    else if(state == 8){
       links["3d"]["leftfrontmidup"] = [
         [null,1], // 0
         [0,null], // 1
@@ -364,7 +364,7 @@ animate = () => {
       ]
     }
     
-    if(state == 7 && group6y > 150 && group6y < 210){
+    if(state == 8 && group6y > 150 && group6y < 200){
       //console.log(group6y);
       links["3d"]["rightbackmidup"] = [
         [null,1], // 0
@@ -384,7 +384,7 @@ animate = () => {
         [4,null], // 5 (end)
       ];
     }
-    else if(state == 7) {
+    else if(state == 8) {
       links["3d"]["rightbackmidup"] = [
         [null,1], // 0
         [0,null], // 1
@@ -404,7 +404,7 @@ animate = () => {
       ]
     }
     
-    if(state == 7 && !cross1 && chunk == 2){
+    if(state == 8 && !cross1 && chunk == 2){
       Z = -235;
       scale = 1.4;
       X = -35;
@@ -415,25 +415,25 @@ animate = () => {
       chunkright = 70;
       posonchunk = .25;
       cross1 = 1;
-      train.style.transition = "transform .2s";
+      train.style.transition = "transform .1s";
+      go = 0;
       setTimeout(()=>{
         C.move({n:"train",x:X,y:group6y-11,z:Z,sx:1.4,sy:1.4,sz:1.4});
       },33);
-      go = 0;
       setTimeout(()=>{
         go = 1;
         if(!lose)train.style.transition = "none";
       },250);
     }
     
-    if(state == 7 && chunk == 2){
+    if(state == 8 && chunk == 2){
       //console.log(train.style.transform, train.style.transition);
       Y = group6y - 11;
       C.move({n:"train", y:Y});
     }
     
     
-    if(state == 7 && !cross2 && chunk == 3){
+    if(state == 8 && !cross2 && chunk == 3){
       Z = 0;
       scale = 1;
       X = 151;
@@ -445,15 +445,24 @@ animate = () => {
       chunkright = 250;
       posonchunk = .01;
       cross2 = 1;
-      train.style.transition = "transform .2s";
+      train.style.transition = "transform .1s";
+      go = 0;
       setTimeout(()=>{
         C.move({n:"train",x:X,y:0,z:Z,sx:1,sy:1,sz:1});
       },33);
-      go = 0;
       setTimeout(()=>{
         go = 1;
         if(!lose)train.style.transition = "none";
       },250);
+    }
+    
+    // Level 9 skip
+    if(state == 9){
+      frames9++;
+      if(frames9 == 60*60){
+        level.innerHTML = "Don't like this level? <button class=mini onclick='win = 1; black.style.opacity = 1; hud.style.opacity = 0; train.style.transition = hud.style.transition = \"1s\"; viewport.style.transition = \"none\"; setTimeout(()=>{ scene.style.transition = \"none\"; viewport.style.perspective = default_perspective; state++; init();}, 1500);'>click here to skip it :/</button>";
+        level.style.transform = "translateY(18px)rotate(2deg)";
+      }
     }
     
     if(window.river2){
@@ -462,6 +471,8 @@ animate = () => {
     }
 
     //console.log(chunk, ~~(posonchunk*100), ~~X, ~~Y, ~~Z, ~~vX, link[chunk],track[chunk]);
+    
+    //if(!go)console.log(go, train.style.transition, train.style.transform);
 
   }, 16);
 }
@@ -473,7 +484,7 @@ getlink = () => {
 
 // Move train to real position/scale immediately
 traintoreal = () => {
-  if(link && !(state == 7 && group6y &&  (chunk == 2 || chunk == 3))){
+  if(link && !(state == 8 && group6y &&  (chunk == 2 || chunk == 3))){
     go = 0;
     link = getlink();
     chunkmiddle = track[chunk][0];
@@ -481,21 +492,21 @@ traintoreal = () => {
     chunkleft = chunkmiddle - 50 * scale;
     chunkright = chunkmiddle + 50 * scale;
     X = chunkleft + (chunkright - chunkleft) * posonchunk;    
-    Y = (state == 7 && group6y && chunk == 2) ? (group6y + 11) : track[chunk][1];
+    Y = (state == 8 && group6y && chunk == 2) ? (group6y + 11) : track[chunk][1];
     Z = track[chunk][2];
     C.move({n:"train",x:X,y:Y-10*scale,z:Z,sx:scale,sy:scale,sz:scale});
   }
 }
 
 traintonew = () => {
-  if(link && !(state == 7 && group6y && (chunk == 2 || chunk == 3))){
+  if(link && !(state == 8 && group6y && (chunk == 2 || chunk == 3))){
     link = getlink();
     chunkmiddle = link[chunk].length > 2 ? link[chunk][2] : track[chunk][0];
     scale = (link[chunk].length > 2 ? link[chunk][5] : track[chunk][4]) || 1;
     chunkleft = chunkmiddle - 50 * scale;
     chunkright = chunkmiddle + 50 * scale;
     X = chunkleft + (chunkright - chunkleft) * posonchunk;    
-    Y = (state == 7 && group6y && chunk == 2) ? (group6y + 11) : link[chunk].length >= 5 ? link[chunk][3] : track[chunk][1];
+    Y = (state == 8 && group6y && chunk == 2) ? (group6y + 11) : link[chunk].length >= 5 ? link[chunk][3] : track[chunk][1];
     Z = link[chunk].length >= 5 ? link[chunk][4] : track[chunk][2];
     C.move({n:"train",x:X,y:Y-10*scale,z:Z,sx:scale,sy:scale,sz:scale});
     go = 1;

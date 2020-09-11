@@ -53,6 +53,7 @@ init = e => {
   cross1 = 0;
   cross2 = 0;
   wavesy = 0;
+  frames9 = 0;
   if(window.train)train.style.transition = "none";
   level.style.transform = "translateY(0)rotate(0)";
   mobile = navigator.userAgent.includes("Android") || navigator.userAgent.includes("iOS");
@@ -62,7 +63,7 @@ init = e => {
     onresize();
   }
   
-  easteregg6 = 0;
+  easteregg7 = 0;
           
   setTimeout(()=>{
     viewport.style.transition = "perspective 1.5s";
@@ -78,11 +79,12 @@ init = e => {
       "Optical illusions can help completing the track", // 5
       "Move the camera up & down with " + (mobile ? "the buttons below" : "the arrow keys, or use the buttons below"), // 4
       "Success is not always a straight line", // 5
-      "Rotate the camera to the left or the right with " + (mobile ?"the buttons below" : "the other arrow keys"), // 6
-      "What the...?!", // 8 now 7
-      "I had to make one big level, so here it is.", // 7 now 8
-      "To solve this one, go in the 4th dimension " + (mobile ? "with the button below!": "by pressing T or the button below!"), // 9
-      "Here's the bonus level :3" // 10
+      "Rotate the camera to the left or the right with " + (mobile ? "the buttons below" : "the other arrow keys"), // 11
+      "This one looks easy...", // 7
+      "What the...?!", // 8
+      "I had to make one big level, so here it is.", // 9
+      "To solve this one, go in the 4th dimension " + (mobile ? "with the button below!": "by pressing T or the button below!"), // 10
+      "Here's the bonus level :3", // 11
     ][state] || "");
   }
   buttons.innerHTML = "";
@@ -103,7 +105,7 @@ init = e => {
     
   }
   
-  if(state == 9){
+  if(state == 10){
     
     buttons.innerHTML += "<button title=E id=b_4d><span><img src=1f441.svg width=30 height=30></span> 4D</button>";
     
@@ -162,7 +164,7 @@ init = e => {
     
   }
   
-  if(state == 9){
+  if(state == 10){
     b_4d.onmousedown = b_4d.ontouchstart = e => {
       if(!k[84] && cam != "4d" && go){
         //console.log("4d");
@@ -280,7 +282,7 @@ init = e => {
     setTimeout(()=>{
       train.style.transition = "none";
       scene.style.transition = "1s";
-      if(state != 7) go = 1;
+      if(state != 8) go = 1;
     },3000);
     
     viewport.className="blue";
@@ -290,7 +292,7 @@ init = e => {
   levels();
   onresize();
   
-  if(state > 10){
+  if(state > 11){
     location = location;
   }
   

@@ -87,7 +87,7 @@ levels = () => {
   }
   
   // Level 2 bis
-  /*if(state == 10){
+  /*if(state == 2){
     
     draw_boat(0,0,-235);
     
@@ -386,7 +386,79 @@ levels = () => {
   }
   
   // Level 6
-  else if(state == 6){
+  if(state == 6){
+    
+    draw_boat(-100,-450,-235);
+    
+    // Define each track piece (x, y, z, pillar, scale)
+    track = [
+      [-300,0,0,1], // block 0
+      [-273,140,198,1,.68], // block 1
+      [-100,0,0,1], // block 2
+      [173,172,-22,1,1.45],    // block 3
+      [100,0,0,1],  // block 4
+      [22,186,264,1],  // block 5
+      [300,0,0,1],  // block 6
+      [400,0,0,0],  // block 7 (end)
+    ];
+    
+    // links between track pieces in each view (2D, 3D)
+    links = {
+
+      "default": [
+          [null, null],     // block 0
+          [null, null],     // block 1
+          [null, null],     // block 2
+          [null, null],     // block 3
+          [null, null],     // block 4
+          [null, null],     // block 5
+          [null, 7],        // block 6
+          [6, null],        // block 7
+      ],
+      
+      "3d": {
+        "leftfrontmidup": [
+          [null, 1, -273-68,140,198,.68],     // block 0
+          [0, 2],     // block 1
+          [1, null, -273+68,140,198,.68],     // block 2
+          [null, null],     // block 3
+          [null, null],     // block 4
+          [null, null],     // block 5
+          [null, 7],        // block 6
+          [6, null],        // block 7
+        ],
+        
+        "leftbackmiddle": [
+          [null, null],     // block 0
+          [null, null],     // block 1
+          [null, 3],     // block 2
+          [2, 4, 0,0,0,1],     // block 3
+          [3, null],     // block 4
+          [null, null],     // block 5
+          [null, 7],        // block 6
+          [6, null],        // block 7
+        ],
+      },
+      
+      "2d": {
+        "rightbackmiddown": [
+          [null, null],     // block 0
+          [null, null],     // block 1
+          [null, null],     // block 2
+          [null, null],     // block 3
+          [null, 5, 22-100,186,264],     // block 4
+          [4, 6],     // block 5
+          [5, 7, 22+100,186,264],        // block 6
+          [6, null, 22+200,186,264],        // block 7
+        ],
+      }
+      
+    }
+    
+  }
+  
+  // Level 7
+  else if(state == 7){
     
     draw_boat(200,60,-235);
     //camheight = "middown";
@@ -488,8 +560,8 @@ levels = () => {
     
   }
   
-  // Level 7 (now 8)
-  else if(state == 8){
+  // Level 9
+  else if(state == 9){
     
     draw_boat(100,-100,-235);
     
@@ -719,15 +791,11 @@ levels = () => {
         [19, null],   // block 20
       ],
     }
-    
-    
-    
-    
   }
   
   
-  // Level 8 (now 7)
-  else if(state == 7){
+  // Level 8
+  else if(state == 8){
     
     draw_boat(-230,80,-235);
     
@@ -841,8 +909,8 @@ levels = () => {
     
   }
   
-  // Level 9
-  else if(state == 9){
+  // Level 10
+  else if(state == 10){
     
     draw_boat(0,150,-235);
     //viewport.style.background = "#000";
@@ -873,8 +941,8 @@ levels = () => {
     
   }
   
-  // Level 10
-  if(state == 10){
+  // Level 11
+  if(state == 11){
     
     // Define each track piece (x, y, z, pillar, scale)
     track = [
