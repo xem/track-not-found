@@ -74,19 +74,8 @@ cube: (t,u,d,l,r,f,b) => {
   if(r)C.plane({g:t.n,x:t.w,y:t.d/2,w:t.d,h:t.h,b:t.b2||t.b,rx:-90,ry:-90,o:"bottom",css:"right"});
   if(b)C.plane({g:t.n,x:t.w/2,y:0,w:t.w,h:t.h,b:t.b1||t.b,rx:-90,o:"bottom",css:"back"});
   if(f)C.plane({g:t.n,x:t.w/2,y:t.d,w:t.w,h:t.h,b:t.b2||t.b,rx:-90,o:"bottom",css:"front"});
-  if(u)C.plane({g:t.n,x:t.w/2,y:t.d/2,z:t.h,w:t.w,h:t.d,b:t.b,css:"top"});
+  if(u)C.plane({g:t.n,x:t.w/2,y:t.d/2,z:t.h,w:t.w,h:t.d,b:t.up||t.b,css:"top"});
 },
-
-/*pyramid: t => {
-  t.n||(t.n=`pyramid${C.pyramid_count++}`);
-  C.init(t);
-  C.group({n:t.n,g:t.g,x:t.x,y:t.y,z:t.z,w:100,d:100,rx:t.rx,ry:t.ry,rz:t.rz,sx:t.w/100,sy:t.d/100,sz:t.h/86.6025,css:t.css});
-  C.plane({g:t.n,x:50,y:50,w:100,h:100,b:t.b,css:"bottom"});
-  C.plane({g:t.n,y:50,w:100,h:100,b:t.b,ry:-60,rz:90,css:"triangle left",o:"bottom"});
-  C.plane({g:t.n,x:100,y:50,w:100,h:100,b:t.b,ry:-120,rz:90,css:"triangle right",o:"bottom"});
-  C.plane({g:t.n,x:50,y:0,w:100,h:100,b:t.b,rx:-120,css:"triangle back",o:"bottom"});
-  C.plane({g:t.n,x:50,y:100,w:100,h:100,b:t.b,rx:-60,css:"triangle front",o:"bottom"});
-},*/
 
 camera: t => {
   t&&(t.x||0===t.x)&&(C.camX=t.x),
@@ -125,4 +114,5 @@ move: t => {
 tr: t => `translateX(-50%)translateY(-50%)translateX(${t.x}${C.unit})translateY(${t.y}${C.unit})translateZ(${t.z}${C.unit})rotateX(${t.rx}deg)rotateY(${t.ry}deg)rotateZ(${t.rz}deg)scaleX(${t.sx})scaleY(${t.sy})scaleZ(${t.sz})skew(${t.sk})`
 
 }
+
 

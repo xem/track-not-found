@@ -57,6 +57,7 @@ init = e => {
   if(window.train)train.style.transition = "none";
   level.style.transform = "translateY(0)rotate(0)";
   mobile = navigator.userAgent.includes("Android") || navigator.userAgent.includes("iOS");
+  scene.style.marginTop = state ? 0 : "20px";
   if(mobile){
     all.className = "mobile";
     fullscreen = 1;
@@ -217,21 +218,6 @@ init = e => {
     draw_train(0,0,1);
   
     // Track
-    /*C.cube({w:500,h:6,d:8,y:11,b:"#888",b2:"#666",b3:"#aaa",css:"iron"},1,0,0,0,1,1);
-    C.cube({w:500,h:6,d:8,x:-500,y:11,b:"#888",b2:"#666",b3:"#aaa",css:"iron"},1,0,0,0,1,1);
-    C.cube({w:500,h:6,d:8,x:-1000,y:11,b:"#888",b2:"#666",b3:"#aaa",css:"iron"},1,0,0,0,1,1);
-    C.cube({w:500,h:6,d:8,x:500,y:11,b:"#888",b2:"#666",b3:"#aaa",css:"iron"},1,0,0,0,1,1);
-    C.cube({w:500,h:6,d:8,x:1000,y:11,b:"#888",b2:"#666",b3:"#aaa",css:"iron"},1,0,0,0,1,1);
-    C.cube({w:500,h:6,d:8,y:-11,b:"#888",b2:"#666",b3:"#aaa"},1,0,0,0,1,1);
-    C.cube({w:500,h:6,d:8,x:-500,y:-11,b:"#888",b2:"#666",b3:"#aaa"},1,0,0,0,1,1);
-    C.cube({w:500,h:6,d:8,x:-1000,y:-11,b:"#888",b2:"#666",b3:"#aaa"},1,0,0,0,1,1);
-    C.cube({w:500,h:6,d:8,x:500,y:-11,b:"#888",b2:"#666",b3:"#aaa"},1,0,0,0,1,1);
-    C.cube({w:500,h:6,d:8,x:1000,y:-11,b:"#888",b2:"#666",b3:"#aaa"},1,0,0,0,1,1);
-    
-    for(var i=-700;i<700;i+=20){
-      C.plane({w:10,h:16,z:5,x:i,b:"#ca0",css:"wood"})
-    }*/
-    
     for(var i = -800; i < 900; i += 100){
       draw_track(i,11,0);
     }

@@ -1,7 +1,7 @@
 /* Twemoji */
 @font-face {
   font-family: emoji;
-  src: url(twemoji.ttf);
+  src: url(https://xem.github.io/track-not-found/twemoji.ttf);
 }
 
 /* animations */
@@ -42,15 +42,6 @@
 #viewport{width:900px;height:480px;overflow:hidden;contain: strict;border:1px solid;position:relative;perspective:600px;}
 #viewport *{transform-style:preserve-3d;box-sizing:border-box}
 #camera{width:0;height:0;position:absolute;top:50%;left:50%}
-.triangle{clip-path:polygon(50% 0,100% 100%,0 100%);border:none}
-.triangle-bottom{clip-path:polygon(0 0,100% 0,50% 100%)}
-.triangle-left{clip-path:polygon(0 50%,100% 0,100% 100%)}
-.triangle-right{clip-path:polygon(0 0,100% 50%,0 100%)}
-.triangle-top-left{clip-path:polygon(0 0,100% 0,0 100%)}
-.triangle-top-right{clip-path:polygon(0 0,100% 0,100% 100%)}
-.triangle-bottom-left{clip-path:polygon(0 0,100% 100%,0 100%)}
-.triangle-bottom-right{clip-path:polygon(100% 0,100% 100%,0 100%)}
-.circle{border-radius:50%}
 
 /* the rest */
 * { user-select: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; touch-action: manipulation; box-sizing: border-box; }

@@ -1,0 +1,46 @@
+﻿<link rel=stylesheet href=style.css>
+<meta name="viewport" content="width=device-width, height=device-height, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="format-detection" content="telephone=no">
+<meta name="msapplication-tap-highlight" content="no">
+<meta name="monetization" content=$pay.stronghold.co/1a1fbf27169a5334158b2c531b946427ceb>
+<title>Track not found?!</title>
+
+<div id=all>
+  <div id=viewport>
+    <div id=camera>
+      <div id=scene>
+      <h1>Loading...</h1>
+      </div>
+    </div>
+  </div>
+  <div id=h1>Track not found?!</div>
+  <div id=h2>JS13kgames 2020 - Maxime EUZIERE & GregPeck</div>
+  <div id=h3 style=display:none>Click to start</div>
+  <div id=h4 title="toggle fullscreen"><img src=fs.svg width=20 height=20></div>
+  <div id=hud>
+    <div id=level></div>
+    <div id=buttons></div>
+  </div>
+  <div id=black></div>
+</div>
+<script src=css3d.js></script>
+<script src=shapes.js></script>
+<script src=levels.js></script>
+<script src=init.js></script>
+<script src=animate.js></script>
+<script src=inputs.js></script>
+<script src=camera.js></script>
+<script src=music.js></script>
+<script>
+onload = () => {
+  fullscreen = 0;
+  state = 0;
+  dodebug = 0;
+  onresize();
+  init();
+  animate();
+}
+</script>

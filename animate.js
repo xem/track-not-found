@@ -5,7 +5,7 @@ animate = () => {
 
     // Title
     if(state == 0){
-      C.camera({z:-250,rz:rz+=.5,rx:50+Math.cos(rz/27.5)*10});
+      C.camera({z:-300,rz:rz+=.5,rx:50+Math.cos(rz/27.5)*10});
     }
     
     // Move train
@@ -43,7 +43,7 @@ animate = () => {
         win = 1;
         if(state == 7 && !easteregg7){
           localStorage['OS13kTrophy,🚂,Track Not Found,Bridge saver'] = "You didn't destroy the bridge in Track not Found";
-          console.log("saved bridge");
+          //console.log("saved bridge");
         }
         train.style.transition = hud.style.transition = "1s";
         viewport.style.transition = "none";
@@ -131,7 +131,7 @@ animate = () => {
           X = -318;
           posonchunk = 0.25;
           localStorage['OS13kTrophy,🚂,Track Not Found,Bonk'] = "You bonked on the mountain in Track not Found";
-          console.log("bonk");
+          //console.log("bonk");
         }
         
         // Move to new chunk on the left (or virtual position)
